@@ -1,0 +1,49 @@
+body{ background-color: #F4F5F5; }
+.wrapper{
+	float: left;
+	width: 100%;
+}
+.login-box{
+	width: 350px;
+	margin: 80px auto;
+}
+.login-box-mail{
+	width: 500px;
+	margin: 80px auto;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+a{ color: #124573;}
+.login-box h3{ margin-top: 0px; }
+label{ color: #124573; font-weight: 500 !important }
+#remember{ margin-left: 10px; }
+.radio label, .checkbox label{ padding: 0px; font-weight: 300 !important; }
+.has-feedback .form-control{ border-radius: 3px; }
+.message-erorr p{ 
+	margin: 0; 
+	padding: 15px 10px;
+}
+.message-erorr{ 
+	background-color: #fff;
+	border-left: 5px solid #dc3232;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	color: #dc3232;
+	float: left;
+	margin-bottom: 18px;
+	width: 100%;
+ }
+.login-box form{
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	padding: 20px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+	float: left;
+	width: 100%;
+}
+.btn-primary {
+    background-color: #124573 !important;
+    border-color: #124573 !important;
+    border-radius: 0 !important;
+}
+b, strong{ font-weight: 300 !important}

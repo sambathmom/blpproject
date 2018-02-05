@@ -1,0 +1,153 @@
+#orgChart{
+	width: auto;
+	height: auto;
+}
+
+#orgChartContainer{
+	width: 100%;
+	margin: 0 auto;  
+	overflow: auto;
+}
+#adddata{ text-align: center;}
+table tbody tr:first-child td .org-del-button{display: none;}
+tr td table tbody tr:first-child td .org-del-button{display: block;}
+#jquery-script-menu {
+position: fixed;
+height: 90px;
+width: 100%;
+top: 0;
+left: 0;
+border-top: 5px solid #316594;
+background: #fff;
+-moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+-webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+z-index: 999999;
+padding: 10px 0;
+-webkit-box-sizing:content-box;
+-moz-box-sizing:content-box;
+box-sizing:content-box;
+}
+
+.jquery-script-center {
+width: 960px;
+margin: 0 auto;
+}
+.jquery-script-center ul {
+width: 212px;
+float:left;
+line-height:45px;
+margin:0;
+padding:0;
+list-style:none;
+}
+.jquery-script-center a {
+	text-decoration:none;
+}
+.jquery-script-ads {
+width: 728px;
+height:90px;
+float:right;
+}
+.jquery-script-clear {
+clear:both;
+height:0;
+}
+
+div.orgChart {
+  margin : 10px;
+  padding : 20px;
+}
+
+div.orgChart h2 {
+    cursor: pointer;
+    font-size: 15px;
+    height: 28px;
+    line-height: 28px;
+    margin: 0;
+}
+
+
+
+div.orgChart ul {
+  list-style : none;
+  margin : 4px;
+  padding : 0px;
+  font-size : 0.8em;
+  text-align : left;
+}
+
+div.orgChart ul.stack,
+div.orgChart ul.stack ul { text-align : center; }
+
+div.orgChart table { width : 100%; }
+
+div.orgChart tr.lines td.line {
+  width : 1px;
+  height : 20px;
+}
+
+div.orgChart tr.lines td.top { border-top : 1px dashed black; }
+
+div.orgChart tr.lines td.left { border-right : 1px dashed black; }
+
+div.orgChart tr.lines td.right { border-left : 0px dashed black; }
+
+div.orgChart tr.lines td.half { width : 50%; }
+
+div.orgChart td {
+  text-align : center;
+  vertical-align : top;
+  padding : 0px 2px;
+}
+
+div.orgChart div.node {
+  cursor : default;
+  border : 1px solid #e7e7e7;
+  display : inline-block;
+  padding : 5px;
+  width : 200px;
+  height : 60px;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #fbfbfb 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #fbfbfb)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%, #fbfbfb 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%, #fbfbfb 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%, #fbfbfb 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #fbfbfb 100%); /* W3C */
+  line-height : 1.3em;
+  border-radius : 4px;
+  -moz-border-radius : 4px;
+  -webkit-border-radius : 4px;
+  position: relative;
+  box-shadow: 1px 1px 0px #ddd;
+}
+
+.org-add-button,
+.org-del-button,
+.org-confirm-del-button {
+  position: absolute;
+  font-size: 12px;
+	cursor: pointer;
+}
+
+.org-add-button {
+  bottom: 3px;
+  left: 5px;
+	padding: 10px;
+  padding-left: 13px;
+  background: url(./add.png) no-repeat 0 3px;
+}
+
+
+.org-del-button {
+  background: url(./delete.png) no-repeat;
+  width: 12px;
+  height: 12px;
+  bottom: 7px;
+  right: 5px;
+}
+
+.org-input { width: 100%; text-align: center; border: 1px solid #dadada;padding: 2px; border-radius: 4px;}
+
+.org-confirm-del-button { display: none; }
