@@ -9,12 +9,9 @@
 		<link rel="stylesheet"    href="{{ asset('assets/admin/css/style-admin.css') }}">
 
 		<script type="text/javascript" src="{{ asset('assets/admin/js/dashboard/jquery.min.js') }}"></script>
-<!--
-		<script type="text/javascript">
-		window.onload = function() {
-		   $('body.sidebar-mini').addClass('sidebar-collapse');
-		};</script>
--->
+        <!-- myjquery -->
+        <script type="text/javascript" src="{{ asset('js/general.js') }}"></script>
+
 		<?php /* data picker */ ?>
 		<link rel="stylesheet" href="{{ asset('assets/admin/js/datepicker/datepicker.css') }}">
 		<script type="text/javascript" src="{{ asset('assets/admin/js/datepicker/bootstrap-datepicker.js') }}"></script>
@@ -24,7 +21,9 @@
 		<script src="{{ asset('assets/admin/js/chosen/chosen.jquery.min.js') }}"></script>
 		
 		<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
-		
+
+
+        
 		<script type="text/javascript" src="{{ asset('assets/admin/js/validator/va-ch.js') }}"></script>
 		<?Php /* Datatables */?>
 		<script src="{{ asset('assets/admin/js/datatable/jquery.dataTables.min.js') }}"></script>
@@ -94,7 +93,7 @@
 				<li class="treeview">
 					<a href="#">
                         <i class="fa fa-list-alt"></i>
-                        <span>Staff</span>
+                         <span>Staff</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu" id="treeopen">
@@ -102,6 +101,28 @@
                         <li><a  href="/staff/new"><i class="fa fa-circle-o"></i>Add New Staff</a></li>
                     </ul>
 				</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Supplier</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu" id="treeopen">
+                        <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of Supplier</a></li>
+                        <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add New Supplier</a></li>
+                    </ul>                    
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list-alt"></i>
+                        <span>RawMaterial</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                     <ul class="treeview-menu" id="treeopen">
+                            <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
+                            <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
+                    </ul>
+                </li>
 			</ul>
         </section>
     </aside><!-- main-sidebar -->
@@ -113,7 +134,7 @@
 	<div class="footer main-footer">
 		<div class="col-sm-12">
 			<span class="pull-left">
-			sdfsd
+			 BLP Factory
 			</span>
 			<span class="pull-right hidden-xs version-system">Version 0.1</span>
 		</div>
@@ -212,5 +233,16 @@ $(document).ready(function(){
 
 </script>
 
+   
+
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js">
+    </script>
+    <script> 
+    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
+    </script>
+
+    
 </body>
 </html>
