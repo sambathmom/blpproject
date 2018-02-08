@@ -7,11 +7,11 @@
 		<link rel="shortcut icon" href="{{ asset('assets/admin/images/icon-phum.png') }}"> 
 		<link rel="stylesheet"    href="{{ asset('assets/admin/js/bootstrap/bootstrap.min.css') }}">
 		<link rel="stylesheet"    href="{{ asset('assets/admin/css/style-admin.css') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 		<script type="text/javascript" src="{{ asset('assets/admin/js/dashboard/jquery.min.js') }}"></script>
         <!-- myjquery -->
         <script type="text/javascript" src="{{ asset('js/general.js') }}"></script>
-
 		<?php /* data picker */ ?>
 		<link rel="stylesheet" href="{{ asset('assets/admin/js/datepicker/datepicker.css') }}">
 		<script type="text/javascript" src="{{ asset('assets/admin/js/datepicker/bootstrap-datepicker.js') }}"></script>
@@ -35,111 +35,116 @@
 
 		
 	</head>
-<body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini">
 
-<div class="wrapper">
-    <header class="main-header">
+        <div class="wrapper">
+            <header class="main-header">
 
-        <a href="" class="logo">
-            <span class="logo-mini">
-            	<img src="{{ asset ('assets/admin/images/avatar5.png') }}">
-           </span>
-            <span class="logo-lg"><img src="{{ asset ('assets/admin/images/avatar5.png') }}"></span>
-        </a>
+                <a href="" class="logo">
+                    <span class="logo-mini">
+                    	<img src="{{ asset ('assets/admin/images/newgif.gif') }}">
+                   </span>
+                    <span class="logo-lg"><img src="{{ asset ('assets/admin/images/newgif.gif') }}" class="img-responsive"></span>
+                </a>
 
-        <nav class="navbar navbar-static-top" role="navigation">
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas"role="button">
-                <span class="sr-only">Toggle navigation</span>
-                <img src="{{ asset('assets/admin/images/hamburger.png') }}"/>
-            </a>
-          
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas"role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <img src="{{ asset('assets/admin/images/hamburger.png') }}"/>
+                    </a>
+                  
 
-            <div class="navbar-custom-menu hidden-xs">
-                <ul class="nav navbar-nav">		
-                    <li class="dropdown user user-menu">
-                        <a href="{{ asset('/logout') }}" class="dropdown-toggle1" data-toggle="dropdown" >
-                           <img src="{{ asset ('assets/admin/images/avatar5.png') }}" class="img-circle" width="25px" height="25px">
-                           {{ Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                           <div class="arrow-border"></div>
-                            <li class="user-header">
-                                <img src="{{ asset ('assets/admin/images/avatar5.png') }}" class="img-circle" alt="User Image">
-                                <p>{{ Auth::user()->name }}</p>
-                            </li>
-                            <div class="col-sm-12 groups-management">
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                    <div class="navbar-custom-menu hidden-xs">
+                        <ul class="nav navbar-nav">		
+                            <li class="dropdown user user-menu">
+                                <a href="{{ asset('/logout') }}" class="dropdown-toggle1" data-toggle="dropdown" >
+                                   {{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu">
+                                   <div class="arrow-border"></div>
+                                    <li class="user-header">
+                                        <img src="{{ asset ('assets/admin/images/avatar5.png') }}" class="img-circle" alt="User Image">
+                                        <p>{{ Auth::user()->name }}</p>
+                                    </li>
+                                    <div class="col-sm-12 groups-management">
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </div>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </li>                   
                         </ul>
-                    </li>                   
-                </ul>
-            </div>
-        </nav>
-    </header><!-- header -->
-	
-    <aside class="main-sidebar">
-        <section class="sidebar">
-         	<ul class="sidebar-menu">
-				<li class="treeview">
-					<a href="#">
-                        <i class="fa fa-list-alt"></i>
-                         <span>Staff</span>
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu" id="treeopen">
-                        <li><a  href="/staff/index"><i class="fa fa-circle-o"></i>List of staff</a></li>
-                        <li><a  href="/staff/new"><i class="fa fa-circle-o"></i>Add New Staff</a></li>
-                    </ul>
-				</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-list-alt"></i>
-                        <span>Supplier</span>
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu" id="treeopen">
-                        <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of Supplier</a></li>
-                        <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add New Supplier</a></li>
-                    </ul>                    
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-list-alt"></i>
-                        <span>RawMaterial</span>
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </a>
-                     <ul class="treeview-menu" id="treeopen">
-                            <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
-                            <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
-                    </ul>
-                </li>
-			</ul>
-        </section>
-    </aside><!-- main-sidebar -->
-</div><!-- wrapper -->
+                    </div>
+                </nav>
+            </header><!-- header -->
+        	
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                 	<ul class="sidebar-menu">
+        				<li class="treeview">
+        					<a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                 <span>Staff</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="/staff/index"><i class="fa fa-circle-o"></i>List of staff</a></li>
+                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-circle-o"></i>Add New Staff</a></li>
+                            </ul>
+        				</li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Supplier</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu" id="treeopen">
+                                <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of Supplier</a></li>
+                                <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add New Supplier</a></li>
+                            </ul>                    
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>RawMaterial</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                             <ul class="treeview-menu" id="treeopen">
+                                    <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
+                                    <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
+                                <span>Grade</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="/grade/index"><i class="fa fa-circle-o"></i>List of grade</a></li>
+                                <li><a  href="/grade/create"><i class="fa fa-circle-o"></i>Add New grade</a></li>
+                            </ul>
+                        </li>
+        			</ul>
+                </section>
+            </aside><!-- main-sidebar -->
+        </div><!-- wrapper -->
 
-@yield('content')
+        @yield('content')
 
-<div class="wrapper">
-	<div class="footer main-footer">
-		<div class="col-sm-12">
-			<span class="pull-left">
-			 BLP Factory
-			</span>
-			<span class="pull-right hidden-xs version-system">Version 0.1</span>
-		</div>
-	</div>
-</div>
+        <div class="wrapper">
+        	<div class="footer main-footer">
+        		<div class="col-sm-12">
+        			<span class="pull-left">
+        			    Best life product company
+        			</span>
+        			<span class="pull-right hidden-xs version-system">Version 0.1</span>
+        		</div>
+        	</div>
+        </div>
 
 
 
@@ -156,6 +161,7 @@
 
 <?php /* For Check Password Strong Or Good.... */ ?>
 <script src="{{ asset('assets/admin/js/validator/passwordscheck.js')}}"></script>
+<script src="{{ asset('js/general.js')}}"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -232,10 +238,6 @@ $(document).ready(function(){
 	});
 
 </script>
-
-   
-
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js">
     </script>
