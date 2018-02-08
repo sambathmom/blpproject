@@ -19,9 +19,9 @@ class CreateStaffTable extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('sex');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('picture');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

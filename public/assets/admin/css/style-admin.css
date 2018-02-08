@@ -1489,19 +1489,8 @@ a.pull-right{color: #fff; text-align: right;}
     width: 100%;
 	float: left;
 }
-.btn-primary {
-    background-color: #009147 !important;
-    border-color: #009147 !important;
+.btn{
     border-radius: 0 !important;
-    color: #ffffff !important;
-    margin-left: 15px !important;
-    padding: 6px 15px !important;
-}
-.btn-default {
-    background-color: #ffffff;
-    border-color: #dadada;
-    border-radius: 0 !important;
-    color: #333333;
     padding: 6px 20px;
 }
 /* customiz form popup */
