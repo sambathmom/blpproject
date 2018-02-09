@@ -52,7 +52,6 @@
                         <span class="sr-only">Toggle navigation</span>
                         <img src="{{ asset('assets/admin/images/hamburger.png') }}"/>
                     </a>
-                  
 
                     <div class="navbar-custom-menu hidden-xs">
                         <ul class="nav navbar-nav">		
@@ -145,6 +144,28 @@
                                 <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Add New RawProduct</a></li>
                             </ul>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Work Type</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{route('worktypeindex')}}"><i class="fa fa-circle-o"></i>List of work type</a></li>
+                                <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-circle-o"></i>Add New work type</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Labor cost</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-circle-o"></i>List of labor cost</a></li>
+                                <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add New labor cost</a></li>
+                            </ul>
+                        </li>
         			
                 </section>
             </aside><!-- main-sidebar -->
@@ -156,7 +177,7 @@
         	<div class="footer main-footer">
         		<div class="col-sm-12">
         			<span class="pull-left">
-        			    Best life product company
+        			Best life product company
         			</span>
         			<span class="pull-right hidden-xs version-system">Version 0.1</span>
         		</div>
