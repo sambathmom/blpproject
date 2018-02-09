@@ -1488,7 +1488,7 @@ a.pull-right{color: #fff; text-align: right;}
     width: 100%;
 	float: left;
 }
-.btn{
+.btn{   
     border-radius: 0 !important;
     padding: 6px 20px;
 }

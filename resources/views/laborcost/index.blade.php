@@ -13,7 +13,7 @@
         </section>  
         <div class="col-md-12">
             <a href="{{route('laborcostcreate')}}" >
-                <button class="btn btn-success pull-right">Add new work type</button>
+                <button class="btn btn-success pull-right">Add new labor cost</button>
             </a>     
         </div>
         <div class="box">
