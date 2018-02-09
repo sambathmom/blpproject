@@ -107,6 +107,28 @@
                         <li><a  href="/grade/create"><i class="fa fa-circle-o"></i>Add New grade</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Work Type</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a  href="{{route('worktypeindex')}}"><i class="fa fa-circle-o"></i>List of work type</a></li>
+                        <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-circle-o"></i>Add New work type</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Labor cost</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-circle-o"></i>List of labor cost</a></li>
+                        <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add New labor cost</a></li>
+                    </ul>
+                </li>
 			</ul>
         </section>
     </aside><!-- main-sidebar -->
