@@ -1,0 +1,8 @@
+.colortext a{
+	color:white;
+	display: inline-block;
+}
+
+.error {
+	color: red;
+}

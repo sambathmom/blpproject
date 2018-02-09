@@ -29,7 +29,7 @@
                                             @endforeach
 
                                         </select> 
-                                        <span>
+                                        <span class="error">
                                             {{ $errors->first('supplier_id') }}
                                         </span>
                                     </div>
@@ -47,7 +47,7 @@
                                             @endforeach
 
                                         </select> 
-                                        <span>
+                                        <span class="error">
                                             {{ $errors->first('grade_id') }}
                                         </span>
                                     </div>

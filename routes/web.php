@@ -43,6 +43,12 @@ Route::POST('/rawproduct/store','RawProductController@store');
 Route::POST('/rawproduct/update','RawProductController@update');
 Route::POST('/rawproduct/destroy','RawProductController@destroy');
 
+//ProcessMaterial
+Route::get('/processmaterial/index','ProcessMaterialController@index');
+Route::get('/processmaterail/create','ProcessMaterialController@create');
+Route::POST('/processmaterial/store','ProcessMaterialController@store');
+Route::POST('/processmaterial/update','ProcessMaterialController@update');
+Route::POST('/processmaterial/destroy','ProcessMaterialController@destroy');
 
 
 
@@ -57,8 +63,6 @@ Route::get('grade/create',['as'=>'gradecreate','uses'=>'GradeController@create']
 Route::post('grade/store/',['as'=>'gradestroe','uses'=>'GradeController@store']);
 Route::post('grade/update',['as'=>'gradeupdate','uses'=>'GradeController@update']);
 Route::get('grade/destroy/{id}',['as'=>'gradedestroy','uses'=>'GradeController@destroy']);
-<<<<<<< HEAD
-=======
 
 Route::get('/worktype/index',['as'=>'worktypeindex','uses'=>'WorkTypeController@index']);
 Route::get('worktype/create',['as'=>'worktypecreate','uses'=>'WorkTypeController@create']);
@@ -71,4 +75,3 @@ Route::get('laborcost/create',['as'=>'laborcostcreate','uses'=>'LaborCostControl
 Route::post('laborcost/store/',['as'=>'laborcoststore','uses'=>'LaborCostController@store']);
 Route::post('laborcost/update',['as'=>'laborcostupdate','uses'=>'LaborCostController@update']);
 Route::get('laborcost/destroy/{id}',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
->>>>>>> a955ada074cd39ca7e27b42a8b0090e583a8c201

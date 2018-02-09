@@ -82,7 +82,7 @@
                         <div class="border">
                             <div class="col-xs-12 col-sm-10 col-md-10">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{url('supplier/index')}}"><button class="btn btn-warning">Cancel</button></a>
+                                <a href="{{url('supplier/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
                             </div>
                         </div>
                     </form>               

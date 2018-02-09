@@ -12,23 +12,22 @@
                                     <div class="form-group row">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="rp_id" id="identityEdit" >
-                                        <label for="rmId" class="col-md-3 control-label"><strong>RawMaterailName: <span class="required" aria-required="true">* </span></strong></label>
+                                        <label for="rmId" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
-                                             <select name="rm_id"  id="rmId" class="form-control">
+                                             <select name="rm_id"  id="rmId" class="chzn-select chzn-rtl" tabindex="10">
                                               @foreach($rawmaterials as $rawmaterial)
                                                <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
                                                @endforeach
                                              </select>
-                                                
-                                         </span>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
                                     <div class="form-group row">
                                         <label for="rawGrade" class="col-md-3 control-label"><strong>GradeName<span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
-                                            <select  name="grade_id"  id="rawGrade" class="form-control">
+                                            <select  name="grade_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
                                                 @foreach ($grade as $grade) 
                                                  <option value="{{$grade->grade_id}}" selected="">{{$grade->grade_name}}</option>
                                                  @endforeach
@@ -78,3 +77,4 @@
         </div>
     </div>
 </div>
+

@@ -56,8 +56,7 @@ class SupplierController extends Controller
         Session::flash('getmessage','Insert successfully');
         return redirect ('supplier/index');
     }
-
-   
+  
      /**
      * Update the specified resource in storage.
      *
@@ -87,8 +86,5 @@ class SupplierController extends Controller
         $delete = Supplier::findOrFail($id)->delete();
         Session::flash('getmessage','Deleted successfully');
         return redirect ('supplier/index');
-    }
-
-    
-    
+    } 
 }

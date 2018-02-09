@@ -23,7 +23,7 @@
                                     <label for="rp_id" class="col-md-3 control-label"><strong>RawMaterialName: <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                        
-                                        <select style="width:350px;"  class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="supplier_id">
+                                        <select class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="supplier_id">
                                              @foreach ($rawmaterials as $rawmaterial) 
                                              <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
                                             @endforeach
@@ -41,7 +41,7 @@
                                     <label for="grade_id" class="col-md-3 control-label"><strong>GradeName<span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                       
-                                         <select style="width:350px;"  class="chzn-select chzn-rtl" tabindex="10" name="grade_id"  id="supplier_id">
+                                         <select class="chzn-select chzn-rtl" tabindex="10" name="grade_id"  id="grade_id">
                                              @foreach ($grades as $grade) 
                                              <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                                             @endforeach
@@ -51,6 +51,7 @@
                                             {{ $errors->first('grade_id') }}
                                         </span>
                                     </div>
+                                    
                                 </div>
                             </div>
 
@@ -58,9 +59,9 @@
                                 <div class="form-group row">
                                     <label for="rpname" class="col-md-3 control-label"><strong>RawProduct Name<span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
-                                        <input placeholder="RawMaterialName" class="form-control" id="rpname" name="rp_name" value="" type="text">
+                                        <input placeholder="RawProduct Name" class="form-control" id="rpname" name="rp_name" value="" type="text">
                                         <span class="error">
-                                            {{ $errors->first('rm_name') }}
+                                            {{ $errors->first('rp_name') }}
                                          </span>
                                     </div>
                             

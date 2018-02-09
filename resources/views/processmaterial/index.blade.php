@@ -1,20 +1,17 @@
 @section('title','Dashboard')
 @extends('layouts.admin')
 @section('content')
-
-
     <div class="content-wrapper">
-
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>RawMaterial</h2>      
+                    <h2>Process Materail</h2>      
                 </div>
             </div>
         </section>  
                 <div class="col-md-12">
-                  <a href="{{url('rawmaterial/create')}}">
-                    <button class="colortext btn btn-success pull-right">AddNew RawMaterial</button>  
+                  <a href="{{url('processmaterail/create')}}">
+                    <button class="colortext btn btn-success pull-right">AddNew Process Materail</button>
                   </a>   
                 </div>    
         <div class="box">
@@ -28,9 +25,8 @@
                    <table  border="1" class="table table-striped">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">SupplierName</th>
-                          <th scope="col">GradeName</th>
-                          <th scope="col">RawMaterailName</th>
+                          <th scope="col">Raw Product Name</th>
+                          <th scope="col">Process Materail Name</th>
                           <th scope="col">Quantity</th>
                           <th scope="col">Cost</th>
                           <th width="80">Edit</th>
@@ -38,18 +34,17 @@
                         </tr>
                       </thead>
                       <tbody>  
-                       @foreach ($rawmaterial as $rawmaterial) 
+                       @foreach ($processmaterials as $processmaterial) 
                         <tr>
-                            <td>{{$rawmaterial->company_name}}</td>
-                            <td>{{$rawmaterial->grade_name}}</td>
-                            <td>{{$rawmaterial->rm_name}}</td>
-                            <td>{{$rawmaterial->qty}}</td>
-                            <td>{{$rawmaterial->cost}}</td>
-                            <td >
-                                <a type="button" href="#editRawMaterail"  data-toggle="modal" class="editRawMaterail btn btn-success" data-id="{{$rawmaterial->rm_id}}" data-supplier="{{$rawmaterial->supplier_id}}" data-grade="{{$rawmaterial->grade_id}}" data-rawname="{{$rawmaterial->rm_name}}" data-rawqty="{{$rawmaterial->qty}}" data-rawcost="{{$rawmaterial->cost}}">Edit</a>
+                            <td>{{$processmaterial->rp_name}}</td>
+                            <td>{{$processmaterial->pm_name}}</td>
+                            <td>{{$processmaterial->qty}}</td>
+                            <td>{{$processmaterial->cost}}</td>
+                            <td width="80">
+                                <a type="button" href="#editProccess"  data-toggle="modal" class="editProccess btn btn-success" data-id="{{$processmaterial->pm_id}}" data-rpname="{{$processmaterial->rp_id}}" data-proname="{{$processmaterial->pm_name}}" data-proqty="{{$processmaterial->qty}}" data-procost="{{$processmaterial->cost}}">Edit</a>
                             </td>
-                            <td>
-                                 <button type="button" data-toggle="modal" data-target="#deletRaw" class="delete-materail btn btn-danger"  data-id="{{$rawmaterial->rm_id}}">Delete</button>
+                            <td width="80">
+                                 <button type="button" data-toggle="modal" data-target="#deleteProcess" class="delete-proccess btn btn-danger"  data-id="{{$processmaterial->pm_id}}">Delete</button>
                             </td>
                         </tr>
                         @endforeach                    
@@ -59,6 +54,6 @@
             </div>
         </div>
     </div>
-    @include('rawmaterial.destroy')
-    @include('rawmaterial.edit')
+ @include('processmaterial.edit')
+ @include('processmaterial.destroy')
 @endsection

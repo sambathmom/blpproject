@@ -52,7 +52,7 @@
                                 <a type="button" href="#editSupplier"  data-toggle="modal" class="editSupplier btn btn-success" data-id="{{$supplier->supplier_id}}" data-company="{{$supplier->company_name}}" data-contact="{{$supplier->contact_person}}" data-title="{{$supplier->contact_title}}" data-email="{{$supplier->email}}" data-phone="{{$supplier->phone}}">Edit</a>
                             </th>
                             <th width="80">
-                                 <button type="button" data-toggle="modal" data-target="#deletSupplier" class="deletSupplier btn btn-danger" data-id="{{$supplier->supplier_id}}">Delete</button>
+                                 <button type="button" data-toggle="modal" data-target="#deleteSupplier" class="deleteSupplier btn btn-danger" data-id="{{$supplier->supplier_id}}">Delete</button>
                             </th>
                         </tr>
                         @endforeach                      

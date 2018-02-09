@@ -8,6 +8,7 @@
 		<link rel="stylesheet"    href="{{ asset('assets/admin/js/bootstrap/bootstrap.min.css') }}">
 		<link rel="stylesheet"    href="{{ asset('assets/admin/css/style-admin.css') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 		<script type="text/javascript" src="{{ asset('assets/admin/js/dashboard/jquery.min.js') }}"></script>
         <!-- myjquery -->
@@ -52,7 +53,6 @@
                         <span class="sr-only">Toggle navigation</span>
                         <img src="{{ asset('assets/admin/images/hamburger.png') }}"/>
                     </a>
-
                     <div class="navbar-custom-menu hidden-xs">
                         <ul class="nav navbar-nav">		
                             <li class="dropdown user user-menu">
@@ -119,10 +119,10 @@
                              <ul class="treeview-menu" id="treeopen">
                                     <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
                                     <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
-                            </a>
                             </ul>
                         </li>
-                        <li>
+                        
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Grade</span>
@@ -166,7 +166,18 @@
                                 <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add New labor cost</a></li>
                             </ul>
                         </li>
-        			
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>ProcessMaterail</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processmaterial/index')}}"><i class="fa fa-circle-o"></i>List of Process Materail</a></li>
+                                <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add New Process Materail</a></li>
+                            </ul>
+                        </li>
+        			</ul>
                 </section>
             </aside><!-- main-sidebar -->
         </div><!-- wrapper -->
@@ -183,8 +194,6 @@
         		</div>
         	</div>
         </div>
-
-
 
 <?Php /* theme */?>
 <script src="{{ asset('assets/admin/js/bootstrap/bootstrap.min.js') }}"></script>
