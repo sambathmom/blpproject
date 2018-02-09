@@ -6,7 +6,7 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>RawMeterail</h2>      
+                    <h2>RawProduct</h2>      
                 </div>
               
             </div>
@@ -15,22 +15,22 @@
         <div class="box">
             <div class="content">
                 <div class="col-md-12">                        
-                    <form action="{{url('/rawmaterial/store')}}" method="post">
+                    <form action="{{url('/rawproduct/store')}}" method="post">
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <div class="form-group row">
                                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                    <label for="supplier_id" class="col-md-3 control-label"><strong>SupplierName: <span class="required" aria-required="true">* </span></strong></label>
+                                    <label for="rp_id" class="col-md-3 control-label"><strong>RawMaterialName: <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                        
-                                        <select style="width:350px;"  class="chzn-select chzn-rtl" tabindex="10" name="supplier_id"  id="supplier_id">
-                                             @foreach ($supplier as $supplier) 
-                                             <option value="{{$supplier->supplier_id}}">{{$supplier->company_name}}</option>
+                                        <select style="width:350px;"  class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="supplier_id">
+                                             @foreach ($rawmaterials as $rawmaterial) 
+                                             <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
                                             @endforeach
 
                                         </select> 
                                         <span>
-                                            {{ $errors->first('supplier_id') }}
+                                            {{ $errors->first('rm_id') }}
                                         </span>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <div class="col-md-7">
                                       
                                          <select style="width:350px;"  class="chzn-select chzn-rtl" tabindex="10" name="grade_id"  id="supplier_id">
-                                             @foreach ($grade as $grade) 
+                                             @foreach ($grades as $grade) 
                                              <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                                             @endforeach
 
@@ -56,9 +56,9 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
                                 <div class="form-group row">
-                                    <label for="rmname" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
+                                    <label for="rpname" class="col-md-3 control-label"><strong>RawProduct Name<span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
-                                        <input placeholder="RawMaterialName" class="form-control" id="rmname" name="rm_name" value="" type="text">
+                                        <input placeholder="RawMaterialName" class="form-control" id="rpname" name="rp_name" value="" type="text">
                                         <span class="error">
                                             {{ $errors->first('rm_name') }}
                                          </span>
@@ -94,7 +94,7 @@
                         <div class="border">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                  <button type="submit" class="btn btn-success">Save</button>
-                                 <a href="{{url('rawmaterial/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
+                                 <a href="{{url('rawproduct/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
                             </div>
                         </div>
                     </form>               

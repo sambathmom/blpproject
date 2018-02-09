@@ -27,14 +27,24 @@ Route::POST('/supplier/store','SupplierController@store');
 Route::POST('/supplier/update','SupplierController@update');
 Route::POST('supplier/destroy','SupplierController@destroy');
 
-// raw material
+// Raw Material
 
 Route::get('/rawmaterial/index','RawMaterialController@index');
 Route::get('/rawmaterial/create','RawMaterialController@create');
 Route::POST('/rawmaterial/store','RawMaterialController@store');
-Route::get('/rawmaterial/edit/{id}','RawMaterialController@edit');
-Route::POST('/rawmaterial/update/{id}','RawMaterialController@update');
-Route::POST('rawmaterial/destroy','RawMaterialController@destroy');
+Route::POST('/rawmaterial/update','RawMaterialController@update');
+Route::POST('/rawmaterial/destroy','RawMaterialController@destroy');
+
+// Raw Product
+
+Route::get('/rawproduct/index','RawProductController@index');
+Route::get('/rawproduct/create','RawProductController@create');
+Route::POST('/rawproduct/store','RawProductController@store');
+Route::POST('/rawproduct/update','RawProductController@update');
+Route::POST('/rawproduct/destroy','RawProductController@destroy');
+
+
+
 
 Route::get('/staff/index',['as'=>'staffindex','uses'=>'StaffController@index']);
 Route::get('staff/create',['as'=>'staffcreate','uses'=>'StaffController@create']);

@@ -1,3 +1,4 @@
+//supplier update and delet
   $(document).ready(function(){
 
       $('.deletSupplier').on('click',function(){
@@ -15,17 +16,32 @@
 
 
       // rawMaterail
-      $('.delet_supplier').on('click',function(){
+      $('.delete-supplier').on('click',function(){
         $('#identityDelete').val($(this).data('id'));
       });
       // edit
       $('.editRawMaterail').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
-        $('#supplierId').val($(this).data('supplier-id'));
-        $('#rawGrade').val($(this).data('grade-id'));
+        $('#supplierId').val($(this).data('supplier'));
+        $('#rawGrade').val($(this).data('grade'));
         $('#rawName').val($(this).data('rawname'));
         $('#rawQty').val($(this).data('rawqty'));
         $('#rawCost').val($(this).data('rawcost'));
+        
+      });
+
+    // raw Product
+      $('.delete-rawproduct').on('click', function() {
+        $('#identityDelete').val($(this).data('id'));
+      });
+     // edit
+      $('.editRawPro').on('click',function(){
+        $('#identityEdit').val($(this).data('id'));
+        $('#rmId').val($(this).data('rmid'));
+        $('#rawGrade').val($(this).data('grade'));
+        $('#rawPro').val($(this).data('name'));
+        $('#rawQty').val($(this).data('qty'));
+        $('#rawCost').val($(this).data('cost'));
         
       });
 

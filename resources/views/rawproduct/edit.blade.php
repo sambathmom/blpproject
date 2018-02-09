@@ -1,25 +1,25 @@
-<div id="editRawMaterail" class="modal fade" role="dialog">
+<div id="editRawProduct" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Edit RawMaterial</h4>
+                <h4 class="modal-title">Edit RawProduct</h4>
             </div>
             <div class="modal-body">                                   
-                 <form action="{{url('rawmaterial/update/')}}" method="POST" >
+                 <form action="{{url('rawproduct/update/')}}" method="POST" >
                         <div class="row">
                                 <div class="col-md-12 form-group">
                                     <div class="form-group row">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="rm_id" id="identityEdit" >
-                                        <label for="supplierId" class="col-md-3 control-label"><strong>SupplierName: <span class="required" aria-required="true">* </span></strong></label>
+                                        <input type="hidden" name="rp_id" id="identityEdit" >
+                                        <label for="rmId" class="col-md-3 control-label"><strong>RawMaterailName: <span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
-                                             <select name="supplier_id"  id="supplierId" class="form-control">
-                                                @foreach ($supplier as $supplier) 
-                                                 <option value="{{$supplier->supplier_id}}">{{$supplier->company_name}}</option>
-                                                 @endforeach
-                                             </select  class="chzn-select chzn-rtl" tabindex="10"> 
-                                            {{ $errors->first('company_name') }}
+                                             <select name="rm_id"  id="rmId" class="form-control">
+                                              @foreach($rawmaterials as $rawmaterial)
+                                               <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
+                                               @endforeach
+                                             </select>
+                                                
                                          </span>
                                         </div>
                                     </div>
@@ -34,15 +34,14 @@
                                                  @endforeach
 
                                              </select>  
-                                            {{ $errors->first('company_name') }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
                                     <div class="form-group row">
-                                        <label for="rawName" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
+                                        <label for="rawPro" class="col-md-3 control-label"><strong>RawProductName<span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
-                                            <input placeholder="RawMaterialName" class="form-control" id="rawName" name="rm_name"  type="text">
+                                            <input placeholder="RawProductName" class="form-control" id="rawPro" name="rp_name"  type="text">
                                         </div>
                                 
                                     </div>

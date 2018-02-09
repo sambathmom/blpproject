@@ -8,14 +8,14 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>RawMaterial</h2>      
+                    <h2>Raw Product</h2>      
                 </div>
             </div>
         </section>  
       
                 <div class="col-md-12">
-                  <a href="{{url('rawmaterial/create')}}">
-                    <button class="colortext btn btn-success pull-right">AddNew RawMaterial</button>  
+                  <a href="{{url('rawproduct/create')}}">
+                    <button class="colortext btn btn-success pull-right">AddNew RawProduct</button>  
                   </a>   
                 </div>
       
@@ -31,9 +31,9 @@
                    <table  border="1" class="table table-striped">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">SupplierName</th>
+                          <th scope="col">RawMaterialName</th>
                           <th scope="col">GradeName</th>
-                          <th scope="col">RawMaterailName</th>
+                          <th scope="col">RawPrductName</th>
                           <th scope="col">Quantity</th>
                           <th scope="col">Cost</th>
                           <th width="80">Edit</th>
@@ -41,19 +41,20 @@
                         </tr>
                       </thead>
                       <tbody>  
-                       @foreach ($rawmaterial as $rawmaterial) 
+                       @foreach ($rawproducts as $rawproduct) 
                         <tr>
-                            <td>{{$rawmaterial->company_name}}</td>
-                            <td>{{$rawmaterial->grade_name}}</td>
-                            <td>{{$rawmaterial->rm_name}}</td>
-                            <td>{{$rawmaterial->qty}}</td>
-                            <td>{{$rawmaterial->cost}}</td>
+                            <td>{{$rawproduct->rm_name}}</td>
+                            <td>{{$rawproduct->grade_name}}</td>
+                            <td>{{$rawproduct->rp_name}}</td>
+                            <td>{{$rawproduct->qty}}</td>
+                            <td>{{$rawproduct->cost}}</td>
+                           
                          
                             <td width="80">
-                                <a type="button" href="#editRawMaterail"  data-toggle="modal" class="editRawMaterail btn btn-success" data-id="{{$rawmaterial->rm_id}}" data-supplier="{{$rawmaterial->supplier_id}}" data-grade="{{$rawmaterial->grade_id}}" data-rawname="{{$rawmaterial->rm_name}}" data-rawqty="{{$rawmaterial->qty}}" data-rawcost="{{$rawmaterial->cost}}">Edit</a>
+                                <a type="button" href="#editRawProduct"  data-toggle="modal" class="editRawPro btn btn-success" data-id="{{$rawproduct->rp_id}}" data-rmid="{{$rawproduct->rm_id}}" data-grade="{{$rawproduct->grade_id}}" data-name="{{$rawproduct->rp_name}}" data-qty="{{$rawproduct->qty}}" data-cost="{{$rawproduct->cost}}">Edit</a>
                             </td>
                             <td width="80">
-                                 <button type="button" data-toggle="modal" data-target="#deletRaw" class="delet_supplier btn btn-danger"  data-id="{{$rawmaterial->rm_id}}">Delete</button>
+                                <button type="button" data-toggle="modal" data-target="#deleteRawPro" class="delete-rawproduct btn btn-danger"  data-id="{{$rawproduct->rp_id}}">Delete</button>
                             </td>
                         </tr>
                         @endforeach                    
@@ -64,8 +65,8 @@
             </div>
         </div>
     </div>
-    @include('rawmaterial.destroy')
-    @include('rawmaterial.edit')
+   @include('rawproduct.destroy')
+   @include('rawproduct.edit')
  
 
 @endsection

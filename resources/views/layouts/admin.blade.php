@@ -120,6 +120,12 @@
                              <ul class="treeview-menu" id="treeopen">
                                     <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
                                     <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
+                            </a>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
                                 <span>Grade</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
@@ -128,7 +134,18 @@
                                 <li><a  href="/grade/create"><i class="fa fa-circle-o"></i>Add New grade</a></li>
                             </ul>
                         </li>
-        			</ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>RawProduct</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('rawproduct/index')}}"><i class="fa fa-circle-o"></i>List of RawProduct</a></li>
+                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Add New RawProduct</a></li>
+                            </ul>
+                        </li>
+        			
                 </section>
             </aside><!-- main-sidebar -->
         </div><!-- wrapper -->
