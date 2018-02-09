@@ -103,8 +103,8 @@ $(document).ready(function() {
 	$('.edit-laborcost').on('click', function() {
 		$('#identityEdit').val($(this).data('identity'));
 		$('#laborCostName').val($(this).data('laborcost-name'));
-		$('#laborGrade').val($(this).data('grade'));
-		$('#laborWorkType').val($(this).data('work-type'));
+		$('#laborCostGrade').val($(this).data('grade'));
+		$('#laborCostWorkType').val($(this).data('work-type'));
 		$('#qty').val($(this).data('qty'));
 		$('#cost').val($(this).data('cost'));
 	});

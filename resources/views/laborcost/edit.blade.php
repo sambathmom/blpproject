@@ -23,7 +23,7 @@
                             <div class="form-group row">
                                 <label for="laborCostName" class="col-md-4 control-label"><strong>Grade: <span class="required" aria-required="true">* </span></strong></label>
                                 <div class="col-md-7">
-                                    <select class="chzn-select chzn-rtl form-control" id="laborGrade" name="grade_id">
+                                    <select class="form-control" id="laborCostGrade" name="grade_id">
                                         @foreach ($grades as $grade)
                                             <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                                         @endforeach
@@ -34,7 +34,7 @@
 
                         <div class="col-md-12 form-group">
                             <div class="form-group row">
-                                <label for="laborWorkType" class="col-md-4 control-label"><strong>Work type: <span class="required" aria-required="true">* </span></strong></label>
+                                <label for="laborCostWorkType" class="col-md-4 control-label"><strong>Work type: <span class="required" aria-required="true">* </span></strong></label>
                                 <div class="col-md-7">
                                     <select class="chzn-select chzn-rtl form-control" tabindex="10"  id="laborWorkType" name="work_type_id">
                                         @foreach ($workTypes as $workType)
