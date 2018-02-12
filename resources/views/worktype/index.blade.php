@@ -30,7 +30,7 @@
                     <table border="1" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Work Type Name</th>
                                 <th width="80px">Edit</th>
                                 <th width="80px">Delete</th>

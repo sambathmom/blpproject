@@ -32,11 +32,11 @@
     });
 
     // raw Product
-      $('.delete-rawproduct').on('click', function() {
+    $('.delete-rawproduct').on('click', function() {
         $('#identityDelete').val($(this).data('id'));
-      });
+    });
      // edit
-      $('.editRawPro').on('click',function(){
+    $('.editRawPro').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
         $('#rmId').val($(this).data('rmid'));
         $('#rmId').trigger('chosen:updated');
@@ -46,10 +46,10 @@
         $('#rawQty').val($(this).data('qty'));
         $('#rawCost').val($(this).data('cost'));
         
-      });
+    });
 
     // Staff delete and update
-      $('.edit-staff').on('click', function() {
+    $('.edit-staff').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));
         $('#firstName').val($(this).data('frist-name'));
         $('#middleName').val($(this).data('middle-name'));
@@ -59,18 +59,18 @@
         $('#email').val($(this).data('email'));
 
         if ($(this).data('sex') == 'Female') {
-          $("#female").attr('checked', true);
+          	$("#female").attr('checked', true);
         } else {
-          $("#male").attr('checked', true);
+          	$("#male").attr('checked', true);
         }
-      });
+    });
 
-      $('.destroy-staff').on('click', function() {
+    $('.destroy-staff').on('click', function() {
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
-      });
+    });
 
-      $('#destroyStaff').on('click', function() {
+    $('#destroyStaff').on('click', function() {
         var id = $('#identityDestroy').val();
 
         $.ajax({
@@ -98,9 +98,9 @@
     $('.destroy-grade').on('click', function() {
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
-      });
+    });
 
-      $('#destroyGrade').on('click', function() {
+    $('#destroyGrade').on('click', function() {
         var id = $('#identityDestroy').val();
 
         $.ajax({
@@ -159,7 +159,7 @@
     });
 
     $('.destroy-laborcost').on('click', function() {
-        ar id = $(this).data('identity');
+        var id = $(this).data('identity');
         $('#identityDestroy').val(id);
     });
 
@@ -181,10 +181,11 @@
     });
 
     // proccessMaterial delete and edit
-      $('.delete-proccess').on('click', function() {
+    $('.delete-proccess').on('click', function() {
         $('#deleteProcessId').val($(this).data('id'));
-      });
-      $('.editProccess').on('click',function(){
+    });
+
+    $('.editProccess').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
         $('#rpName').val($(this).data('rpname'));
         $('#rpName').trigger('chosen:updated');
@@ -192,35 +193,19 @@
         $('#pQty').val($(this).data('proqty'));
         $('#pCost').val($(this).data('procost'));
         
-      });
+    });
 
-      // processproduct delete and edit
-      $('.delete-pproduct').on('click',function() {
+    // processproduct delete and edit
+    $('.delete-pproduct').on('click',function() {
         $('#deleteProduct').val($(this).data('id'));
-      });
-      $('.edit-pproduct').on('click',function(){
+    });
+
+    $('.edit-pproduct').on('click',function(){
         $('#idPro').val($(this).data('id'));
         $('#pmName').val($(this).data('pmname'));
         $('#pmName').trigger('chosen:updated');
         $('#ppName').val($(this).data('ppname'));
         $('#ppQty').val($(this).data('ppqty'));
         $('#ppCost').val($(this).data('ppcost'));
-      });
-
-    $('#destroyWorkType').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-          url: 'http://localhost:8000/worktype/destroy/' + id,
-          data: {'id': id},
-          type: 'GET',
-          dataType: 'json',
-          success: function( response ) {
-            if (response.status == 200) {
-              $('#workTypeDestroyModal').modal('hide');
-              location.reload();
-            }
-          }
-        });
     });
 });
