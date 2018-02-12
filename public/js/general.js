@@ -92,16 +92,16 @@
         var id = $('#identityDestroy').val();
 
         $.ajax({
-          url: 'http://localhost:8000/worktype/destroy/' + id,
-          data: {'id': id},
-          type: 'GET',
-          dataType: 'json',
-          success: function( response ) {
-            if (response.status == 200) {
-              $('#workTypeDestroyModal').modal('hide');
-              location.reload();
-            }
-          }
+          	url: 'http://localhost:8000/worktype/destroy/' + id,
+          	data: {'id': id},
+	        type: 'GET',
+	        dataType: 'json',
+	        success: function( response ) {
+            	if (response.status == 200) {
+              		$('#workTypeDestroyModal').modal('hide');
+              		location.reload();
+            	}
+	        }
         });
     });
 

@@ -32,8 +32,6 @@
 		<?php /* for Datatable Responsive */ ?>
 		<link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css"/>
 		<script type="text/javascript" language="javascript" src="//cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js"></script>
-
-
 		
 	</head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -268,7 +266,5 @@ $(document).ready(function(){
     <script> 
     $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
     </script>
-
-    
 </body>
 </html>
