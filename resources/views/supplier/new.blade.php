@@ -23,6 +23,9 @@
                                     <label for="CompanyName" class="col-md-3 control-label"><strong>CompanyName: <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                         <input placeholder="CompanyName" class="form-control" id="CompanyName" name="company_name" type="text">
+                                        <span class="error">
+                                            {{ $errors->first('company_name') }}
+                                         </span>
                                     </div>
                                 </div>
                             </div>
@@ -32,6 +35,9 @@
                                     <label for="contact" class="col-md-3 control-label"><strong>Contact Person <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                         <input placeholder="Contact Person" class="form-control" id="contact" name="contact_person" value="" type="text">
+                                        <span class="error">
+                                            {{ $errors->first('contact_person') }}
+                                         </span>
                                     </div>
                                 </div>
                             </div>
@@ -41,6 +47,9 @@
                                     <label for="title" class="col-md-3 control-label"><strong>Conatact Title <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                         <input placeholder="Conatact Title" class="form-control" id="title" name="contact_title" value="" type="text">
+                                        <span class="error">
+                                            {{ $errors->first('contact_title') }}
+                                         </span>
                                     </div>
                             
                                 </div>
@@ -52,7 +61,7 @@
                                     <div class="col-md-7">
                                         <input placeholder="Email" class="form-control" id="email" name="email" value="" type="email">
                                         <span class="error">
-                                            {{ $errors->first('phone') }}
+                                            {{ $errors->first('email') }}
                                          </span>
                                     </div>
                                 </div>
@@ -72,7 +81,8 @@
                         </div> 
                         <div class="border">
                             <div class="col-xs-12 col-sm-10 col-md-10">
-                                <button type="submit" class="btn btn-success pull-right">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <a href="{{url('supplier/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
                             </div>
                         </div>
                     </form>               

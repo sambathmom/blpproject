@@ -16,3 +16,7 @@
 .error {
 	color: red;
 }
+.pagination > .active > span:active{
+	font-size: 16px !important;
+	margin:0;
+}

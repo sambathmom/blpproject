@@ -1,6 +1,8 @@
-  $(document).ready(function(){
-
-    $('.deletSupplier').on('click',function(){
+  $(document).ready(function()
+  {
+  //supplier update and delet
+  
+    $('.deleteSupplier').on('click',function(){
         $('#identityDelete').val($(this).data('id'));
     });
 
@@ -13,23 +15,41 @@
         $('#supplierPhone').val($(this).data('phone'));
     });
 
-
-    // rawMaterail
-    $('.delet_supplier').on('click',function(){
+    // rawMaterail delete and update
+    $('.delete-materail').on('click',function(){
         $('#identityDelete').val($(this).data('id'));
     });
     // edit
     $('.editRawMaterail').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
-        $('#supplierId').val($(this).data('supplier-id'));
-        $('#rawGrade').val($(this).data('grade-id'));
+        $('#supplier').val($(this).data('supplier'));
+        $('#supplier').trigger('chosen:updated');
+        $('#rawGrade').val($(this).data('grade'));
+        $('#rawGrade').trigger('chosen:updated');
         $('#rawName').val($(this).data('rawname'));
-        $('#rawQty').val($(this).data('rawqty'));
-        $('#rawCost').val($(this).data('rawcost')); 
+        $('#proQty').val($(this).data('rawqty'));
+        $('#proCost').val($(this).data('rawcost')); 
     });
 
+    // raw Product
+      $('.delete-rawproduct').on('click', function() {
+        $('#identityDelete').val($(this).data('id'));
+      });
+     // edit
+      $('.editRawPro').on('click',function(){
+        $('#identityEdit').val($(this).data('id'));
+        $('#rmId').val($(this).data('rmid'));
+        $('#rmId').trigger('chosen:updated');
+        $('#rawGrade').val($(this).data('grade'));
+        $('#rawGrade').trigger('chosen:updated');
+        $('#rawPro').val($(this).data('name'));
+        $('#rawQty').val($(this).data('qty'));
+        $('#rawCost').val($(this).data('cost'));
+        
+      });
+
     // Staff delete and update
-    $('.edit-staff').on('click', function() {
+      $('.edit-staff').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));
         $('#firstName').val($(this).data('frist-name'));
         $('#middleName').val($(this).data('middle-name'));
@@ -43,7 +63,29 @@
         } else {
           $("#male").attr('checked', true);
         }
-    });
+      });
+
+      $('.destroy-staff').on('click', function() {
+        var id = $(this).data('identity');
+        $('#identityDestroy').val(id);
+      });
+
+      $('#destroyStaff').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/staff/destroy/' + id,
+            data: {'id': id},
+            type: 'GET',
+            dataType: 'json',
+            success: function( response ) {
+                if (response.status == 200) {
+                  $('#staffDestroyModal').modal('hide');
+                  location.reload()
+                }
+            }
+        });
+      });
 
     // Grade edit and delete
     $('.edit-grade').on('click', function() {
@@ -53,28 +95,29 @@
         $('#gradeName').val(gradeName);
     });
 
-    $('.destroy-staff').on('click', function() {
+    $('.destroy-grade').on('click', function() {
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
-    });
-
-    $('#destroyStaff').on('click', function() {
-      var id = $('#identityDestroy').val();
-
-      $.ajax({
-          url: 'http://localhost:8000/grade/destroy/' + id,
-          data: {'id': id},
-          type: 'GET',
-          dataType: 'json',
-          success: function( response ) {
-              if (response.status == 200) {
-                $('#gradeDestroyModal').modal('hide');
-                location.reload()
-              }
-          }
       });
-    });
 
+      $('#destroyGrade').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/grade/destroy/' + id,
+            data: {'id': id},
+            type: 'GET',
+            dataType: 'json',
+            success: function( response ) {
+                if (response.status == 200) {
+                  $('#gradeDestroyModal').modal('hide');
+                  location.reload()
+                }
+            }
+        });
+      });
+
+  
     // Work type edit and delete
     $('.edit-worktype').on('click', function() {
         var id = $(this).data('identity');
@@ -116,7 +159,7 @@
     });
 
     $('.destroy-laborcost').on('click', function() {
-        var id = $(this).data('identity');
+        ar id = $(this).data('identity');
         $('#identityDestroy').val(id);
     });
 
@@ -124,7 +167,7 @@
         var id = $('#identityDestroy').val();
 
         $.ajax({
-            url: 'http://localhost:8000/laborcost/destroy/' + id,
+            url:  'http://localhost:8000/laborcost/destroy/' + id,
             data: {'id': id},
             type: 'GET',
             dataType: 'json',
@@ -136,4 +179,48 @@
             }
         });
     });
-  });
+
+    // proccessMaterial delete and edit
+      $('.delete-proccess').on('click', function() {
+        $('#deleteProcessId').val($(this).data('id'));
+      });
+      $('.editProccess').on('click',function(){
+        $('#identityEdit').val($(this).data('id'));
+        $('#rpName').val($(this).data('rpname'));
+        $('#rpName').trigger('chosen:updated');
+        $('#proName').val($(this).data('proname'));
+        $('#pQty').val($(this).data('proqty'));
+        $('#pCost').val($(this).data('procost'));
+        
+      });
+
+      // processproduct delete and edit
+      $('.delete-pproduct').on('click',function() {
+        $('#deleteProduct').val($(this).data('id'));
+      });
+      $('.edit-pproduct').on('click',function(){
+        $('#idPro').val($(this).data('id'));
+        $('#pmName').val($(this).data('pmname'));
+        $('#pmName').trigger('chosen:updated');
+        $('#ppName').val($(this).data('ppname'));
+        $('#ppQty').val($(this).data('ppqty'));
+        $('#ppCost').val($(this).data('ppcost'));
+      });
+
+    $('#destroyWorkType').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+          url: 'http://localhost:8000/worktype/destroy/' + id,
+          data: {'id': id},
+          type: 'GET',
+          dataType: 'json',
+          success: function( response ) {
+            if (response.status == 200) {
+              $('#workTypeDestroyModal').modal('hide');
+              location.reload();
+            }
+          }
+        });
+    });
+});

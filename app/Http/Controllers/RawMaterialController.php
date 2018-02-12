@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\RawMaterial;
 use DB;
 use App\Supplier;
+use App\Grade;
 use Session;
 
 class RawMaterialController extends Controller
@@ -20,12 +21,13 @@ class RawMaterialController extends Controller
 
         $rawmaterial = DB::table('raw_material')
             ->join('supplier', 'supplier.supplier_id', '=', 'raw_material.supplier_id')
-            ->select('raw_material.*', 'supplier.company_name')
-            ->get();
-
-        $suppliers = DB::table('supplier')->get();
-
-        return view('rawmaterial.index',['rawmaterial' => $rawmaterial, 'supplier' => $suppliers]);
+            ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
+            ->select('raw_material.*', 'supplier.company_name','grade.grade_name')
+            ->orderBy('rm_id','ASC')
+            ->paginate(20); 
+        $supplier = DB::table('supplier')->get();
+        $grade = DB::table('grade')->get();
+        return view('rawmaterial.index',['rawmaterial' => $rawmaterial, 'supplier' => $supplier,'grade' => $grade]);
     }
 
     /**
@@ -36,7 +38,8 @@ class RawMaterialController extends Controller
     public function create()
     {
         $suppliers = DB::table('supplier')->get();
-        return view('rawmaterial.new',['supplier' => $suppliers]);
+        $grade = DB::table('grade')->get();
+        return view('rawmaterial.new',['supplier' => $suppliers,'grade' => $grade]);
     }
 
     /**
@@ -57,7 +60,7 @@ class RawMaterialController extends Controller
         $rawmaterail = new RawMaterial;
         $data = $request->all();
         $rawmaterail->fill($data)->save();
-        Session::flash('getmessage','Insert successfully');
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('rawmaterial/index');
     }
 
@@ -72,27 +75,22 @@ class RawMaterialController extends Controller
        //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request)
     {
-        //
-    }
+          $this->validate($request, [
+            'supplier_id' => 'required:raw_material',
+            'grade_id' => 'required:raw_material',
+            'rm_name' => 'required:raw_material',
+            'qty' => 'required|numeric:raw_material',
+            'cost' => 'required|numeric:raw_material',
+        ]);
+        $id = $request->rm_id;
+        $rawmaterial = RawMaterial::findOrFail($id);
+        $data = $request->all();
+        $rawmaterial->fill($data)->save();
+        Session::flash('getmessage','Update successfully!');
+        return redirect('rawmaterial/index');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -103,10 +101,10 @@ class RawMaterialController extends Controller
      */
     public function destroy(request $request)
     {
-        echo "string";
         $id = $request->rm_id;
         $rawmaterial = RawMaterial::findOrFail($id);
         $rawmaterial->delete();
+        Session::flash('getmessage','Deleted successfully!');
         return redirect('rawmaterial/index');
     }
 }

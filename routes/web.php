@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // supplier crud
 
@@ -27,14 +25,37 @@ Route::POST('/supplier/store','SupplierController@store');
 Route::POST('/supplier/update','SupplierController@update');
 Route::POST('supplier/destroy','SupplierController@destroy');
 
-// raw material
+// Raw Material
 
 Route::get('/rawmaterial/index','RawMaterialController@index');
 Route::get('/rawmaterial/create','RawMaterialController@create');
 Route::POST('/rawmaterial/store','RawMaterialController@store');
-Route::get('/rawmaterial/edit/{id}','RawMaterialController@edit');
-Route::POST('/rawmaterial/update/{id}','RawMaterialController@update');
-Route::POST('rawmaterial/destroy','RawMaterialController@destroy');
+Route::POST('/rawmaterial/update','RawMaterialController@update');
+Route::POST('/rawmaterial/destroy','RawMaterialController@destroy');
+
+// Raw Product
+
+Route::get('/rawproduct/index','RawProductController@index');
+Route::get('/rawproduct/create','RawProductController@create');
+Route::POST('/rawproduct/store','RawProductController@store');
+Route::POST('/rawproduct/update','RawProductController@update');
+Route::POST('/rawproduct/destroy','RawProductController@destroy');
+
+//ProcessMaterial
+Route::get('/processmaterial/index','ProcessMaterialController@index');
+Route::get('/processmaterail/create','ProcessMaterialController@create');
+Route::POST('/processmaterial/store','ProcessMaterialController@store');
+Route::POST('/processmaterial/update','ProcessMaterialController@update');
+Route::POST('/processmaterial/destroy','ProcessMaterialController@destroy');
+
+//ProcessProduct
+Route::get('/processproduct/index','ProcessProductController@index');
+Route::get('/processproduct/create','ProcessProductController@create');
+Route::POST('/processproduct/store','ProcessProductController@store');
+Route::POST('/processproduct/update','ProcessProductController@update');
+Route::POST('/processproduct/destroy','ProcessProductController@destroy');
+
+
 
 Route::get('/staff/index',['as'=>'staffindex','uses'=>'StaffController@index']);
 Route::get('staff/create',['as'=>'staffcreate','uses'=>'StaffController@create']);

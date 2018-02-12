@@ -14,13 +14,14 @@
         <div class="col-md-12">
             <a href="{{route('staffcreate')}}" >
                 <button class="btn btn-success pull-right">Add new staff</button>
-            </a>     
+            </a> 
+            @if(Session::has ('getmess'))
+                        <div class="alert alert-success col-sm-3 pull-right">
+                          {{Session::get('getmess')}}
+                        </div>
+                     @endif       
         </div> 
-        @if(Session::has('getmess'))        
-            <div class="alert alert-success col-md-11">
-                {{Session::get('getmess')}}                       
-            </div>                       
-        @endif 
+   
         <div class="box">
             <div class="content">
                 <div class="col-md-12">

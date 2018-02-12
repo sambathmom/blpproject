@@ -56,7 +56,7 @@ class LaborCostController extends Controller
         $data = $request->all();
 
         $laborCost->fill($data)->save();
-        Session::flash('getmess','Insert successfully!!!');
+        Session::flash('getmess','Insert successfully!');
         return redirect('laborcost/index');
     }
 
@@ -89,7 +89,7 @@ class LaborCostController extends Controller
 
         $update = $request->all();
         $laborCost->fill($update)->save();
-        Session::flash('getmess','Update successfully!!!');
+        Session::flash('getmess','Update successfully!');
         return redirect('laborcost/index');
     }
 
@@ -103,7 +103,7 @@ class LaborCostController extends Controller
     {
         $response = [];
         $laborCost = LaborCost::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!!!');
+        Session::flash('getmess','Deleted successfully!');
         $response = [
             'status' => 200
         ];

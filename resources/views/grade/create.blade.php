@@ -25,8 +25,6 @@
                                         <input placeholder="Grade name" class="form-control" id="gradeName" name="grade_name" type="text">
                                         <span class="error">{{ $errors->first('grade_name') }}</span>
                                     </div>
-                                    {!! Form::text('username') !!}
-                                    {!! Form::text('title', null, array('placeholder' => 'Title','class' => '[form-control')]) !!}
                                 </div>
                             </div>
                             <div class="border ">
