@@ -18,7 +18,7 @@ class SupplierController extends Controller
     public function index()
     {
     	$data = new Supplier;
-        $suppliers = $data::orderBy('supplier_id','ASC')->paginate(3); 
+        $suppliers = $data::orderBy('supplier_id','ASC')->paginate(20); 
         return view('supplier/index', ['suppliers' => $suppliers]);
     }
 
@@ -42,14 +42,18 @@ class SupplierController extends Controller
 
     public function store(request $request)
     {
+
         $this->validate($request, [
+            'company_name' => 'required:supplier',
+            'contact_person' => 'required:supplier',
+            'contact_title'=> 'required:supplier',
             'email' => 'required|email|unique:supplier',
             'phone' => 'required|numeric|unique:supplier',
         ]);
     	$supplier = new Supplier;
         $data = $request->all();
         $supplier->fill($data)->save();
-        Session::flash('getmessage','Insert successfully');
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('supplier/index');
     }
   
@@ -63,16 +67,11 @@ class SupplierController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email:supplier',
-            'phone' => 'required|numeric:supplier',
-        ]);
          $id = $request->supplier_id;
          $supplier =  Supplier::findOrFail($id);
          $data = $request->all();
          $supplier ->fill($data)->save();
-         var_dump($supplier);
-         Session::flash('getmessage','Update successfully');
+         Session::flash('getmessage','Update successfully!');
          return redirect ('supplier/index');
     }
 
@@ -85,6 +84,7 @@ class SupplierController extends Controller
     public function destroy(Request $requset){
         $id = $requset->supplier_id;
         $delete = Supplier::findOrFail($id)->delete();
+        Session::flash('getmessage','Deleted successfully!');
         return redirect ('supplier/index');
     } 
 }

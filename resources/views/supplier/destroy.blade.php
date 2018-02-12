@@ -1,4 +1,4 @@
-    <div id="deletSupplier" class="modal fade" role="dialog">
+    <div id="deleteSupplier" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

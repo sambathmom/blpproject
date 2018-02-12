@@ -17,17 +17,16 @@
                   <a href="{{url('supplier/create')}}">
                     <button class="colortext btn btn-success pull-right">AddNew Supplier</button>  
                   </a>   
+                  @if(Session::has ('getmessage'))
+                        <div class="alert alert-success col-sm-3 pull-right">
+                          {{Session::get('getmessage')}}
+                        </div>
+                     @endif   
                 </div>
       
         <div class="box">
             <div class="content">
                 <div class="col-md-12"> 
-                @if(Session::has ('getmessage'))
-                        <div class="alert alert-success col-sm-10">
-                          {{Session::get('getmessage')}}
-                        </div>
-                     @endif   
-                   
                    <table  border="1" class="table table-striped">
                       <thead class="thead-dark">
                         <tr>
@@ -52,7 +51,7 @@
                                 <a type="button" href="#editSupplier"  data-toggle="modal" class="editSupplier btn btn-success" data-id="{{$supplier->supplier_id}}" data-company="{{$supplier->company_name}}" data-contact="{{$supplier->contact_person}}" data-title="{{$supplier->contact_title}}" data-email="{{$supplier->email}}" data-phone="{{$supplier->phone}}">Edit</a>
                             </th>
                             <th width="80">
-                                 <button type="button" data-toggle="modal" data-target="#deletSupplier" class="deletSupplier btn btn-danger" data-id="{{$supplier->supplier_id}}">Delete</button>
+                                 <button type="button" data-toggle="modal" data-target="#deleteSupplier" class="deleteSupplier btn btn-danger" data-id="{{$supplier->supplier_id}}">Delete</button>
                             </th>
                         </tr>
                         @endforeach                      

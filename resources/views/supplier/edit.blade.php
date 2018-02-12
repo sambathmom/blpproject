@@ -15,6 +15,7 @@
                                         <label for="supplierCompany" class="col-md-3 control-label"><strong>CompanyName: <span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
                                             <input placeholder="CompanyName" class="form-control" id="supplierCompany" name="company_name" type="text" >
+                                             <span class="error">{{ $errors->first('company_name') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -23,6 +24,7 @@
                                         <label for="supplierContact" class="col-md-3 control-label"><strong>Contact Person <span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
                                             <input placeholder="Contact Person" class="form-control" id="supplierContact" name="contact_person" type="text" >
+                                             <span class="error">{{ $errors->first('contact_person') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -31,6 +33,7 @@
                                         <label for="supplierTitle" class="col-md-3 control-label"><strong>Conatact Title <span class="required" aria-required="true">* </span></strong></label>
                                         <div class="col-md-7">
                                             <input placeholder="Conatact Title" class="form-control" id="supplierTitle" name="contact_title"  type="text">
+                                             <span class="error">{{ $errors->first('contact_title') }}</span>
                                         </div>
                                 
                                     </div>
