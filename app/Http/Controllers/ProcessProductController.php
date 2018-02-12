@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\RawProduct;
 use Session;
 use App\ProcessMaterial;
-
-class ProcessMaterialController extends Controller
+use App\ProcessProduct;
+class ProcessProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +16,13 @@ class ProcessMaterialController extends Controller
      */
     public function index()
     {
-        $processmaterial = DB::table('process_material')
-            ->join('raw_product', 'raw_product.rp_id', '=', 'process_material.rp_id')
-            ->select('process_material.*', 'raw_product.rp_name')
+        $processproduct = DB::table('process_product')
+            ->join('process_material', 'process_product.pm_id', '=', 'process_material.pm_id')
+            ->select('process_material.pm_name', 'process_product.*')
             ->orderBy('pm_id','ASC')
             ->paginate(20); 
-        $rawproduct = DB::table('raw_product')->get();
-        return view('processmaterial.index',['processmaterials' => $processmaterial, 'rawproducts' => $rawproduct]);
+        $processmatial = DB::table('process_material')->get();
+        return view('processproduct.index',['processproducts' => $processproduct,'processmatials' =>$processmatial]);
     }
 
     /**
@@ -33,8 +32,8 @@ class ProcessMaterialController extends Controller
      */
     public function create()
     {
-        $rawproduct = DB::table('raw_product')->get();
-        return view('processmaterial.create',['rawproducts'=>$rawproduct]);
+        $processmaterial = DB::table('process_material')->get();
+        return view('processproduct.create',['processmaterials'=>$processmaterial]);
     }
 
     /**
@@ -45,17 +44,11 @@ class ProcessMaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'rp_id' => 'required:process_material',
-            'pm_name' => 'required:process_material',
-            'qty' => 'required|numeric:process_material',
-            'cost' => 'required|numeric:process_material',
-        ]);
-        $processmaterial = new ProcessMaterial;
+        $processproduct = new ProcessProduct;
         $data = $request->all();
-        $processmaterial->fill($data)->save(); 
-        Session::flash('getmessage','Insert successfully!');
-        return redirect ('processmaterial/index');
+        $processproduct->fill($data)->save();
+        Session::flash('getmessage','Deleted successfully!');
+        return redirect('processproduct/index');        
     }
 
     /**
@@ -89,12 +82,13 @@ class ProcessMaterialController extends Controller
      */
     public function update(Request $request)
     {
-        $id = $request->pm_id;
-        $processmaterial = ProcessMaterial::findOrFail($id);
+        $id = $request->pp_id;
+        $processproduct = ProcessProduct::findOrfail($id);
         $data = $request->all();
-        $processmaterial->fill($data)->save();   
-        Session::flash('getmessage','Update successfully!');
-        return redirect ('processmaterial/index');
+        $processproduct->fill($data)->save();
+        Session::flash('getmessage','Deleted successfully!');
+        return redirect('processproduct/index');        
+
     }
 
     /**
@@ -105,10 +99,9 @@ class ProcessMaterialController extends Controller
      */
     public function destroy(request $request)
     {
-        $id = $request->pm_id;
-        $processmaterial = ProcessMaterial::findOrFail($id);
-        $processmaterial->delete();
+        $id = $request->pp_id;
+        $processproduct = ProcessProduct::findOrfail($id)->delete();
         Session::flash('getmessage','Deleted successfully!');
-        return redirect ('processmaterial/index');
+        return redirect('processproduct/index');
     }
 }

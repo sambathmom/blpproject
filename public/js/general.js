@@ -66,6 +66,29 @@
         }
       });
 
+      $('.destroy-staff').on('click', function() {
+        var id = $(this).data('identity');
+        $('#identityDestroy').val(id);
+      });
+
+      $('#destroyStaff').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/staff/destroy/' + id,
+            data: {'id': id},
+            type: 'GET',
+            dataType: 'json',
+            success: function( response ) {
+                if (response.status == 200) {
+                  $('#staffDestroyModal').modal('hide');
+                  location.reload()
+                }
+            }
+        });
+      });
+
+
     // Grade edit and delete
     $('.edit-grade').on('click', function() {
         var id = $(this).data('identity');
@@ -74,28 +97,29 @@
         $('#gradeName').val(gradeName);
     });
 
-    $('.destroy-staff').on('click', function() {
+    $('.destroy-grade').on('click', function() {
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
-    });
-
-    $('#destroyStaff').on('click', function() {
-      var id = $('#identityDestroy').val();
-
-      $.ajax({
-          url: 'http://localhost:8000/grade/destroy/' + id,
-          data: {'id': id},
-          type: 'GET',
-          dataType: 'json',
-          success: function( response ) {
-              if (response.status == 200) {
-                $('#gradeDestroyModal').modal('hide');
-                location.reload()
-              }
-          }
       });
-    });
 
+      $('#destroyGrade').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+            url: 'http://localhost:8000/grade/destroy/' + id,
+            data: {'id': id},
+            type: 'GET',
+            dataType: 'json',
+            success: function( response ) {
+                if (response.status == 200) {
+                  $('#gradeDestroyModal').modal('hide');
+                  location.reload()
+                }
+            }
+        });
+      });
+
+  
     // Work type edit and delete
     $('.edit-worktype').on('click', function() {
         var id = $(this).data('identity');
@@ -145,7 +169,7 @@
         var id = $('#identityDestroy').val();
 
         $.ajax({
-            url: 'http://localhost:8000/laborcost/destroy/' + id,
+            url:  'http://localhost:8000/laborcost/destroy/' + id,
             data: {'id': id},
             type: 'GET',
             dataType: 'json',
@@ -170,6 +194,19 @@
         $('#pQty').val($(this).data('proqty'));
         $('#pCost').val($(this).data('procost'));
         
+      });
+
+      // processproduct delete and edit
+      $('.delete-pproduct').on('click',function() {
+        $('#deleteProduct').val($(this).data('id'));
+      });
+      $('.edit-pproduct').on('click',function(){
+        $('#idPro').val($(this).data('id'));
+        $('#pmName').val($(this).data('pmname'));
+        $('#pmName').trigger('chosen:updated');
+        $('#ppName').val($(this).data('ppname'));
+        $('#ppQty').val($(this).data('ppqty'));
+        $('#ppCost').val($(this).data('ppcost'));
       });
 
 });

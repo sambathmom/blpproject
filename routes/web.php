@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // supplier crud
 
@@ -49,6 +47,13 @@ Route::get('/processmaterail/create','ProcessMaterialController@create');
 Route::POST('/processmaterial/store','ProcessMaterialController@store');
 Route::POST('/processmaterial/update','ProcessMaterialController@update');
 Route::POST('/processmaterial/destroy','ProcessMaterialController@destroy');
+
+//ProcessProduct
+Route::get('/processproduct/index','ProcessProductController@index');
+Route::get('/processproduct/create','ProcessProductController@create');
+Route::POST('/processproduct/store','ProcessProductController@store');
+Route::POST('/processproduct/update','ProcessProductController@update');
+Route::POST('/processproduct/destroy','ProcessProductController@destroy');
 
 
 

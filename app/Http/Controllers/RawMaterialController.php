@@ -24,7 +24,7 @@ class RawMaterialController extends Controller
             ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
             ->select('raw_material.*', 'supplier.company_name','grade.grade_name')
             ->orderBy('rm_id','ASC')
-            ->paginate(5); 
+            ->paginate(20); 
         $supplier = DB::table('supplier')->get();
         $grade = DB::table('grade')->get();
         return view('rawmaterial.index',['rawmaterial' => $rawmaterial, 'supplier' => $supplier,'grade' => $grade]);
@@ -60,7 +60,7 @@ class RawMaterialController extends Controller
         $rawmaterail = new RawMaterial;
         $data = $request->all();
         $rawmaterail->fill($data)->save();
-        Session::flash('getmessage','Insert successfully');
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('rawmaterial/index');
     }
 
@@ -88,7 +88,7 @@ class RawMaterialController extends Controller
         $rawmaterial = RawMaterial::findOrFail($id);
         $data = $request->all();
         $rawmaterial->fill($data)->save();
-        Session::flash('getmessage','Update successfully');
+        Session::flash('getmessage','Update successfully!');
         return redirect('rawmaterial/index');
 
     }
@@ -104,7 +104,7 @@ class RawMaterialController extends Controller
         $id = $request->rm_id;
         $rawmaterial = RawMaterial::findOrFail($id);
         $rawmaterial->delete();
-        Session::flash('getmessage','Deleted successfully');
+        Session::flash('getmessage','Deleted successfully!');
         return redirect('rawmaterial/index');
     }
 }

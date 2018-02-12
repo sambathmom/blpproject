@@ -17,17 +17,16 @@
                   <a href="{{url('supplier/create')}}">
                     <button class="colortext btn btn-success pull-right">AddNew Supplier</button>  
                   </a>   
+                  @if(Session::has ('getmessage'))
+                        <div class="alert alert-success col-sm-3 pull-right">
+                          {{Session::get('getmessage')}}
+                        </div>
+                     @endif   
                 </div>
       
         <div class="box">
             <div class="content">
                 <div class="col-md-12"> 
-                @if(Session::has ('getmessage'))
-                        <div class="alert alert-success col-sm-10">
-                          {{Session::get('getmessage')}}
-                        </div>
-                     @endif   
-                   
                    <table  border="1" class="table table-striped">
                       <thead class="thead-dark">
                         <tr>

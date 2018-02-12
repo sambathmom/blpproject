@@ -15,16 +15,17 @@
             <a href="{{route('worktypecreate')}}" >
                 <button class="btn btn-success pull-right">Add new work type</button>
             </a>     
-        </div>
-        <div class="box">
-            <div class="content">
-                @if(Session::has('getmess')) 
+             @if(Session::has('getmess')) 
                     <div class="row">       
-                        <div class="alert alert-success col-md-12">
+                        <div class="alert alert-success col-md-3">
                             {{Session::get('getmess')}}                                               
                         </div> 
                     </div>                      
-                @endif              
+            @endif   
+        </div>
+        <div class="box">
+            <div class="content">
+                          
                 <div class="col-md-12">
                     <table border="1" class="table table-striped">
                         <thead>

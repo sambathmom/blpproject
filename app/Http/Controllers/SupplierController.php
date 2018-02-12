@@ -18,7 +18,7 @@ class SupplierController extends Controller
     public function index()
     {
     	$data = new Supplier;
-        $suppliers = $data::orderBy('supplier_id','ASC')->paginate(2); 
+        $suppliers = $data::orderBy('supplier_id','ASC')->paginate(20); 
         return view('supplier/index', ['suppliers' => $suppliers]);
     }
 
@@ -53,7 +53,7 @@ class SupplierController extends Controller
     	$supplier = new Supplier;
         $data = $request->all();
         $supplier->fill($data)->save();
-        Session::flash('getmessage','Insert successfully');
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('supplier/index');
     }
   
@@ -71,7 +71,7 @@ class SupplierController extends Controller
          $supplier =  Supplier::findOrFail($id);
          $data = $request->all();
          $supplier ->fill($data)->save();
-         Session::flash('getmessage','Update successfully');
+         Session::flash('getmessage','Update successfully!');
          return redirect ('supplier/index');
     }
 
@@ -84,7 +84,7 @@ class SupplierController extends Controller
     public function destroy(Request $requset){
         $id = $requset->supplier_id;
         $delete = Supplier::findOrFail($id)->delete();
-        Session::flash('getmessage','Deleted successfully');
+        Session::flash('getmessage','Deleted successfully!');
         return redirect ('supplier/index');
     } 
 }

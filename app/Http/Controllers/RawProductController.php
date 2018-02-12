@@ -23,7 +23,7 @@ class RawProductController extends Controller
             ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
             ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name')
             ->orderBy('rm_id','ASC')
-            ->paginate(5); 
+            ->paginate(20); 
         $rawmaterial = DB::table('raw_material')->get();
         $grade = DB::table('grade')->get();
         return view('rawproduct/index',['rawproducts' => $rawproduct, 'rawmaterials' => $rawmaterial,'grade' => $grade]);
@@ -60,7 +60,7 @@ class RawProductController extends Controller
         $rawproduct = new RawProduct;
         $data = $request->all();
         $rawproduct->fill($data)->save();
-        Session::flash('getmessage','Insert successfully');
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('rawproduct/index');
     }
 
@@ -99,7 +99,7 @@ class RawProductController extends Controller
         $rawproduct = RawProduct::findOrFail($id);
         $data = $request->all();
         $rawproduct->fill($data)->save();
-        Session::flash('getmessage','Update successfully');
+        Session::flash('getmessage','Update successfully!');
         return redirect('rawproduct/index');
     }
 
@@ -113,6 +113,7 @@ class RawProductController extends Controller
     {
         $id =  $request->rp_id;
         $rawproduct = RawProduct::findOrFail($id)->delete();
+        Session::flash('getmessage','Deleted successfully!');
         return back();
     }
 }

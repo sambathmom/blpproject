@@ -177,6 +177,17 @@
                                 <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add New Process Materail</a></li>
                             </ul>
                         </li>
+                         <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Process Product</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of Process Product</a></li>
+                                <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New Process Product</a></li>
+                            </ul>
+                        </li>
         			</ul>
                 </section>
             </aside><!-- main-sidebar -->
