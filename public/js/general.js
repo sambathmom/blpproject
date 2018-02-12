@@ -17,7 +17,6 @@
 
     // rawMaterail delete and update
     $('.delete-materail').on('click',function(){
-
         $('#identityDelete').val($(this).data('id'));
     });
     // edit
@@ -87,7 +86,6 @@
             }
         });
       });
-
 
     // Grade edit and delete
     $('.edit-grade').on('click', function() {
@@ -161,7 +159,7 @@
     });
 
     $('.destroy-laborcost').on('click', function() {
-        var id = $(this).data('identity');
+        ar id = $(this).data('identity');
         $('#identityDestroy').val(id);
     });
 
@@ -209,4 +207,20 @@
         $('#ppCost').val($(this).data('ppcost'));
       });
 
+    $('#destroyWorkType').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+          url: 'http://localhost:8000/worktype/destroy/' + id,
+          data: {'id': id},
+          type: 'GET',
+          dataType: 'json',
+          success: function( response ) {
+            if (response.status == 200) {
+              $('#workTypeDestroyModal').modal('hide');
+              location.reload();
+            }
+          }
+        });
+    });
 });
