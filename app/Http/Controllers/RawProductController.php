@@ -18,15 +18,15 @@ class RawProductController extends Controller
      */
     public function index()
     {
-         $rawproduct = DB::table('raw_product')
+         $rawProducts = DB::table('raw_product')
             ->join('raw_material', 'raw_product.rm_id', '=', 'raw_material.rm_id')
             ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
             ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name')
             ->orderBy('rm_id','ASC')
             ->paginate(20); 
-        $rawmaterial = DB::table('raw_material')->get();
+        $rawMaterials = DB::table('raw_material')->get();
         $grade = DB::table('grade')->get();
-        return view('rawproduct/index',['rawproducts' => $rawproduct, 'rawmaterials' => $rawmaterial,'grade' => $grade]);
+        return view('rawproduct/index',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grade' => $grade]);
     }
 
     /**
@@ -63,36 +63,6 @@ class RawProductController extends Controller
         Session::flash('getmessage','Insert successfully!');
         return redirect ('rawproduct/index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $id = $request->rp_id;

@@ -16,13 +16,13 @@ class ProcessProductController extends Controller
      */
     public function index()
     {
-        $processproduct = DB::table('process_product')
+        $processProducts = DB::table('process_product')
             ->join('process_material', 'process_product.pm_id', '=', 'process_material.pm_id')
             ->select('process_material.pm_name', 'process_product.*')
             ->orderBy('pm_id','ASC')
             ->paginate(20); 
-        $processmatial = DB::table('process_material')->get();
-        return view('processproduct.index',['processproducts' => $processproduct,'processmatials' =>$processmatial]);
+        $processMatials = DB::table('process_material')->get();
+        return view('processproduct.index',['processProducts' => $processProducts,'processMatials' =>$processMatials]);
     }
 
     /**
@@ -32,8 +32,8 @@ class ProcessProductController extends Controller
      */
     public function create()
     {
-        $processmaterial = DB::table('process_material')->get();
-        return view('processproduct.create',['processmaterials'=>$processmaterial]);
+        $processMatials = DB::table('process_material')->get();
+        return view('processproduct.create',['processMatials' =>$processMatials]);
     }
 
     /**
@@ -44,42 +44,12 @@ class ProcessProductController extends Controller
      */
     public function store(Request $request)
     {
-        $processproduct = new ProcessProduct;
+        $processProduct = new ProcessProduct;
         $data = $request->all();
-        $processproduct->fill($data)->save();
+        $processProduct->fill($data)->save();
         Session::flash('getmessage','Deleted successfully!');
         return redirect('processproduct/index');        
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $id = $request->pp_id;

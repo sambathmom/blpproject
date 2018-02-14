@@ -24,6 +24,8 @@
         $('#identityEdit').val($(this).data('id'));
         $('#supplier').val($(this).data('supplier'));
         $('#supplier').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
         $('#rawGrade').val($(this).data('grade'));
         $('#rawGrade').trigger('chosen:updated');
         $('#rawName').val($(this).data('rawname'));
@@ -188,6 +190,8 @@
     $('.editProccess').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
         $('#rpName').val($(this).data('rpname'));
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
         $('#rpName').trigger('chosen:updated');
         $('#proName').val($(this).data('proname'));
         $('#pQty').val($(this).data('proqty'));
@@ -208,4 +212,20 @@
         $('#ppQty').val($(this).data('ppqty'));
         $('#ppCost').val($(this).data('ppcost'));
     });
+
+    // process Shaping delete and edit
+    $('.delete-shaping').on('click',function() {
+        $('#deleteShaping').val($(this).data('id'));
+    });
+    $('.edit-shaping').on('click',function(){
+        $('#idShaping').val($(this).data('id'));
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#pocessProduct').val($(this).data('process-shaping'));
+        $('#pocessProduct').trigger('chosen:updated');
+        $('#shapingName').val($(this).data('shaping-name'));
+        $('#shapingQty').val($(this).data('sqty'));
+        $('#shapingCost').val($(this).data('scost'));
+    });
+
 });

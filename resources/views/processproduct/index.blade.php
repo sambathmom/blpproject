@@ -34,23 +34,26 @@
                         </tr>
                       </thead>
                       <tbody>  
-                       @foreach ($processproducts as $processproduct) 
+                       @foreach ($processProducts as $processProduct) 
                         <tr>
-                            <td>{{$processproduct->pm_name}}</td>
-                            <td>{{$processproduct->pp_name}}</td>
-                            <td>{{$processproduct->qty}}</td>
-                            <td>{{$processproduct->cost}}</td>
+                            <td>{{$processProduct->pm_name}}</td>
+                            <td>{{$processProduct->pp_name}}</td>
+                            <td>{{$processProduct->qty}}</td>
+                            <td>{{$processProduct->cost}}</td>
                             <td width="80">
-                                <a type="button" href="#editProccess"  data-toggle="modal" class="edit-pproduct btn btn-success" data-id="{{$processproduct->pp_id}}" data-pmname="{{$processproduct->pm_id}}" data-ppname="{{$processproduct->pp_name}}" data-ppqty="{{$processproduct->qty}}" data-ppcost="{{$processproduct->cost}}">Edit</a>
+                                <a type="button" href="#editProccess"  data-toggle="modal" class="edit-pproduct btn btn-success" 
+                                data-id="{{$processProduct->pp_id}}" data-pmname="{{$processProduct->pm_id}}"
+                                data-ppname="{{$processProduct->pp_name}}" data-ppqty="{{$processProduct->qty}}"
+                                data-ppcost="{{$processProduct->cost}}">Edit</a>
                             </td>
                             <td width="80">
-                                 <button type="button" data-toggle="modal" data-target="#deletePproduct" class="delete-pproduct btn btn-danger"  data-id="{{$processproduct->pp_id}}">Delete</button>
+                                 <button type="button" data-toggle="modal" data-target="#deletePproduct" class="delete-pproduct btn btn-danger"  data-id="{{$processProduct->pp_id}}">Delete</button>
                             </td>
                         </tr>
                         @endforeach                    
                       </tbody>
                     </table>   
-                        {!!  $processproducts->render() !!}
+                        {!!  $processProducts->render() !!}
      
                 </div>
             </div>
