@@ -12,6 +12,7 @@ class ProcessProduct extends Model
 		'pm_id',
 		'pp_name',
 		'qty',
-		'cost'
+		'cost',
+		'staff_id'
 	];
 }

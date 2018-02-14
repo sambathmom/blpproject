@@ -46,7 +46,7 @@ class WorkTypeController extends Controller
         $data = $request->all();
 
         $workType->fill($data)->save();
-        Session::flash('getmess','Insert successfully!');
+        Session::flash('getmessage','Inserted successfully!');
         return redirect('worktype/index');
     }
 
@@ -62,7 +62,7 @@ class WorkTypeController extends Controller
         $workType = WorkType::findOrFail($id);
         $update = $request->all();
         $workType->fill($update)->save();
-        Session::flash('getmess','Update successfully!');
+        Session::flash('getmessage','Updated successfully!');
         return redirect('worktype/index');
     }
 
@@ -76,7 +76,7 @@ class WorkTypeController extends Controller
     {
         $response = [];
         $grade = WorKType::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!');
+        Session::flash('getmessage','Deleted successfully!');
         $response = [
             'status' => 200
         ];

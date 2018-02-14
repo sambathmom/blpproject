@@ -19,7 +19,7 @@ class RawMaterialController extends Controller
     public function index()
     {
 
-        $rawmaterial = DB::table('raw_material')
+        $rawMaterials = DB::table('raw_material')
             ->join('supplier', 'supplier.supplier_id', '=', 'raw_material.supplier_id')
             ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
             ->select('raw_material.*', 'supplier.company_name','grade.grade_name')
@@ -27,7 +27,7 @@ class RawMaterialController extends Controller
             ->paginate(20); 
         $supplier = DB::table('supplier')->get();
         $grade = DB::table('grade')->get();
-        return view('rawmaterial.index',['rawmaterial' => $rawmaterial, 'supplier' => $supplier,'grade' => $grade]);
+        return view('rawmaterial.index',['rawMaterials' => $rawMaterials, 'supplier' => $supplier,'grade' => $grade]);
     }
 
     /**
@@ -39,6 +39,7 @@ class RawMaterialController extends Controller
     {
         $suppliers = DB::table('supplier')->get();
         $grade = DB::table('grade')->get();
+        
         return view('rawmaterial.new',['supplier' => $suppliers,'grade' => $grade]);
     }
 
@@ -60,7 +61,7 @@ class RawMaterialController extends Controller
         $rawmaterail = new RawMaterial;
         $data = $request->all();
         $rawmaterail->fill($data)->save();
-        Session::flash('getmessage','Insert successfully!');
+        Session::flash('getmessage','Inserted successfully!');
         return redirect ('rawmaterial/index');
     }
 
@@ -77,7 +78,7 @@ class RawMaterialController extends Controller
 
     public function update(Request $request)
     {
-          $this->validate($request, [
+        $this->validate($request, [
             'supplier_id' => 'required:raw_material',
             'grade_id' => 'required:raw_material',
             'rm_name' => 'required:raw_material',
@@ -88,7 +89,7 @@ class RawMaterialController extends Controller
         $rawmaterial = RawMaterial::findOrFail($id);
         $data = $request->all();
         $rawmaterial->fill($data)->save();
-        Session::flash('getmessage','Update successfully!');
+        Session::flash('getmessage','Updated successfully!');
         return redirect('rawmaterial/index');
 
     }

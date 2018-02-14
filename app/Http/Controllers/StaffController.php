@@ -54,7 +54,7 @@ class StaffController extends Controller
        	$data = $request->all();
 
 		$staff->fill($data)->save();
-		Session::flash('getmess','Insert successfully!');
+		Session::flash('getmessage','Inserted successfully!');
 		return redirect('staff/index');
 	}
 
@@ -85,7 +85,7 @@ class StaffController extends Controller
 	    }
     	$update = $request->all();
         $staff->fill($update)->save();
-        Session::flash('getmess','Update successfully!');
+        Session::flash('getmessage','Updated successfully!');
     	return redirect('staff/index');
     }
 
@@ -99,7 +99,7 @@ class StaffController extends Controller
     {
         $response = [];
 		$staff = Staff::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!');
+        Session::flash('getmessage','Deleted successfully!');
         $response = [
             'status' => 200
         ];

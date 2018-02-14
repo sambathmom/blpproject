@@ -7,6 +7,8 @@ use DB;
 use Session;
 use App\ProcessMaterial;
 use App\ProcessProduct;
+use App\Staff;
+
 class ProcessProductController extends Controller
 {
     /**
@@ -18,11 +20,13 @@ class ProcessProductController extends Controller
     {
         $processproduct = DB::table('process_product')
             ->join('process_material', 'process_product.pm_id', '=', 'process_material.pm_id')
-            ->select('process_material.pm_name', 'process_product.*')
+            ->join('staff', 'staff.staff_id', '=', 'process_product.staff_id')
+            ->select('process_material.pm_name', 'process_product.*', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
             ->orderBy('pm_id','ASC')
             ->paginate(20); 
         $processmatial = DB::table('process_material')->get();
-        return view('processproduct.index',['processproducts' => $processproduct,'processmatials' =>$processmatial]);
+        $staffs = Staff::all();
+        return view('processproduct.index',['processproducts' => $processproduct,'processmatials' =>$processmatial, 'staffs' => $staffs]);
     }
 
     /**
@@ -33,7 +37,8 @@ class ProcessProductController extends Controller
     public function create()
     {
         $processmaterial = DB::table('process_material')->get();
-        return view('processproduct.create',['processmaterials'=>$processmaterial]);
+        $staffs = Staff::all();
+        return view('processproduct.create',['processmaterials'=>$processmaterial, 'staffs' => $staffs]);
     }
 
     /**
@@ -47,30 +52,8 @@ class ProcessProductController extends Controller
         $processproduct = new ProcessProduct;
         $data = $request->all();
         $processproduct->fill($data)->save();
-        Session::flash('getmessage','Deleted successfully!');
+        Session::flash('getmessage','Inserted successfully!');
         return redirect('processproduct/index');        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -86,7 +69,7 @@ class ProcessProductController extends Controller
         $processproduct = ProcessProduct::findOrfail($id);
         $data = $request->all();
         $processproduct->fill($data)->save();
-        Session::flash('getmessage','Deleted successfully!');
+        Session::flash('getmessage','Updated successfully!');
         return redirect('processproduct/index');        
 
     }

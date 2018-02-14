@@ -7,11 +7,9 @@
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
                     <h2>RawProduct</h2>      
-                </div>
-              
+                </div>            
             </div>
-        </section>  
-        
+        </section>        
         <div class="box">
             <div class="content">
                 <div class="col-md-12">                        
@@ -20,12 +18,12 @@
                             <div class="col-md-12 form-group">
                                 <div class="form-group row">
                                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                    <label for="rp_id" class="col-md-3 control-label"><strong>RawMaterialName: <span class="required" aria-required="true">* </span></strong></label>
+                                    <label for="rowMaterial" class="col-md-3 control-label"><strong>RawMaterialName: <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                        
-                                        <select class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="supplier_id">
-                                             @foreach ($rawmaterials as $rawmaterial) 
-                                             <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
+                                        <select class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="rowMaterial">
+                                            @foreach ($rawmaterials as $rawmaterial) 
+                                                <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
                                             @endforeach
 
                                         </select> 
@@ -36,14 +34,27 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12 form-group">
+                                <div class="form-group row">
+                                    <label for="staff" class="col-md-3 control-label"><strong>Staff name: <span class="required" aria-required="true">* </span></strong></label>
+                                    <div class="col-md-7">                                      
+                                        <select class="chzn-select chzn-rtl" tabindex="10" name="staff_id"  id="staff">
+                                            @foreach ($staffs as $staff) 
+                                                <option value="{{$staff->staff_id}}">{{$staff->first_name}} {{$staff->middle_name}} {{$staff->last_name}}</option>
+                                            @endforeach
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
                                 <div class="form-group row">
                                     <label for="grade_id" class="col-md-3 control-label"><strong>GradeName<span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                       
                                          <select class="chzn-select chzn-rtl" tabindex="10" name="grade_id"  id="grade_id">
-                                             @foreach ($grades as $grade) 
-                                             <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
+                                            @foreach ($grades as $grade) 
+                                                <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                                             @endforeach
 
                                         </select> 

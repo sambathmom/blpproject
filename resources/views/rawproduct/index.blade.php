@@ -30,27 +30,29 @@
                    <table  border="1" class="table table-striped">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">RawMaterialName</th>
-                          <th scope="col">GradeName</th>
-                          <th scope="col">RawPrductName</th>
-                          <th scope="col">Quantity</th>
-                          <th scope="col">Cost</th>
-                          <th width="80">Edit</th>
-                          <th width="80">Delete</th>
+                            <th>#</th>
+                            <th scope="col">RawMaterialName</th>
+                            <th scope="col">GradeName</th>
+                            <th scope="col">RawPrductName</th>
+                            <th>Staff</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Cost</th>
+                            <th width="80">Edit</th>
+                            <th width="80">Delete</th>
                         </tr>
                       </thead>
                       <tbody>  
                        @foreach ($rawproducts as $rawproduct) 
                         <tr>
+                            <td>{{$rawproduct->rm_id}}</td>
                             <td>{{$rawproduct->rm_name}}</td>
                             <td>{{$rawproduct->grade_name}}</td>
                             <td>{{$rawproduct->rp_name}}</td>
+                            <td>{{$rawproduct->first_name}} {{$rawproduct->middle_name}} {{$rawproduct->last_name}}</td>  
                             <td>{{$rawproduct->qty}}</td>
-                            <td>{{$rawproduct->cost}}</td>
-                           
-                         
+                            <td>{{$rawproduct->cost}}</td>                        
                             <td width="80">
-                                <a type="button" href="#editRawProduct"  data-toggle="modal" class="editRawPro btn btn-success" data-id="{{$rawproduct->rp_id}}" data-rmid="{{$rawproduct->rm_id}}" data-grade="{{$rawproduct->grade_id}}" data-name="{{$rawproduct->rp_name}}" data-qty="{{$rawproduct->qty}}" data-cost="{{$rawproduct->cost}}">Edit</a>
+                                <a type="button" href="#editRawProduct"  data-toggle="modal" class="editRawPro btn btn-success" data-id="{{$rawproduct->rp_id}}" data-staff="{{$rawproduct->staff_id}}" data-rmid="{{$rawproduct->rm_id}}" data-grade="{{$rawproduct->grade_id}}" data-name="{{$rawproduct->rp_name}}" data-qty="{{$rawproduct->qty}}" data-cost="{{$rawproduct->cost}}">Edit</a>
                             </td>
                             <td width="80">
                                 <button type="button" data-toggle="modal" data-target="#deleteRawPro" class="delete-rawproduct btn btn-danger"  data-id="{{$rawproduct->rp_id}}">Delete</button>
@@ -59,7 +61,7 @@
                         @endforeach                    
                       </tbody>
                     </table>
-                     {!!  $rawproduct->render() !!}     
+                     {!!  $rawproducts->render() !!}     
                 </div>
             </div>
         </div>

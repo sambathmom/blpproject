@@ -38,7 +38,7 @@
                         </tr>
                       </thead>
                       <tbody>  
-                       @foreach ($rawmaterial as $rawmaterial) 
+                       @foreach ($rawMaterials as $rawmaterial) 
                         <tr>
                             <td>{{$rawmaterial->company_name}}</td>
                             <td>{{$rawmaterial->grade_name}}</td>
@@ -55,7 +55,7 @@
                         @endforeach                    
                       </tbody>
                     </table>   
-                     {!!  $rawmaterial->render() !!}     
+                     {!!  $rawMaterials->render() !!}     
                 </div>
             </div>
         </div>
