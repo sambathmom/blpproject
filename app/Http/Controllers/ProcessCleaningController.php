@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Grade;
-use App\WorkType;
+use App\ProcessProduct;
+use App\ProcessCleaning;
 use Session;
-use App\LaborCost;
 use DB;
+use App\Staff;
 
-class LaborCostController extends Controller
+class ProcessCleaningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +18,15 @@ class LaborCostController extends Controller
      */
     public function index()
     {
-        $laborCosts = DB::table('labor_cost')
-            ->join('grade', 'labor_cost.grade_id', '=', 'grade.grade_id')
-            ->join('work_type', 'work_type.work_type_id', '=', 'labor_cost.work_type_id')
-            ->select('labor_cost.*', 'grade.grade_name','work_type.wt_name')
-            ->get();
-        $grades = Grade::all();
-        $workTypes = WorkType::all();
-        return view('laborcost.index', compact('laborCosts', 'grades', 'workTypes'));
+        $processCleanings = DB::table('process_cleaning')
+        ->join('process_product', 'process_product.pp_id', '=', 'process_cleaning.pp_id')
+        ->join('staff', 'staff.staff_id', '=', 'process_cleaning.staff_id')
+        ->select('process_cleaning.*', 'process_product.pp_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+        ->orderBy('pc_id','ASC')
+        ->paginate(20); 
+        $processProducts = ProcessProduct::all();
+        $staffs = Staff::all();
+        return view('processcleaning.index', compact('processCleanings', 'processProducts', 'staffs'));
     }
 
     /**
@@ -35,9 +36,9 @@ class LaborCostController extends Controller
      */
     public function create()
     {
-        $grades = Grade::all();
-        $workTypes = WorkType::all();
-        return view('laborcost.create', compact('grades', 'workTypes'));
+        $processProducts = ProcessProduct::all();
+        $staffs = Staff::all();
+        return view('processcleaning.create', compact('processProducts', 'staffs'));
     }
 
     /**
@@ -49,37 +50,37 @@ class LaborCostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'pc_name' => 'required',
             'cost' => 'required|numeric',
             'qty' => 'required|numeric'
         ]);
-        $laborCost = new LaborCost;
+        $processCleaning = new ProcessCleaning;
         $data = $request->all();
 
-        $laborCost->fill($data)->save();
+        $processCleaning->fill($data)->save();
         Session::flash('getmessage','Inserted successfully!');
-        return redirect('laborcost/index');
+        return redirect('processcleaning/index');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
-        ]);
-        $laborCostId = $request->lc_id;
-        $laborCost = LaborCost::findOrFail($laborCostId);
-
-        $update = $request->all();
-        $laborCost->fill($update)->save();
+			'pc_name' => 'required',
+			'qty' => 'required|numeric',
+			'cost' => 'required|numeric',
+		]);
+    	$processCleaningId = $request->pc_id;
+    	$processCleaning = ProcessCleaning::findOrFail($processCleaningId);
+    	$update = $request->all();
+        $processCleaning->fill($update)->save();
         Session::flash('getmessage','Updated successfully!');
-        return redirect('laborcost/index');
+    	return redirect('processcleaning/index');
     }
 
     /**
@@ -91,7 +92,7 @@ class LaborCostController extends Controller
     public function destroy($id)
     {
         $response = [];
-        $laborCost = LaborCost::find($id)->delete();
+		$processCleaning = ProcessCleaning::find($id)->delete();
         Session::flash('getmessage','Deleted successfully!');
         $response = [
             'status' => 200

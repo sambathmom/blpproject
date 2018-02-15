@@ -21,7 +21,7 @@ class GradeController extends Controller
         return view ('grade/index', compact('grades'));
     }
 
-    /**
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,7 +47,7 @@ class GradeController extends Controller
         $data = $request->all();
 
         $grade->fill($data)->save();
-        Session::flash('getmess','Insert successfully!');
+        Session::flash('getmessage','Insert successfully!');
         return redirect('grade/index');
     }
 
@@ -63,7 +63,7 @@ class GradeController extends Controller
         $grade = Grade::findOrFail($id);
         $update = $request->all();
         $grade->fill($update)->save();
-        Session::flash('getmess','Update successfully!');
+        Session::flash('getmessage','Update successfully!');
         return redirect('grade/index');
     }
 
@@ -77,7 +77,7 @@ class GradeController extends Controller
     {
         $response = [];
         $grade = Grade::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!');
+        Session::flash('getmessage','Deleted successfully!');
         $response = [
             'status' => 200
         ];

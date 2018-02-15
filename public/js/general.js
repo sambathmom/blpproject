@@ -42,6 +42,8 @@
         $('#identityEdit').val($(this).data('id'));
         $('#rmId').val($(this).data('rmid'));
         $('#rmId').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
         $('#rawGrade').val($(this).data('grade'));
         $('#rawGrade').trigger('chosen:updated');
         $('#rawPro').val($(this).data('name'));
@@ -208,6 +210,8 @@
         $('#idPro').val($(this).data('id'));
         $('#pmName').val($(this).data('pmname'));
         $('#pmName').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
         $('#ppName').val($(this).data('ppname'));
         $('#ppQty').val($(this).data('ppqty'));
         $('#ppCost').val($(this).data('ppcost'));
@@ -226,6 +230,39 @@
         $('#shapingName').val($(this).data('shaping-name'));
         $('#shapingQty').val($(this).data('sqty'));
         $('#shapingCost').val($(this).data('scost'));
+    });
+
+    // Process Product edit and destroy
+    $('.edit_proccess_cleaning').on('click', function() {
+        $('#identityEdit').val($(this).data('identity'));
+        $('#processCleaningName').val($(this).data('pc-name'));
+        $('#processProduct').val($(this).data('process-product'));
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#processProduct').trigger('chosen:updated');
+        $('#cost').val($(this).data('cost'));
+        $('#qty').val($(this).data('qty'));
+    });
+
+    $('.delete-proccess-cleaning').on('click', function() {
+        $('#identityDestroy').val($(this).data('identity'));
+    });
+
+    $('#destroyProcessCleaning').on('click', function() {
+        var id = $('#identityDestroy').val();
+
+        $.ajax({
+            url:  'http://localhost:8000/processcleaning/destroy/' + id,
+            data: {'id': id},
+            type: 'GET',
+            dataType: 'json',
+            success: function( response ) {
+              if (response.status == 200) {
+                $('#processCleaningDestroyModal').modal('hide');
+                location.reload();
+              }
+            }
+        });
     });
 
 });

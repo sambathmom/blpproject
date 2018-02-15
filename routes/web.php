@@ -87,6 +87,19 @@ Route::post('laborcost/store/',['as'=>'laborcoststore','uses'=>'LaborCostControl
 Route::post('laborcost/update',['as'=>'laborcostupdate','uses'=>'LaborCostController@update']);
 Route::get('laborcost/destroy/{id}',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
 
-
 Route::get('/test','TestController@index');
 Route::POST('/test/update','TestController@update');
+
+// Process Cleaning
+Route::get('processcleaning/index',['as'=>'processcleaningindex','uses'=>'ProcessCleaningController@index']);
+Route::get('processcleaning/create',['as'=>'processcleaningcreate','uses'=>'ProcessCleaningController@create']);
+Route::post('processcleaning/store/',['as'=>'processcleaningstore','uses'=>'ProcessCleaningController@store']);
+Route::post('processcleaning/update',['as'=>'processcleaningupdate','uses'=>'ProcessCleaningController@update']);
+Route::get('processcleaning/destroy/{id}',['as'=>'processcleaningdestroy','uses'=>'ProcessCleaningController@destroy']);
+
+// Worked Records
+Route::get('workedrecords/index',['as'=>'workedrecordsindex','uses'=>'WorkedRecordsController@index']);
+Route::get('workedrecords/create',['as'=>'workedrecordscreate','uses'=>'WorkedRecordsController@create']);
+Route::post('workedrecords/store/',['as'=>'workedrecordsstore','uses'=>'WorkedRecordsController@store']);
+Route::post('workedrecords/update',['as'=>'workedrecordsupdate','uses'=>'WorkedRecordsController@update']);
+Route::get('workedrecords/destroy/{id}',['as'=>'workedrecordsdestroy','uses'=>'WorkedRecordsController@destroy']);

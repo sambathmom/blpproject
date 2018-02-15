@@ -17,21 +17,21 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="{{route('worktypestroe')}}" method="post">
+                            <form action="{{route('processcleaningstore')}}" method="post">
                                 <div class="row">
-                                    @include('worktype/formfields')
+                                    @include('processcleaning/formfields')
                                     <div class="border ">
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-success">Save</button>
-                                            <a href="{{route('worktypeindex')}}">
+                                            <a href="{{route('gradeindex')}}">
                                                 <button type="button" class="btn btn-warning">Cancel</button>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                            </form> 
+                            </form>  
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\RawMaterial;
 use App\RawProduct;
 use App\Grade;
 use Session;
+use App\Staff;
 
 class RawProductController extends Controller
 {
@@ -21,12 +22,17 @@ class RawProductController extends Controller
          $rawProducts = DB::table('raw_product')
             ->join('raw_material', 'raw_product.rm_id', '=', 'raw_material.rm_id')
             ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
-            ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name')
+            ->join('staff', 'staff.staff_id', '=', 'raw_product.staff_id')
+            ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
             ->orderBy('rm_id','ASC')
             ->paginate(20); 
         $rawMaterials = DB::table('raw_material')->get();
         $grade = DB::table('grade')->get();
-        return view('rawproduct/index',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grade' => $grade]);
+        $staffs = Staff::all();
+        return view('rawproduct/index',
+        ['rawproducts' => $rawproduct,
+         'rawmaterials' => $rawmaterial,
+         'grade' => $grade, 'staffs' => $staffs]);
     }
 
     /**
@@ -38,7 +44,8 @@ class RawProductController extends Controller
     {
         $rawmaterial = DB::table('raw_material')->get();
         $grade = DB::table('grade')->get();
-        return view('rawproduct/create',['rawmaterials'=>$rawmaterial,'grades'=>$grade]);
+        $staffs = Staff::all();
+        return view('rawproduct/create',['rawmaterials'=>$rawmaterial,'grades'=>$grade, 'staffs' => $staffs]);
     }
 
     /**

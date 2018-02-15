@@ -7,20 +7,18 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Dashboard</h2>      
+                    <h2>Work Type</h2>      
                 </div>
             </div>
         </section>  
         <div class="col-md-12">
             <a href="{{route('worktypecreate')}}" >
-                <button class="btn btn-success pull-right">Add new work type</button>
+                <button class="btn btn-success pull-right">New work type</button>
             </a>     
-             @if(Session::has('getmess')) 
-                    <div class="row">       
-                        <div class="alert alert-success col-md-3">
-                            {{Session::get('getmess')}}                                               
-                        </div> 
-                    </div>                      
+            @if(Session::has ('getmessage'))
+                <div class="alert alert-success col-sm-3 pull-right">
+                    {{Session::get('getmessage')}}
+                </div>
             @endif   
         </div>
         <div class="box">
@@ -30,7 +28,7 @@
                     <table border="1" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>Work Type Name</th>
                                 <th width="80px">Edit</th>
                                 <th width="80px">Delete</th>

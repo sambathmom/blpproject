@@ -13,6 +13,7 @@ class RawProduct extends Model
 		'grade_id',
 		'rp_name',
 		'qty',
-		'cost'
+		'cost',
+		'staff_id'
 	];
 }

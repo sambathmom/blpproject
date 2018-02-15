@@ -7,19 +7,19 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Dashboard</h2>      
+                    <h2>Add Staff</h2>      
                 </div>
             </div>
         </section>
         <div class="col-md-12">
             <a href="{{route('staffcreate')}}" >
-                <button class="btn btn-success pull-right">Add new staff</button>
+                <button class="btn btn-success pull-right">New staff</button>
             </a> 
-            @if(Session::has ('getmess'))
-                        <div class="alert alert-success col-sm-3 pull-right">
-                          {{Session::get('getmess')}}
-                        </div>
-                     @endif       
+            @if(Session::has ('getmessage'))
+                <div class="alert alert-success col-sm-3 pull-right">
+                {{Session::get('getmessage')}}
+                </div>
+            @endif       
         </div> 
    
         <div class="box">

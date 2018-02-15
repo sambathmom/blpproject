@@ -7,21 +7,21 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Dashboard</h2>      
+                    <h2>Labor Cost</h2>      
                 </div>
             </div>
         </section>  
         <div class="col-md-12">
             <a href="{{route('laborcostcreate')}}" >
-                <button class="btn btn-success pull-right">Add new labor cost</button>
+                <button class="btn btn-success pull-right">New labor cost</button>
             </a>     
-             @if(Session::has('getmess')) 
-                    <div class="row">       
-                        <div class="alert alert-success col-md-3" pull-right>
-                            {{Session::get('getmess')}}                                               
-                        </div> 
-                    </div>                      
-                @endif   
+             @if(Session::has('getmessage')) 
+                <div class="row">       
+                    <div class="alert alert-success col-md-3" pull-right>
+                        {{Session::get('getmessage')}}                                               
+                    </div> 
+                </div>                      
+            @endif   
         </div>
         <div class="box">
             <div class="content">           
