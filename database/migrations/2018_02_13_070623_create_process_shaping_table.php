@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRawMaterialTable extends Migration
+class CreateProcessShapingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateRawMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create('raw_material', function (Blueprint $table) {
-            $table->increments('rm_id');
-            $table->integer('supplier_id');
-            $table->integer('grade_id');
-            $table->string('rm_name');
+        Schema::create('process_shaping', function (Blueprint $table) {
+            $table->increments('ps_id');
+            $table->integer('pp_id');
+            $table->string('ps_name');
             $table->decimal('qty');
             $table->decimal('cost');
             $table->timestamps();
         });
-       
     }
 
     /**
@@ -32,6 +30,6 @@ class CreateRawMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('raw_material');
+        Schema::dropIfExists('process_shaping');
     }
 }

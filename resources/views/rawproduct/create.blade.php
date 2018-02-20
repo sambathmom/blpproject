@@ -1,15 +1,15 @@
 @section('title','Dashboard')
 @extends('layouts.admin')
 @section('content')
-
     <div class="content-wrapper">
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
                     <h2>RawProduct</h2>      
-                </div>            
+                </div> 
             </div>
-        </section>        
+        </section>  
+
         <div class="box">
             <div class="content">
                 <div class="col-md-12">                        
@@ -18,12 +18,12 @@
                             <div class="col-md-12 form-group">
                                 <div class="form-group row">
                                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                    <label for="rowMaterial" class="col-md-3 control-label"><strong>RawMaterialName: <span class="required" aria-required="true">* </span></strong></label>
+                                    <label for="rowMaterial" class="col-md-3 control-label"><strong>Raw Material Name: <span class="required" aria-required="true">* </span></strong></label>
                                     <div class="col-md-7">
                                        
                                         <select class="chzn-select chzn-rtl" tabindex="10" name="rm_id"  id="rowMaterial">
-                                            @foreach ($rawmaterials as $rawmaterial) 
-                                                <option value="{{$rawmaterial->rm_id}}">{{$rawmaterial->rm_name}}</option>
+                                            @foreach ($rawMaterials as $rawMaterial) 
+                                                <option value="{{$rawMaterial->rm_id}}">{{$rawMaterial->rm_name}}</option>
                                             @endforeach
 
                                         </select> 
@@ -61,8 +61,7 @@
                                         <span>
                                             {{ $errors->first('grade_id') }}
                                         </span>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                             </div>
 

@@ -49,7 +49,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <?php echo $workTypes->render(); ?>
                 </div>
             </div>
         </div>
