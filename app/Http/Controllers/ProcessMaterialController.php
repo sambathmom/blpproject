@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
+use App\Staff;
 use App\RawProduct;
 use Session;
 use App\ProcessMaterial;
@@ -17,13 +16,15 @@ class ProcessMaterialController extends Controller
      */
     public function index()
     {
-        $processmaterial = DB::table('process_material')
+        $processMaterials = DB::table('process_material')
             ->join('raw_product', 'raw_product.rp_id', '=', 'process_material.rp_id')
-            ->select('process_material.*', 'raw_product.rp_name')
+            ->join('staff','staff.staff_id', '=', 'process_material.staff_id')
+            ->select('process_material.*', 'raw_product.rp_name','staff.*')
             ->orderBy('pm_id','ASC')
             ->paginate(20); 
-        $rawproduct = DB::table('raw_product')->get();
-        return view('processmaterial.index',['processmaterials' => $processmaterial, 'rawproducts' => $rawproduct]);
+        $rawProduct = DB::table('raw_product')->get();
+        $staffs = DB::table('staff')->get();
+        return view('processmaterial.index',['processMaterials' => $processMaterials, 'rawProducts' => $rawProduct,'staffs'=>$staffs]);
     }
 
     /**
@@ -33,8 +34,9 @@ class ProcessMaterialController extends Controller
      */
     public function create()
     {
-        $rawproduct = DB::table('raw_product')->get();
-        return view('processmaterial.create',['rawproducts'=>$rawproduct]);
+        $rawProduct = DB::table('raw_product')->get();
+        $staffs = Staff::all();
+        return view('processmaterial.create',['rawProducts'=>$rawProduct,'staffs'=>$staffs]);
     }
 
     /**
@@ -51,42 +53,13 @@ class ProcessMaterialController extends Controller
             'qty' => 'required|numeric:process_material',
             'cost' => 'required|numeric:process_material',
         ]);
-        $processmaterial = new ProcessMaterial;
+        $processMaterial = new ProcessMaterial;
         $data = $request->all();
-        $processmaterial->fill($data)->save(); 
+        $processMaterial->fill($data)->save(); 
         Session::flash('getmessage','Insert successfully!');
         return redirect ('processmaterial/index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request)
     {
         $id = $request->pm_id;
@@ -106,8 +79,8 @@ class ProcessMaterialController extends Controller
     public function destroy(request $request)
     {
         $id = $request->pm_id;
-        $processmaterial = ProcessMaterial::findOrFail($id);
-        $processmaterial->delete();
+        $processMaterial = ProcessMaterial::findOrFail($id);
+        $processMaterial->delete();
         Session::flash('getmessage','Deleted successfully!');
         return redirect ('processmaterial/index');
     }

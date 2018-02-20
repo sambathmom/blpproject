@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\RawMaterial;
 
 class RawProduct extends Model
 {
@@ -16,4 +17,9 @@ class RawProduct extends Model
 		'cost',
 		'staff_id'
 	];
+
+	public function rawMaterial()
+    {
+    	return $this->belongsTo('App\RawMaterial');
+    }
 }

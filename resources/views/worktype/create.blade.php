@@ -20,13 +20,11 @@
                             <form action="{{route('worktypestroe')}}" method="post">
                                 <div class="row">
                                     @include('worktype/formfields')
-                                    <div class="border ">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-success">Save</button>
-                                            <a href="{{route('worktypeindex')}}">
-                                                <button type="button" class="btn btn-warning">Cancel</button>
-                                            </a>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <a href="{{route('worktypeindex')}}">
+                                            <button type="button" class="btn btn-warning">Cancel</button>
+                                        </a>
                                     </div>
                                 </div>
                             </form> 

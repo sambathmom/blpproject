@@ -22,7 +22,7 @@
 		<script src="{{ asset('assets/admin/js/chosen/chosen.jquery.min.js') }}"></script>
 		
 		<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
-
+        <link rel="sthlesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" >
 
         
 		<script type="text/javascript" src="{{ asset('assets/admin/js/validator/va-ch.js') }}"></script>
@@ -86,7 +86,32 @@
             <aside class="main-sidebar">
                 <section class="sidebar">
                  	<ul class="sidebar-menu">
-        				<li class="treeview">
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Raw material mangement</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu" id="treeopen">
+                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
+                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Row material purchasing</a></li>
+                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Row material sepateration</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Process mangement</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                             <ul class="treeview-menu" id="treeopen">
+                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
+                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Row material purchasing</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
         					<a href="#">
                                 <i class="fa fa-list-alt"></i>
                                  <span>Staff</span>
@@ -94,9 +119,10 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="/staff/index"><i class="fa fa-circle-o"></i>List of staff</a></li>
-                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-circle-o"></i>Add New Staff</a></li>
+                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-circle-o"></i>Add new staff</a></li>
                             </ul>
         				</li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -104,22 +130,11 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu" id="treeopen">
-                                <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of Supplier</a></li>
-                                <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add New Supplier</a></li>
+                                <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of supplier</a></li>
+                                <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add new supplier</a></li>
                             </ul>                    
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>RawMaterial</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                             <ul class="treeview-menu" id="treeopen">
-                                    <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of RawMaterial</a></li>
-                                    <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Add New RawMaterial</a></li>
-                            </ul>
-                        </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -131,21 +146,11 @@
                                 <li><a  href="/grade/create"><i class="fa fa-circle-o"></i>Add New grade</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>RawProduct</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('rawproduct/index')}}"><i class="fa fa-circle-o"></i>List of RawProduct</a></li>
-                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Add New RawProduct</a></li>
-                            </ul>
-                        </li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Work Type</span>
+                                <span>Work type</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
@@ -153,6 +158,7 @@
                                 <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-circle-o"></i>Add New work type</a></li>
                             </ul>
                         </li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -161,40 +167,67 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-circle-o"></i>List of labor cost</a></li>
-                                <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add New labor cost</a></li>
+                                <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add new labor cost</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
+
+                        <li>
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
-                                <span>ProcessMaterail</span>
+                                <span>Raw product</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="{{url('processmaterial/index')}}"><i class="fa fa-circle-o"></i>List of Process Materail</a></li>
-                                <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add New Process Materail</a></li>
+                                <li><a  href="{{url('rawproduct/index')}}"><i class="fa fa-circle-o"></i>List of raw product</a></li>
+                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Add New raw product</a></li>
                             </ul>
                         </li>
-                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Process Product</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of Process Product</a></li>
-                                <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New Process Product</a></li>
-                            </ul>
-                        </li>
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Process Cleaning</span>
+                                <span>Process materail</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processmaterial/index')}}"><i class="fa fa-circle-o"></i>List of process materail</a></li>
+                                <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add new process materail</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Process product</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of process product</a></li>
+                                <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process product</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Process cleaning</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
                                 <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Process shaping</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processshaping/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
+                                <li><a  href="{{url('processshaping/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
                             </ul>
                         </li>
         			</ul>
@@ -208,7 +241,7 @@
         	<div class="footer main-footer">
         		<div class="col-sm-12">
         			<span class="pull-left">
-        			Best life product company
+        			    Best life product company
         			</span>
         			<span class="pull-right hidden-xs version-system">Version 0.1</span>
         		</div>

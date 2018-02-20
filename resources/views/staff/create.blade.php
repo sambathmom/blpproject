@@ -19,7 +19,7 @@
                                 <div class="row">
                                     @include('staff/formfields')
                                 </div> 
-                                <div class="border">
+                                <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Save</button>
                                         <a href="{{route('staffindex')}}">

@@ -22,6 +22,7 @@ class CreateRawMaterialTable extends Migration
             $table->decimal('cost');
             $table->timestamps();
         });
+       
     }
 
     /**

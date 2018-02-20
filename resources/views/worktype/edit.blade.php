@@ -8,8 +8,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" name="work_type_id" id="identityEdit">        
-                        @include('worktype/formfields')                                             
+                        <input type="hidden" name="work_type_id" id="identityEdit">
+                        @include('worktype/formfields')                                                    
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -4,7 +4,7 @@
         <label for="processCleaningName" class="col-md-4 control-label"><strong>Process Cleaning name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input placeholder="Process Cleaning Name" class="form-control" id="processCleaningName" name="pc_name"  type="text">
-            {{ $errors->first('pc_name') }}
+            <span class="error">{{ $errors->first('pc_name') }}</span>
         </div>
     </div>
 </div>
