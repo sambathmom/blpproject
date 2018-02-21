@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\RawMaterial;
 use DB;
@@ -29,8 +27,8 @@ class RawMaterialController extends Controller
         $supplier = DB::table('supplier')->get();
         $grade = DB::table('grade')->get();
         $staffs = DB::table('staff')->get();
-        return view('rawmaterial.index',
-        ['rawMaterials' => $rawMaterials, 'supplier' => $supplier,'grade' => $grade]);
+        return view('rawmaterial.index',['rawMaterials' => $rawMaterials, 'supplier' => $supplier,'grade' => $grade,'staffs'=>$staffs]);
+
     }
 
     /**
@@ -44,7 +42,6 @@ class RawMaterialController extends Controller
         $staffs = DB::table('staff')->get();
         $grade = DB::table('grade')->get();
         return view('rawmaterial.new',['supplier' => $suppliers,'grade' => $grade,'staffs'=>$staffs]);
-
     }
 
     /**
@@ -66,25 +63,13 @@ class RawMaterialController extends Controller
         $rawMaterail = new RawMaterial;
         $data = $request->all();
         $rawMaterail->fill($data)->save();
-        Session::flash('getmessage','Insert successfully!');        
+        Session::flash('getmessage','Insert successfully!');
         return redirect ('rawmaterial/index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-       //
     }
 
     public function update(Request $request)
     {
         $this->validate($request, [
-
             'staff_id' => 'required:raw_material',
             'supplier_id' => 'required:raw_material',
             'grade_id' => 'required:raw_material',
@@ -96,7 +81,7 @@ class RawMaterialController extends Controller
         $rawMaterial = RawMaterial::findOrFail($id);
         $data = $request->all();
         $rawMaterial->fill($data)->save();
-        Session::flash('getmessage','Update successfully!');      
+        Session::flash('getmessage','Update successfully!');
         return redirect('rawmaterial/index');
 
     }

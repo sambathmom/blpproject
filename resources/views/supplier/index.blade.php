@@ -43,7 +43,7 @@
                             <td>{{$supplier->email}}</td>
                             <td>{{$supplier->phone}}</td>
                             <th width="80">
-                                <a type="button" href="#editSupplier"  data-toggle="modal" class="editSupplier btn btn-success" data-id="{{$supplier->supplier_id}}" data-company="{{$supplier->company_name}}" data-contact="{{$supplier->contact_person}}" data-title="{{$supplier->contact_title}}" data-email="{{$supplier->email}}" data-phone="{{$supplier->phone}}">Edit</a>
+                                <a type="button" href="#editSupplier"  data-toggle="modal" data-target="#editSupplier" class="edit-supplier btn btn-success" data-id="{{$supplier->supplier_id}}" data-company="{{$supplier->company_name}}" data-contact="{{$supplier->contact_person}}" data-title="{{$supplier->contact_title}}" data-email="{{$supplier->email}}" data-phone="{{$supplier->phone}}">Edit</a>
                             </th>
                             <th width="80">
                                  <button type="button" data-toggle="modal" data-target="#deleteSupplier" class="deleteSupplier btn btn-danger" data-id="{{$supplier->supplier_id}}">Delete</button>
@@ -57,6 +57,6 @@
             </div>
         </div>
     </div>
-  @include('supplier.destroy')
-  @include('supplier.edit')
+    @include('supplier.destroy')
+    @include('supplier.edit')
 @endsection

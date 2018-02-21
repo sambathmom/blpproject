@@ -25,9 +25,9 @@ class ProcessProductController extends Controller
             ->orderBy('pm_id','ASC')
             ->paginate(20); 
         $staffs = Staff::all();
-        $processMatials = DB::table('process_material')->get();
-        return view('processproduct.index',['processProducts' => $processProducts,'processMatials' =>$processMatials,'staffs' => $staffs]);
-}
+        $processMaterials = DB::table('process_material')->get();
+        return view('processproduct.index',['processProducts' => $processProducts,'processMaterials' =>$processMaterials, 'staffs' => $staffs]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +36,10 @@ class ProcessProductController extends Controller
      */
     public function create()
     {
-        $processmaterial = DB::table('process_material')->get();
         $staffs = Staff::all();
-        return view('processproduct.create',['processmaterials'=>$processmaterial, 'staffs' => $staffs]);
+        $processMaterials = DB::table('process_material')->get();
+        return view('processproduct.create', compact('staffs', 'processMaterials'));       
+
     }
 
     /**
@@ -51,18 +52,11 @@ class ProcessProductController extends Controller
     {
         $processProduct = new ProcessProduct;
         $data = $request->all();
-        $processproduct->fill($data)->save();
-        Session::flash('getmessage','Inserted successfully!');
+        $processProduct->fill($data)->save();
+        Session::flash('getmessage','Deleted successfully!');
         return redirect('processproduct/index');        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $id = $request->pp_id;

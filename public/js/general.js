@@ -6,7 +6,7 @@
         $('#identityDelete').val($(this).data('id'));
     });
 
-    $('.editSupplier').on('click',function(){
+    $('.edit-supplier').on('click',function(){
         $('#identityEdit').val($(this).data('id'));
         $('#supplierCompany').val($(this).data('company'));
         $('#supplierContact').val($(this).data('contact'));

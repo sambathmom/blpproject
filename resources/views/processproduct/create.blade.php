@@ -12,14 +12,9 @@
         <div class="box">
             <div class="content">
                 <div class="col-md-12">                        
+                    <form action="{{url('processproduct/store')}}" method="POST">
+                        {{ csrf_field() }}
                         @include('processproduct.formfields')
-                            <div class="border">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                     <button type="submit" class="btn btn-success">Save</button>
-                                     <a href="{{url('processproduct/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>                    
-                                </div>
-                            </div>
-                        </div>
                         <div class="border">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-success">Save</button>

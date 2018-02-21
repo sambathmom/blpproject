@@ -6,15 +6,16 @@
                 <h4 class="modal-title">Edit RawProduct</h4>
             </div>
             <div class="modal-body">                                   
-                 <form action="{{url('rawproduct/update/')}}" method="POST" >
-                        <div class="row">
-                        {{ csrf_field() }}
-                         <input type="hidden" name="rp_id" id="identityEdit" >
-                            @include('rawproduct.formfields')
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-success" value="Update"></input>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                        </div>
+
+                <form action="{{url('rawproduct/update/')}}" method="POST" >
+                    <div class="row">
+                    {{ csrf_field() }}
+                        <input type="hidden" name="rp_id" id="identityEdit" >
+                        @include('rawproduct.formfields')
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-success" value="Update"></input>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    </div>
                 </form>  
             </div>
         </div>

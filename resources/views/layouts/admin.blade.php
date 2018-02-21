@@ -175,7 +175,7 @@
                                 <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add New Process Materail</a></li>
                             </ul>
                         </li>
-                         <li class="treeview">
+                        <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Process Product</span>
@@ -189,23 +189,25 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Process Shaping</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('processshaping/index')}}"><i class="fa fa-circle-o"></i>List of Process Shaping</a></li>
-                                <li><a  href="{{url('processshaping/create')}}"><i class="fa fa-circle-o"></i>Add New Process Shaping</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
+
                                 <span>Process Cleaning</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
                                 <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+
+                                <span>Process Shaping</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('processshaping/index')}}"><i class="fa fa-circle-o"></i>List of Process Shaping</a></li>
+                                <li><a  href="{{url('processshaping/create')}}"><i class="fa fa-circle-o"></i>Add New Process Shaping</a></li>
                             </ul>
                         </li>
         			</ul>

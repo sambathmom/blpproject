@@ -28,7 +28,7 @@
     </div>  
     <div class="col-md-12 form-group">
         <div class="form-group row">
-            <label for="shapingName" class="col-md-4 control-label"><strong> Process product name<span class="required" aria-required="true">* </span></strong></label>
+            <label for="shapingName" class="col-md-4 control-label"><strong> Process shaping name<span class="required" aria-required="true">* </span></strong></label>
             <div class="col-md-7">
                 <input type="text" name="ps_name" class="form-control" id="shapingName" >
                 <span class="error">{{ $errors->first('ps_name') }}</span>

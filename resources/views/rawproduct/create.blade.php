@@ -9,12 +9,12 @@
                 </div> 
             </div>
         </section>  
-        <div class="box">
+       <div class="box">
             <div class="content">
                 <div class="col-md-12">                        
                     <form action="{{url('/rawproduct/store')}}" method="post">
                         <div class="row">
-                            @include(rawproduct.formfields)
+                            @include(rawproduct.formfields)                            
                         </div> 
                         <div class="border">
                             <div class="col-xs-12 col-sm-12 col-md-12">

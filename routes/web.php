@@ -87,9 +87,6 @@ Route::post('laborcost/store/',['as'=>'laborcoststore','uses'=>'LaborCostControl
 Route::post('laborcost/update',['as'=>'laborcostupdate','uses'=>'LaborCostController@update']);
 Route::get('laborcost/destroy/{id}',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
 
-Route::get('/test','TestController@index');
-Route::POST('/test/update','TestController@update');
-
 // Process Cleaning
 Route::get('processcleaning/index',['as'=>'processcleaningindex','uses'=>'ProcessCleaningController@index']);
 Route::get('processcleaning/create',['as'=>'processcleaningcreate','uses'=>'ProcessCleaningController@create']);

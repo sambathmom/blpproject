@@ -59,6 +59,7 @@ class ProcessMaterialController extends Controller
         Session::flash('getmessage','Insert successfully!');
         return redirect ('processmaterial/index');
     }
+    
     public function update(Request $request)
     {
         $id = $request->pm_id;

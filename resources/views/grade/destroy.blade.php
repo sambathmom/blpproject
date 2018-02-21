@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 {{ csrf_field() }}
-                <input type="text" name="grade_id" id="identityDestroy">
+                <input type="hidden" name="grade_id" id="identityDestroy">
                 <p>Are you sure want to delete this grade?</p>
             </div>
             <div class="modal-footer">

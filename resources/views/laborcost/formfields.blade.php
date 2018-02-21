@@ -12,7 +12,7 @@
     <div class="form-group row">
         <label for="laborCostName" class="col-md-4 control-label"><strong>Grade: <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <select class="form-control" id="laborCostGrade" name="grade_id">
+            <select id="laborCostGrade" name="grade_id" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($grades as $grade)
                     <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                 @endforeach
@@ -25,7 +25,7 @@
     <div class="form-group row">
         <label for="laborCostWorkType" class="col-md-4 control-label"><strong>Work type: <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <select class="form-control" tabindex="10"  id="laborCostWorkType" name="work_type_id">
+            <select tabindex="10"  id="laborCostWorkType" name="work_type_id" class="chzn-select chzn-rtl">
                 @foreach ($workTypes as $workType)
                     <option value="{{$workType->work_type_id}}">{{$workType->wt_name}}</option>
                 @endforeach
