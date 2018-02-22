@@ -5,13 +5,13 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Raw Product</h2>      
+                    <h2>Raw product</h2>      
                 </div>
             </div>
         </section>  
         <div class="col-md-12">
             <a href="{{url('rawproduct/create')}}">
-            <button class="colortext btn btn-success pull-right">New Raw Product</button>  
+                <button class="colortext btn btn-success pull-right">New Raw Product</button>  
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">
@@ -27,18 +27,18 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th scope="col">Row Material</th>
-                                    <th scope="col">Grade</th>
-                                    <th scope="col">Raw Prduct</th>
+                                    <th>Row Material</th>
+                                    <th>Grade</th>
+                                    <th>Raw Prduct</th>
                                     <th>Staff</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Cost</th>
-                                    <th width="80">Edit</th>
-                                    <th width="80">Delete</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>  
-                            @foreach ($rawProducts as $rawProduct) 
+                                @foreach ($rawProducts as $rawProduct) 
                                 <tr>
                                     <td>{{$rawProduct->rp_id}}</td>
                                     <td>{{$rawProduct->rm_name}}</td>
@@ -47,11 +47,14 @@
                                     <td>{{$rawProduct->rp_name}}</td>
                                     <td>{{$rawProduct->qty}}</td>
                                     <td>{{$rawProduct->cost}}</td>
+                                    <td>{{$rawProduct->updated_at}}</td>
                                     <td width="80">
-                                        <a type="button" href="#editRawProduct"  data-toggle="modal" class="editRawPro btn btn-success"
+                                        <a href="#editRawProduct"  data-toggle="modal" class="editRawPro"
                                         data-id="{{$rawProduct->rp_id}}" data-rmid="{{$rawProduct->rm_id}}"
                                         data-grade="{{$rawProduct->grade_id}}" data-name="{{$rawProduct->rp_name}}"
-                                        data-qty="{{$rawProduct->qty}}" data-cost="{{$rawProduct->cost}}">Edit</a>
+                                        data-qty="{{$rawProduct->qty}}" data-cost="{{$rawProduct->cost}}">
+                                            <i class="fa fa-edit fa-lg btn btn-success"></i>
+                                        </a>
                                     </td>
                                     <td width="80">
                                         <button type="button" data-toggle="modal" data-target="#deleteRawPro" class="delete-rawProduct btn btn-danger"  

@@ -5,7 +5,7 @@
         <div class="col-md-7">
             <select name="staff_id"  id="staff" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($staffs as $staff) 
-                <option value="{{$staff->staff_id}}">{{$staff->first_name}}  {{$staff->middle_name}}{{$staff->last_name}}</option>
+                    <option value="{{$staff->staff_id}}">{{$staff->first_name}}  {{$staff->middle_name}}{{$staff->last_name}}</option>
                 @endforeach
             </select> 
         </div>
@@ -18,7 +18,7 @@
         <div class="col-md-7">
             <select name="supplier_id"  id="supplier" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($supplier as $supplier) 
-                <option value="{{$supplier->supplier_id}}">{{$supplier->company_name}}</option>
+                    <option value="{{$supplier->supplier_id}}">{{$supplier->company_name}}</option>
                 @endforeach
             </select> 
         </div>
@@ -30,8 +30,8 @@
         <label for="rawGrade" class="col-md-4 control-label"><strong>Grade name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <select  name="grade_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
-                @foreach ($grade as $grade) 
-                <option value="{{$grade->grade_id}}" selected="">{{$grade->grade_name}}</option>
+                @foreach ($grades as $grade) 
+                    <option value="{{$grade->grade_id}}" selected="">{{$grade->grade_name}}</option>
                 @endforeach
             </select>  
         </div>

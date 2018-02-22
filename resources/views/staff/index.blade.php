@@ -34,23 +34,24 @@
                                     <th>Sex</th>
                                     <th>Phone</th>
                                     <th>Email</th>
-                                    <th width="80">Edit</th>
-                                    <th width="80">Delete</th>
+                                    <th width="110">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($staffs as $staff)
                                 <tr>
                                     <td>{{$staff->staff_id}}</td>
-                                    <td>{{$staff->first_name}} {{$staff->last_name}}</td>
+                                    <td>{{$staff->first_name}} {{$staff->middle_name}} {{$staff->last_name}}</td>
                                     <td>{{$staff->sex}}</td>
                                     <td>{{$staff->phone}}</td>
                                     <td>{{$staff->email}}</td>
-                                    <td width="80">
-                                        <button href="#staffEditModal" data-toggle="modal" data-target="#staffEditModal" class="btn btn-success edit-staff" data-identity="{{$staff->staff_id}}" data-last-name="{{$staff->last_name}}" data-middle-name="{{$staff->middle_name}}" data-frist-name="{{$staff->first_name}}" data-sex="{{$staff->sex}}" data-phone="{{$staff->phone}}" data-email="{{$staff->email}}">Edit</button>
-                                    </td>
-                                    <td width="80">
-                                        <button href="#staffDeleteModal" data-toggle="modal" data-target="#staffDeleteModal" class="btn btn-danger destroy-staff" data-identity="{{$staff->staff_id}}">Delete</button>
+                                    <td width="110">
+                                        <a href="#staffEditModal" data-toggle="modal" data-target="#staffEditModal" class="edit-staff" data-identity="{{$staff->staff_id}}" data-last-name="{{$staff->last_name}}" data-middle-name="{{$staff->middle_name}}" data-frist-name="{{$staff->first_name}}" data-sex="{{$staff->sex}}" data-phone="{{$staff->phone}}" data-email="{{$staff->email}}">
+                                            <i class="fa fa-edit fa-lg btn btn-success"></i>
+                                        </a>
+                                        <a href="#staffDeleteModal" data-toggle="modal" data-target="#staffDeleteModal" class="destroy-staff" data-identity="{{$staff->staff_id}}">
+                                            <i class="fa fa-trash fa-lg btn btn-danger"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

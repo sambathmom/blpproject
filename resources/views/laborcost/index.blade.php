@@ -13,7 +13,7 @@
         </section>  
         <div class="col-md-12">
             <a href="{{route('laborcostcreate')}}" >
-                <button class="btn btn-success pull-right">New labor cost</button>
+                <span class="pull-right"><i class="fa fa-plus"></i> New labor cost</span>
             </a>     
              @if(Session::has('getmessage')) 
                 <div class="row">       
@@ -34,8 +34,7 @@
                                     <th>Work Type Name</th>
                                     <th>Grade</th>
                                     <th>Work type</th>
-                                    <th width="80px">Edit</th>
-                                    <th width="80px">Delete</th>
+                                    <th width="110">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,11 +44,13 @@
                                     <td>{{$laborCost->lc_name}}</td>
                                     <td>{{$laborCost->grade_name}}</td>
                                     <td>{{$laborCost->wt_name}}</td>
-                                    <td width="80px">
-                                        <button href="#laborCostEditModal" data-toggle="modal" data-target="#laborCostEditModal" data-identity="{{$laborCost->lc_id}}" data-laborcost-name="{{$laborCost->lc_name}}" data-grade="{{$laborCost->grade_id}}" data-work-type="{{$laborCost->work_type_id}}" data-qty="{{$laborCost->qty}}" data-cost="{{$laborCost->cost}}" class="edit-laborcost btn btn-success">Edit</button>
-                                    </td>
-                                    <td width="80px">
-                                        <button href="#laborCostDestroyModal" data-toggle="modal" data-target="#laborCostDestroyModal" data-identity="{{$laborCost->lc_id}}" class="destroy-laborcost btn btn-danger">Delete</button>
+                                    <td width="110">
+                                        <a href="#laborCostEditModal" data-toggle="modal" data-target="#laborCostEditModal" data-identity="{{$laborCost->lc_id}}" data-laborcost-name="{{$laborCost->lc_name}}" data-grade="{{$laborCost->grade_id}}" data-work-type="{{$laborCost->work_type_id}}" data-qty="{{$laborCost->qty}}" data-cost="{{$laborCost->cost}}" class="edit-laborcost">
+                                            <i class="fa fa-edit fa-lg btn btn-success"></i>
+                                        </a>
+                                        <a href="#laborCostDestroyModal" data-toggle="modal" data-target="#laborCostDestroyModal" data-identity="{{$laborCost->lc_id}}" class="destroy-laborcost">
+                                            <i class="fa fa-trash fa-lg btn btn-danger"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

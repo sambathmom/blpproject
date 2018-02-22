@@ -4,7 +4,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>@yield('title')</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="shortcut icon" href="{{ asset('assets/admin/images/icon-phum.png') }}"> 
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="{{ asset('assets/admin/images/icon-phum.png') }}"> 
 		<link rel="stylesheet"    href="{{ asset('assets/admin/js/bootstrap/bootstrap.min.css') }}">
 		<link rel="stylesheet"    href="{{ asset('assets/admin/css/style-admin.css') }}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -93,9 +95,9 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu" id="treeopen">
-                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
-                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Row material purchasing</a></li>
-                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Row material sepateration</a></li>
+                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa  fa-list-ul"></i>List of raw material</a></li>
+                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-plus"></i>Row material purchasing</a></li>
+                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-plus"></i>Row material sepateration</a></li>
                             </ul>
                         </li>
 
@@ -107,19 +109,19 @@
                             </a>
                              <ul class="treeview-menu" id="treeopen">
                                 <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
-                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Row material purchasing</a></li>
+                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Process material receiving</a></li>
                             </ul>
                         </li>
 
                         <li class="treeview">
         					<a href="#">
-                                <i class="fa fa-list-alt"></i>
+                                <i class="fa fa-user"></i>
                                  <span>Staff</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="/staff/index"><i class="fa fa-circle-o"></i>List of staff</a></li>
-                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-circle-o"></i>Add new staff</a></li>
+                                <li><a  href="/staff/index"><i class="fa fa-list-ul"></i>List of staff</a></li>
+                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-plus"></i>Add new staff</a></li>
                             </ul>
         				</li>
 
@@ -130,8 +132,8 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu" id="treeopen">
-                                <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-circle-o"></i>List of supplier</a></li>
-                                <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-circle-o"></i>Add new supplier</a></li>
+                                <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-list-ul"></i>List of supplier</a></li>
+                                <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-plus"></i>Add new supplier</a></li>
                             </ul>                    
                         </li>
 
@@ -142,8 +144,8 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="/grade/index"><i class="fa fa-circle-o"></i>List of grade</a></li>
-                                <li><a  href="/grade/create"><i class="fa fa-circle-o"></i>Add New grade</a></li>
+                                <li><a  href="/grade/index"><i class="fa fa fa-list-ul"></i>List of grade</a></li>
+                                <li><a  href="/grade/create"><i class="fa fa-plus"></i>Add New grade</a></li>
                             </ul>
                         </li>
 
@@ -154,8 +156,8 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="{{route('worktypeindex')}}"><i class="fa fa-circle-o"></i>List of work type</a></li>
-                                <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-circle-o"></i>Add New work type</a></li>
+                                <li><a  href="{{route('worktypeindex')}}"><i class="fa fa-list-ul"></i>List of work type</a></li>
+                                <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-plus"></i>Add New work type</a></li>
                             </ul>
                         </li>
 
@@ -166,20 +168,8 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-circle-o"></i>List of labor cost</a></li>
-                                <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-circle-o"></i>Add new labor cost</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Raw product</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('rawproduct/index')}}"><i class="fa fa-circle-o"></i>List of raw product</a></li>
-                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-circle-o"></i>Add New raw product</a></li>
+                                <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-list-ul"></i>List of labor cost</a></li>
+                                <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-plus"></i>Add new labor cost</a></li>
                             </ul>
                         </li>
 
@@ -194,7 +184,6 @@
                                 <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add new process materail</a></li>
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -218,7 +207,6 @@
                                 <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>

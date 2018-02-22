@@ -13,7 +13,7 @@
         </section>  
         <div class="col-md-12">
             <a href="{{route('gradecreate')}}">
-                <button class="colortext btn btn-success pull-right">New grade</button>
+                <a class="pull-right"><i class="fa fa-plus"></i> Add new grade</a>
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">
@@ -30,8 +30,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Grade Name</th>
-                                    <th width="80px">Edit</th>
-                                    <th width="80px">Delete</th>
+                                    <th width="110">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,11 +38,13 @@
                                 <tr>
                                     <td>{{$grade->grade_id}}</td>
                                     <td>{{$grade->grade_name}}</td>
-                                    <td width="80px">
-                                        <button href="#gradeEditModal" data-toggle="modal" data-target="#gradeEditModal" data-identity="{{$grade->grade_id}}" class="edit-grade btn btn-success" data-name="{{$grade->grade_name}}">Edit</button>
-                                    </td>
-                                    <td width="80px">
-                                        <button href="#gradeDestroyModal" data-toggle="modal" data-target="#gradeDestroyModal" data-identity="{{$grade->grade_id}}" class="destroy-grade btn btn-danger">Delete</button>
+                                    <td width="110">
+                                        <a href="#gradeEditModal" data-toggle="modal" data-target="#gradeEditModal" data-identity="{{$grade->grade_id}}" class="edit-grade" data-name="{{$grade->grade_name}}">
+                                            <i class="fa fa-edit fa-lg btn btn-success"></i>
+                                        </a>
+                                        <a href="#gradeDestroyModal" data-toggle="modal" data-target="#gradeDestroyModal" data-identity="{{$grade->grade_id}}" class="destroy-grade">
+                                            <i class="fa fa-trash fa-lg btn btn-danger"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

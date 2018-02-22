@@ -1643,27 +1643,6 @@ table.dataTable thead th:lang(km),
 .sidebar-menu li > a:lang(km){
 	font-size: 14px;
 }
-.fa-circle-o{
-	background: rgba(0, 0, 0, 0) url("../images/fa-circle-o.png") no-repeat scroll 0 0;
-    float: left;
-    padding: 7px;
-}
-.fa-angle-right{
-	background: rgba(0, 0, 0, 0) url("../images/icon-arrow-left.svg") no-repeat scroll 0 0;
-	padding: 6px !important
-}
-.fa-list-alt{
-	background: rgba(0, 0, 0, 0) url("../images/fa-list-alt.png") no-repeat scroll 2px 12px;
-    padding: 9px 13px;
-}
-.fa-edit{
-	background: rgba(0, 0, 0, 0) url("../images/fa-edit.png") no-repeat scroll 7px 12px;
-    padding: 9px 13px;
-}
-.fa-folder{
-	background: rgba(0, 0, 0, 0) url("../images/icon-phum.png") no-repeat scroll -17px 12px;
-    padding: 9px 13px;
-}
 /*language*/
 .mylange{display: none;}
 .mylange.english{

@@ -27,9 +27,9 @@ class RawProductController extends Controller
             ->orderBy('rm_id','ASC')
             ->paginate(20); 
         $rawMaterials = DB::table('raw_material')->get();
-        $grade = DB::table('grade')->get();
+        $grades = DB::table('grade')->get();
         $staffs = Staff::all();
-        return view('rawproduct/index',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grade' => $grade, 'staffs' => $staffs]);
+        return view('rawproduct/index',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grades' => $grades, 'staffs' => $staffs]);
     }
 
     /**
@@ -43,6 +43,7 @@ class RawProductController extends Controller
         $grades = DB::table('grade')->get();
         $staffs = Staff::all();
         return view('rawproduct/create',['rawMaterials'=>$rawMaterials,'grades'=>$grades, 'staffs' => $staffs]);
+       
     }
 
     /**

@@ -29,9 +29,9 @@ class RawMaterialController extends Controller
             ->orderBy('rm_id','ASC')
             ->paginate(20); 
         $supplier = DB::table('supplier')->get();
-        $grade = DB::table('grade')->get();
+        $grades = DB::table('grade')->get();
         $staffs = DB::table('staff')->get();
-        return view('rawmaterial.index',['rawMaterials' => $rawMaterials, 'supplier' => $supplier,'grade' => $grade,'staffs'=>$staffs]);
+        return view('rawmaterial.index',['rawMaterials' => $rawMaterials, 'supplier' => $supplier,'grades' => $grades,'staffs'=>$staffs]);
     }
 
     /**
@@ -43,8 +43,8 @@ class RawMaterialController extends Controller
     {
         $suppliers = DB::table('supplier')->get();
         $staffs = DB::table('staff')->get();
-        $grade = DB::table('grade')->get();
-        return view('rawmaterial.create',['supplier' => $suppliers,'grade' => $grade,'staffs'=>$staffs]);
+        $grades = DB::table('grade')->get();
+        return view('rawmaterial.create',['supplier' => $suppliers,'grades' => $grades,'staffs'=>$staffs]);
     }
 
     /**
@@ -126,8 +126,8 @@ class RawMaterialController extends Controller
         ->orderBy('rm_id','ASC')
         ->paginate(20); 
         $rawMaterials = DB::table('raw_material')->get();
-        $grade = DB::table('grade')->get();
+        $grades = DB::table('grade')->get();
         $staffs = Staff::all();
-        return view('rawmaterial/show',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grade' => $grade, 'staffs' => $staffs]);
+        return view('rawmaterial/show',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grades' => $grades, 'staffs' => $staffs]);
     }
 }
