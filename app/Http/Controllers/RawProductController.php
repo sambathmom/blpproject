@@ -43,6 +43,7 @@ class RawProductController extends Controller
         $grades = DB::table('grade')->get();
         $staffs = Staff::all();
         return view('rawproduct/create',['rawMaterials'=>$rawMaterials,'grades'=>$grades, 'staffs' => $staffs]);
+       
     }
 
     /**

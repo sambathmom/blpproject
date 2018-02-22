@@ -22,6 +22,7 @@
                 @endforeach
             </select> 
         </div>
+<<<<<<< HEAD
     </div>
 </div>  
 
@@ -31,6 +32,16 @@
         <div class="col-md-7">
             <input type="text" name="ps_name" class="form-control" id="shapingName" >
             <span class="error">{{ $errors->first('ps_name') }}</span>
+=======
+    </div>  
+    <div class="col-md-12 form-group">
+        <div class="form-group row">
+            <label for="shapingName" class="col-md-4 control-label"><strong> Process shaping name<span class="required" aria-required="true">* </span></strong></label>
+            <div class="col-md-7">
+                <input type="text" name="ps_name" class="form-control" id="shapingName" >
+                <span class="error">{{ $errors->first('ps_name') }}</span>
+            </div>
+>>>>>>> 702debaa9e3daf0a132f87a73220cfbfde51ae6e
         </div>
     </div>
 </div>

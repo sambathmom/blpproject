@@ -5,13 +5,13 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Raw Product</h2>      
+                    <h2>Raw product</h2>      
                 </div>
             </div>
         </section>  
         <div class="col-md-12">
             <a href="{{url('rawproduct/create')}}">
-            <button class="colortext btn btn-success pull-right">New Raw Product</button>  
+                <button class="colortext btn btn-success pull-right">New Raw Product</button>  
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">

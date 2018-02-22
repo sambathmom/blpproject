@@ -194,7 +194,6 @@
                                 <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add new process materail</a></li>
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -218,7 +217,6 @@
                                 <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
