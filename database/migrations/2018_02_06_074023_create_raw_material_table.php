@@ -17,6 +17,7 @@ class CreateRawMaterialTable extends Migration
             $table->increments('rm_id');
             $table->integer('supplier_id');
             $table->integer('grade_id');
+            $table->integer('staff_id');
             $table->string('rm_name');
             $table->decimal('qty');
             $table->decimal('cost');

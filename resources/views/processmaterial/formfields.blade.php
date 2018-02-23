@@ -24,8 +24,9 @@
         </div>
     </div>
 </div> 
-
- <div class="col-md-12 form-group">
+<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+<input type="hidden" name="user_id" class="form-control" id="user" value="{{ Auth::user()->id }}">
+<div class="col-md-12 form-group">
     <div class="form-group row">
         <label for="proName" class="col-md-4 control-label"><strong>Raw process name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">

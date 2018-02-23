@@ -17,6 +17,8 @@ class CreateRawProductTable extends Migration
             $table->increments('rp_id');
             $table->integer('rm_id');
             $table->integer('grade_id');
+            $table->integer('user_id');
+            $table->integer('staff_id');
             $table->string('rp_name');
             $table->decimal('qty');
             $table->decimal('cost');
