@@ -8,7 +8,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-12 form-group">
     <div class="form-group row">                             
         <label for="processProduct" class="col-md-4 control-label"><strong>Process Product: <span class="required" aria-required="true">* </span></strong></label>
@@ -21,7 +20,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-12 form-group">
     <div class="form-group row">
         <label for="staff" class="col-md-4 control-label"><strong>Staff name: <span class="required" aria-required="true">* </span></strong></label>
@@ -34,7 +32,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
     <div class="form-group row">
         <label for="qty" class="col-md-4 control-label"><strong>Qauntity<span class="required" aria-required="true">* </span></strong></label>
@@ -44,7 +41,6 @@
         <span class="error">{{ $errors->first('qty') }}</span>
     </div>
 </div>
-
 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
     <div class="form-group row">
         <label for="cost" class="col-md-4 control-label"><strong>Cost<span class="required" aria-required="true">* </span></strong></label>

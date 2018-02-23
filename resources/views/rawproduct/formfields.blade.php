@@ -2,11 +2,11 @@
         <div class="form-group row">
             <label for="rmId" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
             <div class="col-md-7">
-                    <select name="rm_id"  id="rmId" class="chzn-select chzn-rtl" tabindex="10">
+                <select name="rm_id"  id="rmId" class="chzn-select chzn-rtl" tabindex="10">
                     @foreach($rawMaterials as $rawMaterial)
-                    <option value="{{$rawMaterial->rm_id}}">{{$rawMaterial->rm_name}}</option>
+                      <option value="{{$rawMaterial->rm_id}}">{{$rawMaterial->rm_name}}</option>
                     @endforeach
-                    </select>
+                </select>
             </div>
         </div>
     </div>
@@ -17,9 +17,8 @@
                 <select  name="grade_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
                     @foreach ($grade as $grade) 
                         <option value="{{$grade->grade_id}}" selected="">{{$grade->grade_name}}</option>
-                        @endforeach
-
-                    </select>  
+                   @endforeach
+                </select>  
             </div>
         </div>
     </div>
@@ -29,7 +28,6 @@
             <div class="col-md-7">
                 <input placeholder="RawProductName" class="form-control" id="rawPro" name="rp_name"  type="text">
             </div>
-    
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 form-group">

@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="@lang('auth.swithlang')" xml:lang="@lang('auth.swithlang')"><head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>@yield('title')</title>
+        <title>@yield('title')</title>
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="shortcut icon" href="{{ asset('assets/admin/images/icon-phum.png') }}"> 
 		<link rel="stylesheet"    href="{{ asset('assets/admin/js/bootstrap/bootstrap.min.css') }}">
@@ -45,7 +47,7 @@
                    </span>
                     <span class="logo-lg"><img src="{{ asset ('assets/admin/images/newgif.gif') }}" class="img-responsive"></span>
                 </a>
-
+                <span class="logo-mobile hidden-lg hidden-md hidden-sm"><h3> Best life product company</h3></span>
                 <nav class="navbar navbar-static-top" role="navigation">
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas"role="button">
                         <span class="sr-only">Toggle navigation</span>

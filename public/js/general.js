@@ -51,7 +51,23 @@
         $('#rawCost').val($(this).data('cost'));
         
     });
-
+    //Worked Record
+    $('.delete-worked-record').on('click', function() {
+        $('#identityDelete').val($(this).data('id'));
+    });
+     // edit
+    $('.edit-worked-record').on('click',function(){
+        $('#identityEdit').val($(this).data('id'));
+        $('#laborCost').val($(this).data('laborcost'));
+        $('#laborCost').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#workType').val($(this).data('worktype'));
+        $('#workType').trigger('chosen:worktype');
+        $('#memo').val($(this).data('memo'));
+        $('#qty').val($(this).data('qty'));
+        
+    });
     // Staff delete and update
     $('.edit-staff').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));

@@ -38,18 +38,18 @@
                       <tbody>  
                        @foreach ($processProducts as $processProduct) 
                         <tr>
-                            <td>{{$processproduct->pp_id}}</td>
-                            <td>{{$processproduct->pm_name}}</td>
-                            <td>{{$processproduct->pp_name}}</td>
-                            <td>{{$processproduct->first_name}} {{$processproduct->middle_name}} {{$processproduct->last_name}}</td>
-                            <td>{{$processproduct->qty}}</td>
-                            <td>{{$processproduct->cost}}</td>
+                            <td>{{$processProduct->pp_id}}</td>
+                            <td>{{$processProduct->pm_name}}</td>
+                            <td>{{$processProduct->pp_name}}</td>
+                            <td>{{$processProduct->first_name}} {{$processProduct->middle_name}} {{$processProduct->last_name}}</td>
+                            <td>{{$processProduct->qty}}</td>
+                            <td>{{$processProduct->cost}}</td>
                             <td width="80">
                                 <a type="button" href="#editProccess"  data-toggle="modal"
-                                     class="edit-pproduct btn btn-success" data-id="{{$processproduct->pp_id}}" 
-                                     data-staff="{{$processproduct->staff_id}}" data-pmname="{{$processproduct->pm_id}}" 
-                                     data-ppname="{{$processproduct->pp_name}}" data-ppqty="{{$processproduct->qty}}"
-                                     data-ppcost="{{$processproduct->cost}}">Edit</a>
+                                     class="edit-pproduct btn btn-success" data-id="{{$processProduct->pp_id}}" 
+                                     data-staff="{{$processProduct->staff_id}}" data-pmname="{{$processProduct->pm_id}}" 
+                                     data-ppname="{{$processProduct->pp_name}}" data-ppqty="{{$processProduct->qty}}"
+                                     data-ppcost="{{$processProduct->cost}}">Edit</a>
                             </td>
                             <td width="80">
                                 <button type="button" data-toggle="modal" data-target="#deletePproduct" class="delete-pproduct btn btn-danger"  data-id="{{$processProduct->pp_id}}">Delete</button>
