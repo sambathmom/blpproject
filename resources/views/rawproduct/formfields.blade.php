@@ -31,7 +31,6 @@
         <div class="col-md-7">
             <input placeholder="Raw product name" class="form-control" id="rawPro" name="rp_name"  type="text">
         </div>
-
     </div>
 </div>
 

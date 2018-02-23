@@ -6,6 +6,7 @@
                 <h4 class="modal-title">Edit raw material separation</h4>
             </div>
             <div class="modal-body">                                   
+
                 <form action="{{url('rawproduct/update/')}}" method="POST" >
                     <div class="row">
                         <input type="hidden" name="rp_id" id="identityEdit" >

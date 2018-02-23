@@ -1251,13 +1251,6 @@ span.error p{ color: #F00 !important; }
 	margin: 0 auto;
 }
 
-/*customize icon edit and delete*/
-.fa.fa-trash,
-.fa.fa-edit{
-	font-size: 18px;
-}
-.fa-trash{color: #F00;}
-.btn-group, .btn-group-vertical{ float: left; }
 /*box form page edit user */
 .box-form{
 	border: 1px solid #dadada;

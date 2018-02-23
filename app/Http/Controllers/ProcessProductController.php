@@ -39,6 +39,7 @@ class ProcessProductController extends Controller
         $staffs = Staff::all();
         $processMaterials = DB::table('process_material')->get();
         return view('processproduct.create', compact('staffs', 'processMaterials'));       
+
     }
 
     /**
@@ -55,7 +56,6 @@ class ProcessProductController extends Controller
         Session::flash('getmessage','Deleted successfully!');
         return redirect('processproduct/index');        
     }
-
 
     public function update(Request $request)
     {

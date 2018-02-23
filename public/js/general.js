@@ -51,7 +51,23 @@
         $('#rawCost').val($(this).data('cost'));
         
     });
-
+    //Worked Record
+    $('.delete-worked-record').on('click', function() {
+        $('#identityDelete').val($(this).data('id'));
+    });
+     // edit
+    $('.edit-worked-record').on('click',function(){
+        $('#identityEdit').val($(this).data('id'));
+        $('#laborCost').val($(this).data('laborcost'));
+        $('#laborCost').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#workType').val($(this).data('worktype'));
+        $('#workType').trigger('chosen:worktype');
+        $('#memo').val($(this).data('memo'));
+        $('#qty').val($(this).data('qty'));
+        
+    });
     // Staff delete and update
     $('.edit-staff').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));
@@ -217,6 +233,21 @@
         $('#ppCost').val($(this).data('ppcost'));
     });
 
+    // process Shaping delete and edit
+    $('.delete-shaping').on('click',function() {
+        $('#deleteShaping').val($(this).data('id'));
+    });
+    $('.edit-shaping').on('click',function(){
+        $('#idShaping').val($(this).data('id'));
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#pocessProduct').val($(this).data('process-shaping'));
+        $('#pocessProduct').trigger('chosen:updated');
+        $('#shapingName').val($(this).data('shaping-name'));
+        $('#shapingQty').val($(this).data('sqty'));
+        $('#shapingCost').val($(this).data('scost'));
+    });
+
     // Process Product edit and destroy
     $('.edit_proccess_cleaning').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));
@@ -250,19 +281,4 @@
         });
     });
 
-    // process Shaping delete and edit
-    $('.delete-shaping').on('click',function() {
-        $('#deleteShaping').val($(this).data('id'));
-    });
-
-    $('.edit-shaping').on('click',function(){
-        $('#idShaping').val($(this).data('id'));
-        $('#staff').val($(this).data('staff'));
-        $('#staff').trigger('chosen:updated');
-        $('#pocessProduct').val($(this).data('process-shaping'));
-        $('#pocessProduct').trigger('chosen:updated');
-        $('#shapingName').val($(this).data('shaping-name'));
-        $('#shapingQty').val($(this).data('sqty'));
-        $('#shapingCost').val($(this).data('scost'));
-    });
 });
