@@ -221,6 +221,18 @@
                                 <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
                             </ul>
                         </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Shaped product</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{url('shapedproduct/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
+                                <li><a  href="{{url('shapedproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
+                            </ul>
+                        </li>
         			</ul>
                 </section>
             </aside><!-- main-sidebar -->
