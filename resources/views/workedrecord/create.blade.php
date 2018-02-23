@@ -14,6 +14,7 @@
                 <div class="col-md-12">                        
                     <form action="{{url('/workedrecord/store')}}" method="post">
                         <div class="row">
+                          <input type ="hidden" value="{{ Auth::user()->id }}"  name="user_id">
                            @include('workedrecord.formfields')           
                         </div> 
                         <div class="border">

@@ -16,6 +16,7 @@
                         <div class="panel-body">
                             <form action="{{url('/rawmaterial/store')}}" method="post">
                                 <div class="row">
+                                <input type ="hidden" value="{{ Auth::user()->id }}"  name="user_id">
                                     @include('rawmaterial.formfields')
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Save</button>

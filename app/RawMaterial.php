@@ -10,6 +10,7 @@ class RawMaterial extends Model
     protected $table = 'raw_material';
     protected $primaryKey = 'rm_id';
 	protected $fillable=[
+		'user_id',
 		'staff_id',
 		'supplier_id',
 		'grade_id',
