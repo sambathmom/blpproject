@@ -5,8 +5,8 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Buy Raw meterail</h2>      
-                </div>
+                    <h2>Raw material separation</h2>      
+                </div> 
             </div>
         </section>  
         <div class="box">

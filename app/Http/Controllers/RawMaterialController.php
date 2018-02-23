@@ -45,6 +45,9 @@ class RawMaterialController extends Controller
         $staffs = DB::table('staff')->get();
         $grades = DB::table('grade')->get();
         return view('rawmaterial.create',['supplier' => $suppliers,'grades' => $grades,'staffs'=>$staffs]);
+
+        $grade = DB::table('grade')->get();
+        return view('rawmaterial.create',['supplier' => $suppliers,'grade' => $grade,'staffs'=>$staffs]);
     }
 
     /**
