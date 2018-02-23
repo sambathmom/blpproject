@@ -281,4 +281,22 @@
         });
     });
 
+    // Dired Product 
+
+    $('.edit-driedproduct').on('click', function() {
+        $('#identityEdit').val($(this).data('identity'));
+        $('#driedProductName').val($(this).data('dp-name'));
+        $('#processMaterial').val($(this).data('process-materail'));
+        $('#processMaterial').trigger('chosen:updated');
+        $('#staff').val($(this).data('staff'));
+        $('#staff').trigger('chosen:updated');
+        $('#grade').val($(this).data('grade'));
+        $('#grade').trigger('chosen:updated');
+        $('#cost').val($(this).data('cost'));
+        $('#qty').val($(this).data('qty'));
+    });
+
+    $('.destroy-driedproduct').on('click', function() {
+        $('#identityDestroy').val($(this).data('identity'));
+    });
 });

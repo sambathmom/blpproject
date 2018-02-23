@@ -106,3 +106,9 @@ Route::get('workedrecords/create',['as'=>'workedrecordscreate','uses'=>'WorkedRe
 Route::post('workedrecords/store/',['as'=>'workedrecordsstore','uses'=>'WorkedRecordsController@store']);
 Route::post('workedrecords/update',['as'=>'workedrecordsupdate','uses'=>'WorkedRecordsController@update']);
 Route::get('workedrecords/destroy/{id}',['as'=>'workedrecordsdestroy','uses'=>'WorkedRecordsController@destroy']);
+
+Route::get('/driedproduct/index',['as'=>'driedproductindex','uses'=>'DriedProductController@index']);
+Route::get('driedproduct/create',['as'=>'driedproductcreate','uses'=>'DriedProductController@create']);
+Route::post('driedproduct/store/',['as'=>'driedproductstore','uses'=>'DriedProductController@store']);
+Route::post('driedproduct/update',['as'=>'driedproductupdate','uses'=>'DriedProductController@update']);
+Route::post('driedproduct/destroy',['as'=>'driedproductdestroy','uses'=>'DriedProductController@destroy']);

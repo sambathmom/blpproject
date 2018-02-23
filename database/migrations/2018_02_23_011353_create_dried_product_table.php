@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProcessShapingTable extends Migration
+class CreateDriedProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateProcessShapingTable extends Migration
      */
     public function up()
     {
-        Schema::create('process_shaping', function (Blueprint $table) {
-            $table->increments('ps_id');
-            $table->integer('pp_id');
-            $table->string('ps_name');
-            $table->decimal('qty');
+        Schema::create('dried_product', function (Blueprint $table) {
+            $table->increments('dp_id');
+            $table->integer('pm_id');
+            $table->integer('staff_id');
+            $table->integer('grade_id');
+            $table->integer('user_id');
+            $table->string('dp_name');
+            $table->integer('qty');
             $table->decimal('cost');
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateProcessShapingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('process_shaping');
+        Schema::dropIfExists('dried_product');
     }
 }
