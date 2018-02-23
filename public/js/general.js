@@ -241,8 +241,10 @@
         $('#idShaping').val($(this).data('id'));
         $('#staff').val($(this).data('staff'));
         $('#staff').trigger('chosen:updated');
-        $('#pocessProduct').val($(this).data('process-shaping'));
-        $('#pocessProduct').trigger('chosen:updated');
+        $('#grade').val($(this).data('grade'));
+        $('#grade').trigger('chosen:updated');
+        $('#pocessMaterial').val($(this).data('process-material'));
+        $('#pocessMaterial').trigger('chosen:updated');
         $('#shapingName').val($(this).data('shaping-name'));
         $('#shapingQty').val($(this).data('sqty'));
         $('#shapingCost').val($(this).data('scost'));

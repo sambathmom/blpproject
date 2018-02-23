@@ -56,11 +56,11 @@ Route::POST('/processproduct/update','ProcessProductController@update');
 Route::POST('/processproduct/destroy','ProcessProductController@destroy');
 
 // ProcessShaping
-Route::get('/processshaping/index','ProcessShapingController@index');
-Route::get('/processshaping/create','ProcessShapingController@create');
-Route::POST('/processshaping/store','ProcessShapingController@store');
-Route::POST('/processshaping/update','ProcessShapingController@update');
-Route::POST('/processshaping/destroy','ProcessShapingController@destroy');
+Route::get('/shapedproduct/index','ShapedProductController@index');
+Route::get('/shapedproduct/create','ShapedProductController@create');
+Route::POST('/shapedproduct/store','ShapedProductController@store');
+Route::POST('/shapedproduct/update','ShapedProductController@update');
+Route::POST('/shapedproduct/destroy','ShapedProductController@destroy');
 
 // work Records
 Route::get('/workedrecord/index','WorkedRecordsController@index');

@@ -5,11 +5,11 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Confirmation</h4>
             </div>
-            <form action="{{url('processshaping/destroy')}}" method="POST">
+            <form action="{{url('shapedproduct/destroy')}}" method="POST">
                 <div class="modal-body">
                     {{ csrf_field() }}
-                    <input type="hidden" name="ps_id" id="deleteShaping">
-                    <p>Are you sure want to delete this Proccess Shaping?</p>
+                    <input type="hidden" name="sp_id" id="deleteShaping">
+                    <p>Are you sure want to delete this shaped product?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">OK</button>

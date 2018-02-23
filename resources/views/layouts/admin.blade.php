@@ -224,12 +224,12 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
-                                <span>Process shaping</span>
+                                <span>Shaped product</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="{{url('processshaping/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
-                                <li><a  href="{{url('processshaping/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
+                                <li><a  href="{{url('shapedproduct/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
+                                <li><a  href="{{url('shapedproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
                             </ul>
                         </li>
         			</ul>
