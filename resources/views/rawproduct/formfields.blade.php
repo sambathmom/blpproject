@@ -1,4 +1,5 @@
 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+<input type="hidden" name="user_id" class="form-control" id="user" value="{{ Auth::user()->id }}">
 <div class="col-md-12 form-group">
     <div class="form-group row">
         <label for="rmId" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
@@ -8,6 +9,19 @@
                     <option value="{{$rawMaterial->rm_id}}">{{$rawMaterial->rm_name}}</option>
                 @endforeach
             </select>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-12 form-group">
+    <div class="form-group row">
+        <label for="rawGrade" class="col-md-3 control-label"><strong>Staff <span class="required" aria-required="true">* </span></strong></label>
+        <div class="col-md-7">
+            <select  name="staff_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
+                @foreach ($staffs as $staff) 
+                    <option value="{{$staff->staff_id}}" selected="">{{$staff->frist_name}} {{$staff->middle_name}} {{$staff->last_name}}</option>
+                @endforeach
+            </select>  
         </div>
     </div>
 </div>

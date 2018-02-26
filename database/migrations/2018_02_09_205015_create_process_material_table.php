@@ -16,6 +16,8 @@ class CreateProcessMaterialTable extends Migration
         Schema::create('process_material', function (Blueprint $table) {
             $table->increments('pm_id');
             $table->integer('rp_id');
+            $table->integer('user_id');
+            $table->integer('staff_id');
             $table->string('pm_name');
             $table->decimal('qty');
             $table->decimal('cost');

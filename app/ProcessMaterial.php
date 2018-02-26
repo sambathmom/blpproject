@@ -11,6 +11,7 @@ class ProcessMaterial extends Model
 	protected $fillable=[
 		'staff_id',
 		'rp_id',
+		'user_id',
 		'pm_name',
 		'qty',
 		'cost'

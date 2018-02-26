@@ -12,6 +12,7 @@ class RawProduct extends Model
 	protected $fillable=[
 		'rm_id',
 		'grade_id',
+		'user_id',
 		'rp_name',
 		'qty',
 		'cost',
