@@ -49,7 +49,6 @@
                    </span>
                     <span class="logo-lg"><img src="{{ asset ('assets/admin/images/newgif.gif') }}" class="img-responsive"></span>
                 </a>
-                <span class="logo-mobile hidden-lg hidden-md hidden-sm"><h3> Best life product company</h3></span>
                 <nav class="navbar navbar-static-top" role="navigation">
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas"role="button">
                         <span class="sr-only">Toggle navigation</span>
@@ -97,9 +96,28 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                             <ul class="treeview-menu" id="treeopen">
-                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa  fa-list-ul"></i>List of raw material</a></li>
-                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-plus"></i>Row material purchasing</a></li>
-                                <li><a  href="{{url('rawproduct/create')}}"><i class="fa fa-plus"></i>Row material sepateration</a></li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-list-alt"></i>
+                                        <span>Row material purchesing</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a  href="{{url('rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
+                                        <li><a  href="{{url('rawmaterail/create')}}"><i class="fa fa-plus"></i>Purchas row material</a></li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-list-alt"></i>
+                                        <span>Process product</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of process product</a></li>
+                                        <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process product</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
@@ -112,8 +130,43 @@
                              <ul class="treeview-menu" id="treeopen">
                                 <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
                                 <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Process material receiving</a></li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-list-alt"></i>
+                                        <span>Process cleaning</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
+                                        <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-list-alt"></i>
+                                        <span>Shaped product</span>
+                                        <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a  href="{{url('shapedproduct/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
+                                        <li><a  href="{{url('shapedproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
+
+                        <li class="treeview">
+        					<a href="#">
+                                <i class="fa fa-user"></i>
+                                 <span>Report</span>
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="/staff/index"><i class="fa fa-list-ul"></i>View worked record</a></li>
+                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-plus"></i>View loosing item</a></li>
+                            </ul>
+        				</li>
 
                         <li class="treeview">
         					<a href="#">
@@ -172,65 +225,6 @@
                             <ul class="treeview-menu">
                                 <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-list-ul"></i>List of labor cost</a></li>
                                 <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-plus"></i>Add new labor cost</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Worked record</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('/workedrecord/index')}}"><i class="fa fa-list-ul"></i>List of worded record</a></li>
-                                <li><a  href="{{url('/workedrecord/create')}}"><i class="fa fa-plus"></i>Add new worked record</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Process materail</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('processmaterial/index')}}"><i class="fa fa-circle-o"></i>List of process materail</a></li>
-                                <li><a  href="{{url('processmaterail/create')}}"><i class="fa fa-circle-o"></i>Add new process materail</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Process product</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of process product</a></li>
-                                <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process product</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Process cleaning</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
-                                <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i>
-                                <span>Shaped product</span>
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a  href="{{url('shapedproduct/index')}}"><i class="fa fa-circle-o"></i>List of process shaping</a></li>
-                                <li><a  href="{{url('shapedproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process shaping</a></li>
                             </ul>
                         </li>
         			</ul>
