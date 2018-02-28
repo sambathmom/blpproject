@@ -99,12 +99,12 @@
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-list-alt"></i>
-                                        <span>Row material purchesing</span>
+                                        <span>Row material purchasing</span>
                                         <i class="fa fa-angle-right pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a  href="{{url('rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
-                                        <li><a  href="{{url('rawmaterail/create')}}"><i class="fa fa-plus"></i>Purchas row material</a></li>
+                                        <li><a  href="{{route('rawmaterialpurchasingindex')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
+                                        <li><a  href="{{route('rawmaterialpurchasingcreate')}}"><i class="fa fa-plus"></i>Purchas row material</a></li>
                                     </ul>
                                 </li>
                                 <li class="treeview">
@@ -114,8 +114,8 @@
                                         <i class="fa fa-angle-right pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a  href="{{url('processproduct/index')}}"><i class="fa fa-circle-o"></i>List of process product</a></li>
-                                        <li><a  href="{{url('processproduct/create')}}"><i class="fa fa-circle-o"></i>Add New process product</a></li>
+                                        <li><a  href=""><i class="fa fa-circle-o"></i>List of process product</a></li>
+                                        <li><a  href=""><i class="fa fa-circle-o"></i>Add New process product</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -127,18 +127,16 @@
                                 <span>Process mangement</span>
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
-                             <ul class="treeview-menu" id="treeopen">
-                                <li><a  href="{{url('/rawmaterial/index')}}"><i class="fa fa-circle-o"></i>List of raw material</a></li>
-                                <li><a  href="{{url('/rawmaterial/create')}}"><i class="fa fa-circle-o"></i>Process material receiving</a></li>
+                            <ul class="treeview-menu" id="treeopen">
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-list-alt"></i>
-                                        <span>Process cleaning</span>
+                                        <span>Process material receiving</span>
                                         <i class="fa fa-angle-right pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
-                                        <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-circle-o"></i>List of Process Cleaning</a></li>
+                                        <li><a  href="{{route('processmaterialreceivingindex')}}"><i class="fa fa-circle-o"></i>Process material list</a></li>
+                                        <li><a  href="{{route('processmaterialreceivingcreate')}}"><i class="fa fa-plus"></i>Add process material</a></li>
                                     </ul>
                                 </li>
 

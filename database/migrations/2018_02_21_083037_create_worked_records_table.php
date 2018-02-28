@@ -17,8 +17,9 @@ class CreateWorkedRecordsTable extends Migration
             $table->increments('wr_id');
             $table->integer('staff_id');
             $table->integer('lc_id');
+            $table->integer('item_id');
             $table->integer('wt_id');
-            $table->string('memo');
+            $table->string('memo')->nullable();
             $table->decimal('qty');
             $table->timestamps();
         });

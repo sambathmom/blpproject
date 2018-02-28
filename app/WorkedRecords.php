@@ -11,9 +11,9 @@ class WorkedRecords extends Model
     protected $fillable = [
         'staff_id',
         'wt_id',
+        'item_id',
         'lc_id',
         'qty',
         'memo'
-
      ];
 }

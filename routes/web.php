@@ -112,3 +112,15 @@ Route::get('driedproduct/create',['as'=>'driedproductcreate','uses'=>'DriedProdu
 Route::post('driedproduct/store/',['as'=>'driedproductstore','uses'=>'DriedProductController@store']);
 Route::post('driedproduct/update',['as'=>'driedproductupdate','uses'=>'DriedProductController@update']);
 Route::post('driedproduct/destroy',['as'=>'driedproductdestroy','uses'=>'DriedProductController@destroy']);
+
+Route::get('rawmaterialpurchasing/index',['as'=>'rawmaterialpurchasingindex','uses'=>'RawMaterialPurchasingController@index']);
+Route::get('rawmaterialpurchasing/create',['as'=>'rawmaterialpurchasingcreate','uses'=>'RawMaterialPurchasingController@create']);
+Route::post('rawmaterialpurchasing/store/',['as'=>'rawmaterialpurchasingstore','uses'=>'RawMaterialPurchasingController@store']);
+Route::post('rawmaterialpurchasing/update',['as'=>'rawmaterialpurchasingupdate','uses'=>'RawMaterialPurchasingController@update']);
+Route::post('rawmaterialpurchasing/destroy',['as'=>'rawmaterialpurchasingdestroy','uses'=>'RawMaterialPurchasingController@destroy']);
+
+Route::get('processmaterialreceiving/index',['as'=>'processmaterialreceivingindex','uses'=>'ProcessMaterialReceivingController@index']);
+Route::get('processmaterialreceiving/create',['as'=>'processmaterialreceivingcreate','uses'=>'ProcessMaterialReceivingController@create']);
+Route::post('processmaterialreceiving/store/',['as'=>'processmaterialreceivingstore','uses'=>'ProcessMaterialReceivingController@store']);
+Route::post('processmaterialreceiving/update',['as'=>'processmaterialreceivingupdate','uses'=>'ProcessMaterialReceivingController@update']);
+Route::post('processmaterialreceiving/destroy',['as'=>'processmaterialreceivingdestroy','uses'=>'ProcessMaterialReceivingController@destroy']);
