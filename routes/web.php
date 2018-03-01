@@ -55,6 +55,14 @@ Route::POST('/processproduct/store','ProcessProductController@store');
 Route::POST('/processproduct/update','ProcessProductController@update');
 Route::POST('/processproduct/destroy','ProcessProductController@destroy');
 
+
+//rawmaterial seperation
+Route::get('/rawmaterialseperation/index','RawmaterialSeperationController@index');
+Route::get('/rawmaterialseperation/create','RawmaterialSeperationController@create');
+Route::POST('/rawmaterialseperation/store','RawmaterialSeperationController@store');
+Route::POST('/rawmaterialseperation/update','RawmaterialSeperationController@update');
+Route::POST('/rawmaterialseperation/destroy','RawmaterialSeperationController@destroy');
+
 // ProcessShaping
 Route::get('/shapedproduct/index','ShapedProductController@index');
 Route::get('/shapedproduct/create','ShapedProductController@create');

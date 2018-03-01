@@ -22,5 +22,9 @@ class RawMaterial extends Model
 	public function rawProducts()
     {
     	return $this->hasMany('App\RawProduct');
-    }
+	}
+	public function getIndentity()
+	{
+		return $this->rm_id;
+	}
 }
