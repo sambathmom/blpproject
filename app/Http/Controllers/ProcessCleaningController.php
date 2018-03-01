@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ProcessProduct;
 use App\ProcessCleaning;
+use App\ProcessMaterial;
 use Session;
 use DB;
 use App\Staff;
+use App\Grade;
+use App\RawProduct;
+use App\RawMaterial;
+use App\WorkedRecords;
+use App\LaborCost;
 
 class ProcessCleaningController extends Controller
 {
+    protected $workTypeId = 4;
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +31,10 @@ class ProcessCleaningController extends Controller
         ->select('process_cleaning.*', 'process_product.pp_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
         ->orderBy('pc_id','ASC')
         ->paginate(20); 
-        $processProducts = ProcessProduct::all();
         $staffs = Staff::all();
-        return view('processcleaning.index', compact('processCleanings', 'processProducts', 'staffs'));
+        $processMaterials = ProcessMaterial::all();
+        $grades = Grade::all();
+        return view('processcleaning.index', compact('processCleanings', 'processMaterials', 'staffs', 'grades'));
     }
 
     /**
@@ -36,9 +44,10 @@ class ProcessCleaningController extends Controller
      */
     public function create()
     {
-        $processProducts = ProcessProduct::all();
         $staffs = Staff::all();
-        return view('processcleaning.create', compact('processProducts', 'staffs'));
+        $processMaterials = ProcessMaterial::all();
+        $grades = Grade::all();
+        return view('processcleaning.create', compact('processMaterials', 'staffs', 'grades'));
     }
 
     /**
@@ -50,16 +59,27 @@ class ProcessCleaningController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'pc_name' => 'required',
             'cost' => 'required|numeric',
             'qty' => 'required|numeric'
         ]);
-        $processCleaning = new ProcessCleaning;
-        $data = $request->all();
-
-        $processCleaning->fill($data)->save();
+        $gradeId = $request->grade_id;
+        $processMaterialId = $request->pm_id;
+        $processMaterial = ProcessMaterial::findOrFail($processMaterialId);
+        $rawProductId = $processMaterial->rp_id;
+        $rawProduct = RawProduct::findOrFail($rawProductId);
+        $rawMaterialId = $rawProduct->rm_id;
+        
+        $laborCost = new LaborCost;
+        $workedRecord = new WorkedRecords;
+        $workedRecord->item_id = $rawMaterialId;
+        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
+        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+        $workedRecord->wt_id = $this->workTypeId;
+        $workedRecord->qty = $request->qty;
+        $workedRecord->staff_id = $request->staff_id;
+        $workedRecord->save();
         Session::flash('getmessage','Inserted successfully!');
-        return redirect('processcleaning/index');
+        return redirect('processcleaning/create');
     }
 
     /**
@@ -70,34 +90,5 @@ class ProcessCleaningController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-			'pc_name' => 'required',
-			'qty' => 'required|numeric',
-			'cost' => 'required|numeric',
-		]);
-    	$processCleaningId = $request->pc_id;
-    	$processCleaning = ProcessCleaning::findOrFail($processCleaningId);
-    	$update = $request->all();
-        $processCleaning->fill($update)->save();
-        Session::flash('getmessage','Updated successfully!');
-    	return redirect('processcleaning/index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $response = [];
-		$processCleaning = ProcessCleaning::find($id)->delete();
-        Session::flash('getmessage','Deleted successfully!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
     }
 }

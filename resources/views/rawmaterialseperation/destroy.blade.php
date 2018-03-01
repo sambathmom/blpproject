@@ -6,8 +6,8 @@
                 <h4 class="modal-title">Comfirmation</h4>
             </div>
             <div class="modal-body" class="text-center">
-                <p>Are you sure you want to delete this Raw Product?</p>
-                <form class="form-horizontal" action="{{url('/rawproduct/destroy')}}" method="post">
+                <p>Are you sure you want to delete this raw material superation?</p>
+                <form class="form-horizontal" action="{{url('/rawmaterialseperation/destroy')}}" method="post">
                     <div class="form-group">
                         <div class="col-sm-10">
                             {{ csrf_field() }}

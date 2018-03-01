@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">                        
-                            <form action="{{url('processmaterial/store')}}" method="POST">
+                            <form action="{{url('processmaterialreceiving/store')}}" method="POST">
                                 <div class="row">
                                     @include('processmaterialreceiving/formfields')
                                     <div class="col-xs-12 col-sm-12 col-md-12">

@@ -3,38 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProcessMaterial;
 use App\Staff;
-use App\RawMaterial;
 use App\Grade;
-use App\Supplier;
-use App\WorkedRecords;
-use App\LaborCost;
-use Session;
 use DB;
+use Session;
+use App\ShapedProduct;
+use App\LaborCost;
+use App\WorkedRecords;
 
-class RawMaterialPurchasingController extends Controller
+class ProcessShapingController extends Controller
 {
 
-    protected $workTypeId = 1;
-
+    protected $workTypeId = 6;
     /**
-     * Display a listinwt_idg of the resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $rawMaterials = DB::table('raw_material')
-        ->join('supplier', 'supplier.supplier_id', '=', 'raw_material.supplier_id')
-        ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
-        ->join('staff', 'staff.staff_id', '=', 'raw_material.staff_id')
-        ->select('raw_material.*', 'supplier.company_name','grade.grade_name','staff.*')
-        ->orderBy('rm_id','ASC')
-        ->paginate(20); 
-        $suppliers = DB::table('supplier')->get();
-        $grades = DB::table('grade')->get();
-        $staffs = DB::table('staff')->get();
-        return view('rawmaterialpurchasing.index',['rawMaterials' => $rawMaterials, 'suppliers' => $suppliers,'grades' => $grades,'staffs'=>$staffs]);
+        $processShapings = DB::table('shaped_product')
+                            ->join('process_material', 'process_material.pm_id', '=', 'shaped_product.pm_id')
+                            ->join('staff', 'staff.staff_id', '=', 'shaped_product.staff_id')
+                            ->join('grade','grade.grade_id','=','shaped_product.grade_id')
+                            ->select('shaped_product.*', 'process_material.pm_name',
+                            'staff.first_name','staff.middle_name','staff.last_name','grade.grade_name')
+                            ->orderBy('sp_id','ASC')
+                            ->paginate(20); 
+        $processMaterails = ProcessMaterial::all();
+        $grades = Grade::all();
+        $staffs = Staff::all();
+        return view('processshaping.index',[
+                        'processShapings' =>$processShapings,
+                        'processMaterails' => $processMaterails,
+                        'staffs' => $staffs,'grades' => $grades
+                    ]);
     }
 
     /**
@@ -44,11 +48,13 @@ class RawMaterialPurchasingController extends Controller
      */
     public function create()
     {
-        $rawMaterials = Staff::all();
+        $processMaterails = ProcessMaterial::all();
         $grades = Grade::all();
         $staffs = Staff::all();
-        $suppliers = Supplier::all();
-        return view('rawmaterialpurchasing.create',['rawMaterials'=>$rawMaterials,'grades'=>$grades, 'staffs' => $staffs, 'suppliers' => $suppliers]);
+        return view('processshaping.create', [
+            'processMaterails' => $processMaterails,
+            'staffs' => $staffs,'grades' => $grades
+        ]);
     }
 
     /**
@@ -60,55 +66,44 @@ class RawMaterialPurchasingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'staff_id' => 'required:raw_material',
-            'supplier_id' => 'required:raw_material',
-            'grade_id' => 'required:raw_material',
-            'rm_name' => 'required:raw_material',
-            'qty' => 'required|numeric:raw_material',
-            'cost' => 'required|numeric:raw_material',
+            'pm_id' => 'required:process_shaping',
+            'sp_name' => 'required:process_shaping',
+            'qty' => 'required|numeric:process_shaping',
+            'cost' => 'required|numeric:process_shaping',
         ]);
         $gradeId = $request->grade_id;
         
         $laborCost = new LaborCost;
-        $rawMaterail = new RawMaterial;
-        $rawMaterailSave = $request->all();
-        $rawMaterail->fill($rawMaterailSave)->save();
+        $shapedProduct = new ShapedProduct;
+        $shapedProductSave = $request->all();
+        $shapedProduct->fill($shapedProductSave)->save();
        
         $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $rawMaterail->getIdentity();
+        $workedRecord->item_id = $shapedProduct->getIdentity();
         $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
         $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
         $workedRecord->wt_id = $this->workTypeId;
         $workedRecord->qty = $request->qty;
         $workedRecord->staff_id = $request->staff_id;
         $workedRecord->save();
-        
+
         Session::flash('getmessage','Insert successfully!');
-        return redirect ('rawmaterialpurchasing/index');
+        return redirect ('processshaping/index');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'staff_id' => 'required:raw_material',
-            'supplier_id' => 'required:raw_material',
-            'grade_id' => 'required:raw_material',
-            'rm_name' => 'required:raw_material',
-            'qty' => 'required|numeric:raw_material',
-            'cost' => 'required|numeric:raw_material',
-        ]);
-        $id = $request->rm_id;
+        $id = $request->sp_id;
         $gradeId = $request->grade_id;
-        $rawMaterial = RawMaterial::findOrFail($id);
-        $rawMaterialUpdate = $request->all();
-        $rawMaterial->fill($rawMaterialUpdate)->save();
+        $shapedProduct = shapedProduct::findOrFail($id);
+        $shapedProductUpdate = $request->all();
+        $shapedProduct->fill($shapedProductUpdate)->save();
 
         $laborCost = new LaborCost;
         $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
@@ -119,7 +114,7 @@ class RawMaterialPurchasingController extends Controller
         $workedRecord->staff_id = $request->staff_id;
         $workedRecord->save();
         Session::flash('getmessage','Update successfully!');
-        return redirect('rawmaterialpurchasing/index');
+        return redirect('processshaping/index');
     }
 
     /**
@@ -130,15 +125,15 @@ class RawMaterialPurchasingController extends Controller
      */
     public function destroy(request $request)
     {
-        $id = $request->rm_id;
+        $id = $request->sp_id;
 
-        $rawMaterial = RawMaterial::findOrFail($id);
-        $rawMaterial->delete();
+        $shapedProduct = ShapedProduct::findOrFail($id);
+        $shapedProduct->delete();
 
         $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId] ])->first();
         $workedRecord->delete();
 
         Session::flash('getmessage','Deleted successfully!');
-        return redirect('rawmaterialpurchasing/index');
+        return redirect('processshaping/index');
     }
 }

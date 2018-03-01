@@ -2,7 +2,7 @@
 <input type="hidden" name="user_id" class="form-control" id="user" value="{{ Auth::user()->id }}">
 <div class="col-md-12 form-group">
     <div class="form-group row">
-        <label for="rmId" class="col-md-3 control-label"><strong>RawMaterialName<span class="required" aria-required="true">* </span></strong></label>
+        <label for="rmId" class="col-md-3 control-label"><strong>Raw material<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <select name="rm_id"  id="rmId" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach($rawMaterials as $rawMaterial)
@@ -15,11 +15,11 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
     <div class="form-group row">
-        <label for="rawGrade" class="col-md-3 control-label"><strong>Staff <span class="required" aria-required="true">* </span></strong></label>
+        <label for="staff" class="col-md-3 control-label"><strong>Staff <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <select  name="staff_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
+            <select  name="staff_id"  id="staff" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($staffs as $staff) 
-                    <option value="{{$staff->staff_id}}" selected="">{{$staff->frist_name}} {{$staff->middle_name}} {{$staff->last_name}}</option>
+                    <option value="{{$staff->staff_id}}">{{$staff->first_name}}  {{$staff->middle_name}}{{$staff->last_name}}</option>
                 @endforeach
             </select>  
         </div>
@@ -28,11 +28,11 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
     <div class="form-group row">
-        <label for="rawGrade" class="col-md-3 control-label"><strong>GradeName<span class="required" aria-required="true">* </span></strong></label>
+        <label for="rawGrade" class="col-md-3 control-label"><strong>Grade<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <select  name="grade_id"  id="rawGrade" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($grades as $grade) 
-                    <option value="{{$grade->grade_id}}" selected="">{{$grade->grade_name}}</option>
+                    <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
                 @endforeach
             </select>  
         </div>
@@ -41,7 +41,7 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 form-group">
     <div class="form-group row">
-        <label for="rawPro" class="col-md-3 control-label"><strong>RawProductName<span class="required" aria-required="true">* </span></strong></label>
+        <label for="rawPro" class="col-md-3 control-label"><strong>Raw product name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input placeholder="Raw product name" class="form-control" id="rawPro" name="rp_name"  type="text">
         </div>

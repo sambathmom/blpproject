@@ -1,4 +1,4 @@
-<div id="editRawProduct" class="modal fade" role="dialog">
+<div id="rawMaterialSuperation" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,10 +7,10 @@
             </div>
             <div class="modal-body">                                   
 
-                <form action="{{url('rawproduct/update/')}}" method="POST" >
+                <form action="{{url('rawmaterialseperation/update/')}}" method="POST" >
                     <div class="row">
                         <input type="hidden" name="rp_id" id="identityEdit" >
-                        @include('rawproduct.formfields')
+                        @include('rawmaterialseperation.formfields')
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success" value="Update"></input>

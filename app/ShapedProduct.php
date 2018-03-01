@@ -17,4 +17,9 @@ class ShapedProduct extends Model
     	'qty',
     	'cost'
     ];
+
+    public function getIdentity()
+	{
+		return $this->sp_id;
+	}
 }

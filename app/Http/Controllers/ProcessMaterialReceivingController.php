@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RawProduct;
 use App\Staff;
+use App\LaborCost;
+use App\ProcessMaterial;
+use App\WorkedRecords;
+use Session;
+use DB;
 
 class ProcessMaterialReceivingController extends Controller
 {
+    protected $workTypeId = 3; 
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,15 @@ class ProcessMaterialReceivingController extends Controller
      */
     public function index()
     {
-        //
+        $processMaterials = DB::table('process_material')
+        ->join('raw_product', 'raw_product.rp_id', '=', 'process_material.rp_id')
+        ->join('staff','staff.staff_id', '=', 'process_material.staff_id')
+        ->select('process_material.*', 'raw_product.rp_name','staff.*')
+        ->orderBy('pm_id','ASC')
+        ->paginate(20); 
+        $rawProducts = DB::table('raw_product')->get();
+        $staffs = DB::table('staff')->get();
+        return view('processmaterialreceiving.index',['processMaterials' => $processMaterials, 'rawProducts' => $rawProducts,'staffs'=>$staffs]);
     }
 
     /**
@@ -25,9 +40,9 @@ class ProcessMaterialReceivingController extends Controller
      */
     public function create()
     {
-        $rawProduct = RawProduct::all();
+        $rawProducts = RawProduct::all();
         $staffs = Staff::all();
-        return view('processmaterialreceiving.create',['rawProducts'=>$rawProduct,'staffs'=>$staffs]);
+        return view('processmaterialreceiving.create',['rawProducts'=>$rawProducts,'staffs'=>$staffs]);
     }
 
     /**
@@ -38,51 +53,85 @@ class ProcessMaterialReceivingController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'rp_id' => 'required:process_material',
+            'pm_name' => 'required:process_material',
+            'qty' => 'required|numeric:process_material',
+            'cost' => 'required|numeric:process_material',
+        ]);
+        $prcessMaterialId = $request->rp_id;
+        $rawProduct = RawProduct::findOrfail($prcessMaterialId);
+        $gradeId = $rawProduct->grade_id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $laborCost = new LaborCost;
+        $processMaterial = new ProcessMaterial;
+        $processMaterialSave = $request->all();
+        $processMaterial->fill($processMaterialSave)->save(); 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $workedRecord = new WorkedRecords;
+        $workedRecord->item_id = $processMaterial->getIdentity();
+        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
+        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+        $workedRecord->wt_id = $this->workTypeId;
+        $workedRecord->qty = $request->qty;
+        $workedRecord->staff_id = $request->staff_id;
+        $workedRecord->save();
+        Session::flash('getmessage','Insert successfully!');
+        return redirect ('processmaterialreceiving/index');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'rp_id' => 'required:process_material',
+            'pm_name' => 'required:process_material',
+            'qty' => 'required|numeric:process_material',
+            'cost' => 'required|numeric:process_material',
+        ]);
+
+        $id = $request->pm_id;
+        $prcessMaterialId = $request->rp_id;
+        $rawProduct = RawProduct::findOrfail($prcessMaterialId);
+        $gradeId = $rawProduct->grade_id;
+
+        $processMaterial = ProcessMaterial::findOrFail($id);
+        $processMaterialUpdate = $request->all();
+        $processMaterial->fill($processMaterialUpdate)->save();
+
+        $laborCost = new LaborCost;
+        $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId] ])->first();
+        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
+        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+        $workedRecord->wt_id = $this->workTypeId;
+        $workedRecord->qty = $request->qty;
+        $workedRecord->staff_id = $request->staff_id;
+        $workedRecord->save();
+        Session::flash('getmessage','Update successfully!');
+        return redirect('processmaterialreceiving/index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $id = $request->pm_id;
+        
+        $processMaterial = ProcessMaterial::findOrFail($id);
+        $processMaterial->delete();
+
+        $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId] ])->first();
+        $workedRecord->delete();
+
+        Session::flash('getmessage','Deleted successfully!');
+        return redirect('processmaterialreceiving/index');
     }
 }

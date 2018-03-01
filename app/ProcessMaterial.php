@@ -16,5 +16,10 @@ class ProcessMaterial extends Model
 		'qty',
 		'cost'
 	];
+
+	public function getIdentity()
+	{
+		return $this->pm_id;
+	}
 }
  

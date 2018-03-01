@@ -1,5 +1,5 @@
-<div id="driedProductDestroyModal" class="modal fade" role="dialog">
-    <form action="{{route('driedproductdestroy')}}" method="post">
+<div id="deleteProcessShaping" class="modal fade" role="dialog">
+    <form action="{{url('processshaping/destroy')}}" method="POST">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,13 +8,13 @@
                 </div>
                 <div class="modal-body">
                     {{ csrf_field() }}
-                    <input type="hidden" name="dp_id" id="identityDestroy">
-                    <p>Are you sure want to delete this dried product?</p>
+                    <input type="hidden" name="sp_id" id="deleteShaping">
+                    <p>Are you sure want to delete this process product?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">OK</button>
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                </div>
+                </div>           
             </div>
         </div>
     </form>

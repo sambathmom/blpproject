@@ -15,6 +15,8 @@ class CreateRawMaterialTable extends Migration
     {
         Schema::create('raw_material', function (Blueprint $table) {
             $table->increments('rm_id');
+            $table->integer('user_id');
+            $table->integer('staff_id');
             $table->integer('supplier_id');
             $table->integer('grade_id');
             $table->integer('staff_id');

@@ -10,8 +10,8 @@
             </div>
         </section>  
         <div class="col-md-12">
-            <a href="{{url('processmaterail/create')}}">
-                <button class="colortext btn btn-success pull-right">New process materail</button>
+            <a href="{{url('processmaterialreceiving/create')}}">
+                <span class="pull-right"><i class="fa fa-plus"></i>New process materail</span>
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">
@@ -26,34 +26,37 @@
                         <table  border="1" class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                <th scope="col">Staff name</th>
-                                <th scope="col">Raw product name</th>
-                                <th scope="col">Process materail name</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Cost</th>
-                                <th width="80">Edit</th>
-                                <th width="80">Delete</th>
+                                    <th>#</th>
+                                    <th>Staff name</th>
+                                    <th>Raw product name</th>
+                                    <th>Process materail name</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                    <th width="110">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>  
                                 @foreach ($processMaterials as $processMaterial) 
                                 <tr>
+                                    <td>{{$processMaterial->pm_id}}</td>
                                     <td>{{$processMaterial->first_name}}  {{$processMaterial->middle_name}}{{$processMaterial->last_name}}</td>
                                     <td>{{$processMaterial->rp_name}}</td>
                                     <td>{{$processMaterial->pm_name}}</td>
                                     <td>{{$processMaterial->qty}}</td>
                                     <td>{{$processMaterial->cost}}</td>
-                                    <td width="80">
-                                        <a type="button" href="#editProccess"  data-toggle="modal" class="editProccess btn btn-success"
+                                    <td width="110">
+                                        <a href="#editProccess"  data-toggle="modal" class="editProccess"
                                         data-id="{{$processMaterial->pm_id}}"
                                         data-staff ="{{$processMaterial->staff_id}}"
                                         data-rpname="{{$processMaterial->rp_id}}" 
                                         data-proname="{{$processMaterial->pm_name}}" data-proqty="{{$processMaterial->qty}}"
-                                        data-procost="{{$processMaterial->cost}}">Edit</a>
-                                    </td>
-                                    <td width="80">
-                                        <button type="button" data-toggle="modal" data-target="#deleteProcess" class="delete-proccess btn btn-danger"  
-                                        data-id="{{$processMaterial->pm_id}}">Delete</button>
+                                        data-procost="{{$processMaterial->cost}}">
+                                            <i class="fa fa-edit fa-lg btn btn-success"></i>
+                                        </a>
+                                        <a data-toggle="modal" data-target="#deleteProcess" class="delete-proccess"  
+                                        data-id="{{$processMaterial->pm_id}}">
+                                            <i class="fa fa-trash fa-lg btn btn-danger"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach                    
@@ -65,6 +68,6 @@
             </div>
         </div>
     </div>
- @include('processmaterial.edit')
- @include('processmaterial.destroy')
+ @include('processmaterialreceiving.edit')
+ @include('processmaterialreceiving.destroy')
 @endsection

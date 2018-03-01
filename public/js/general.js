@@ -211,7 +211,7 @@
         $('#staff').val($(this).data('staff'));
         $('#staff').trigger('chosen:updated');
         $('#rpName').trigger('chosen:updated');
-        $('#proName').val($(this).data('proname'));
+        $('#processMaterial').val($(this).data('proname'));
         $('#pQty').val($(this).data('proqty'));
         $('#pCost').val($(this).data('procost'));
         
@@ -243,44 +243,11 @@
         $('#staff').trigger('chosen:updated');
         $('#grade').val($(this).data('grade'));
         $('#grade').trigger('chosen:updated');
-        $('#pocessMaterial').val($(this).data('process-material'));
-        $('#pocessMaterial').trigger('chosen:updated');
-        $('#shapingName').val($(this).data('shaping-name'));
-        $('#shapingQty').val($(this).data('sqty'));
-        $('#shapingCost').val($(this).data('scost'));
-    });
-
-    // Process Product edit and destroy
-    $('.edit_proccess_cleaning').on('click', function() {
-        $('#identityEdit').val($(this).data('identity'));
-        $('#processCleaningName').val($(this).data('pc-name'));
-        $('#processProduct').val($(this).data('process-product'));
-        $('#staff').val($(this).data('staff'));
-        $('#staff').trigger('chosen:updated');
-        $('#processProduct').trigger('chosen:updated');
-        $('#cost').val($(this).data('cost'));
-        $('#qty').val($(this).data('qty'));
-    });
-
-    $('.delete-proccess-cleaning').on('click', function() {
-        $('#identityDestroy').val($(this).data('identity'));
-    });
-
-    $('#destroyProcessCleaning').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-            url:  'http://localhost:8000/processcleaning/destroy/' + id,
-            data: {'id': id},
-            type: 'GET',
-            dataType: 'json',
-            success: function( response ) {
-              if (response.status == 200) {
-                $('#processCleaningDestroyModal').modal('hide');
-                location.reload();
-              }
-            }
-        });
+        $('#processMaterial').val($(this).data('process-material'));
+        $('#processMaterial').trigger('chosen:updated');
+        $('#shapProduct').val($(this).data('shaping-name'));
+        $('#qty').val($(this).data('sqty'));
+        $('#cost').val($(this).data('scost'));
     });
 
     // Dired Product 

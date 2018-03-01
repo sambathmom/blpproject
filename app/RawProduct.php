@@ -18,6 +18,10 @@ class RawProduct extends Model
 		'cost',
 		'staff_id'
 	];
+	
+	public function getIdentity(){
+		return $this->rp_id;
+	}
 
 	public function rawMaterial()
     {
