@@ -21,10 +21,10 @@ class WorkedRecordsController extends Controller
     public function index()
     {
         $workedRecords = DB::table('worked_records')
-        ->join('work_type', 'work_type.work_type_id', '=', 'worked_records.wt_id')
+        ->join('work_type', 'work_type.wt_id', '=', 'worked_records.wt_id')
         ->join('labor_cost', 'labor_cost.lc_id', '=', 'worked_records.lc_id')
         ->join('staff', 'staff.staff_id', '=', 'worked_records.staff_id')
-        ->select('worked_records.*', 'work_type.wt_name','work_type.work_type_id','labor_cost.lc_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+        ->select('worked_records.*', 'work_type.wt_name','work_type.wt_id','labor_cost.lc_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
         ->orderBy('wr_id','ASC')
         ->paginate(20); 
         $staffs = Staff::all();

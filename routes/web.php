@@ -29,32 +29,25 @@ Route::get('/staff/index',['as'=>'staffindex','uses'=>'StaffController@index']);
 Route::get('staff/create',['as'=>'staffcreate','uses'=>'StaffController@create']);
 Route::post('staff/store/',['as'=>'staffstore','uses'=>'StaffController@store']);
 Route::post('staff/update',['as'=>'staffupdate','uses'=>'StaffController@update']);
-Route::get('staff/destroy/{id}',['as'=>'staffdestroy','uses'=>'StaffController@destroy']);
+Route::post('staff/destroy',['as'=>'staffdestroy','uses'=>'StaffController@destroy']);
 
 Route::get('/grade/index',['as'=>'gradeindex','uses'=>'GradeController@index']);
 Route::get('grade/create',['as'=>'gradecreate','uses'=>'GradeController@create']);
 Route::post('grade/store/',['as'=>'gradestore','uses'=>'GradeController@store']);
 Route::post('grade/update',['as'=>'gradeupdate','uses'=>'GradeController@update']);
-Route::get('grade/destroy/{id}',['as'=>'gradedestroy','uses'=>'GradeController@destroy']);
+Route::post('grade/destroy',['as'=>'gradedestroy','uses'=>'GradeController@destroy']);
 
 Route::get('/worktype/index',['as'=>'worktypeindex','uses'=>'WorkTypeController@index']);
 Route::get('worktype/create',['as'=>'worktypecreate','uses'=>'WorkTypeController@create']);
 Route::post('worktype/store/',['as'=>'worktypestroe','uses'=>'WorkTypeController@store']);
 Route::post('worktype/update',['as'=>'worktypeupdate','uses'=>'WorkTypeController@update']);
-Route::get('worktype/destroy/{id}',['as'=>'worktypedestroy','uses'=>'WorkTypeController@destroy']);
+Route::post('worktype/destroy',['as'=>'worktypedestroy','uses'=>'WorkTypeController@destroy']);
 
 Route::get('laborcost/index',['as'=>'laborcostindex','uses'=>'LaborCostController@index']);
 Route::get('laborcost/create',['as'=>'laborcostcreate','uses'=>'LaborCostController@create']);
 Route::post('laborcost/store/',['as'=>'laborcoststore','uses'=>'LaborCostController@store']);
 Route::post('laborcost/update',['as'=>'laborcostupdate','uses'=>'LaborCostController@update']);
-Route::get('laborcost/destroy/{id}',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
-
-// Worked Records
-Route::get('workedrecords/index',['as'=>'workedrecordsindex','uses'=>'WorkedRecordsController@index']);
-Route::get('workedrecords/create',['as'=>'workedrecordscreate','uses'=>'WorkedRecordsController@create']);
-Route::post('workedrecords/store/',['as'=>'workedrecordsstore','uses'=>'WorkedRecordsController@store']);
-Route::post('workedrecords/update',['as'=>'workedrecordsupdate','uses'=>'WorkedRecordsController@update']);
-Route::get('workedrecords/destroy/{id}',['as'=>'workedrecordsdestroy','uses'=>'WorkedRecordsController@destroy']);
+Route::post('laborcost/destroy',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
 
 
 // Raw material purchasing
@@ -85,10 +78,16 @@ Route::POST('processshaping/store','ProcessShapingController@store');
 Route::POST('processshaping/update','ProcessShapingController@update');
 Route::POST('processshaping/destroy','ProcessShapingController@destroy');
 
-// Process cleaning
 // Process Cleaning
 Route::get('processcleaning/index',['as'=>'processcleaningindex','uses'=>'ProcessCleaningController@index']);
 Route::get('processcleaning/create',['as'=>'processcleaningcreate','uses'=>'ProcessCleaningController@create']);
 Route::post('processcleaning/store/',['as'=>'processcleaningstore','uses'=>'ProcessCleaningController@store']);
 Route::post('processcleaning/update',['as'=>'processcleaningupdate','uses'=>'ProcessCleaningController@update']);
 Route::get('processcleaning/destroy/{id}',['as'=>'processcleaningdestroy','uses'=>'ProcessCleaningController@destroy']);
+
+// Process Driying
+Route::get('/processdriying/index','ProcessDriyingController@index');
+Route::get('/processdriying/create','ProcessDriyingController@create');
+Route::POST('/processdriying/store','ProcessDriyingController@store');
+Route::POST('/processdriying/update','ProcessDriyingController@update');
+Route::POST('/processdriying/destroy','ProcessDriyingController@destroy');

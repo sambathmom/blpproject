@@ -76,35 +76,13 @@ class RawmaterialSeperationController extends Controller
         
         $workedRecord->wt_id = $this->workType;
         $laborcost = new LaborCost;
-        $workedRecord->lc_id = $laborcost->getLaborCostIdentityByGradeAndWorkType($grade,$this->workType);
-        $workedRecordSave = $request->all();
-        $workedRecord->fill($workedRecordSave)->save();
+        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
+        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+        $workedRecord->staff_id=$request->staff_id;
+        $workedRecord->qty=$request->qty;
+        $workedRecord->save();
         Session::flash('getmessage','Insert successfully!');
         return redirect('rawmaterialseperation/index');
-
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -130,10 +108,12 @@ class RawmaterialSeperationController extends Controller
         $rawProducts->fill($data)->save();
        
         $laborcost = new LaborCost;
-        $workedRecord = WorkedRecords::where('item_id',$rawProductId)->first();
-        $workedRecord->lc_id = $laborcost->getLaborCostIdentityByGradeAndWorkType($grade,$this->workType);
-        $workedRecordSave = $request->all();
-        $workedRecord->fill($workedRecordSave)->save();
+        $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
+        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
+        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+        $workedRecord->staff_id=$request->staff_id;
+        $workedRecord->qty=$request->qty;
+        $workedRecord->save();
         Session::flash('getmessage','Update successfully!');
         return redirect('rawmaterialseperation/index');
     }
@@ -148,12 +128,9 @@ class RawmaterialSeperationController extends Controller
     {
         $rawProductId = $request->rp_id;
         $rawProducts = RawProduct::findOrfail($rawProductId)->delete();
-        $workedRecord = WorkedRecords::where('item_id',$rawProductId)->first();
+        $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
         $workedRecord->delete();
         Session::flash('getmessage','Delete successfully!');
-        return redirect('rawmaterialseperation/index');
-
-
-        
+        return redirect('rawmaterialseperation/index');     
     }
 }

@@ -16,5 +16,9 @@ class DriedProduct extends Model
         'dp_name',
 		'qty',
 		'cost'
-	];
+    ];
+    
+    public function getIdentity(){
+        return $this->dp_id;
+    }
 }

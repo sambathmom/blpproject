@@ -10,15 +10,17 @@
                     <h2>Dashboard</h2>      
                 </div>
             </div>
-        </section>  
+        </section> 
         <div class="col-md-12">
-            <a href="{{route('gradecreate')}}">
-                <a class="pull-right"><i class="fa fa-plus"></i> Add new grade</a>
-            </a>   
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
+            <a href="{{route('gradecreate')}}" >
+                <span class="pull-right"><i class="fa fa-plus"></i> New grade</span>
+            </a>     
+             @if(Session::has('getmessage')) 
+                <div class="row">       
+                    <div class="alert alert-success col-md-3" pull-right>
+                        {{Session::get('getmessage')}}                                               
+                    </div> 
+                </div>                      
             @endif   
         </div> 
         <div class="box">

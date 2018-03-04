@@ -15,6 +15,7 @@ class WorkedRecords extends Model
         'lc_id',
         'cost',
         'qty',
+        'cost',
         'memo'
      ];
 }

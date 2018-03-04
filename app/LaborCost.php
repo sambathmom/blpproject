@@ -19,15 +19,16 @@ class LaborCost extends Model
 	    'qty',
 	    'cost'
 	];
-
+	
 	public function getLaborCostByGradeAndWorkType($gradeId, $workTypeId)
 	{
-		$laborCost= DB::table('labor_cost')
+		$laborCost = DB::table('labor_cost')
 				   ->select('labor_cost.lc_id','labor_cost.cost')
 				   ->where([ 
 					   ['labor_cost.grade_id', $gradeId],
 					   ['labor_cost.wt_id', $workTypeId]
 					])->first();
 		return $laborCost;
+		
 	}
 }

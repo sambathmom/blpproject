@@ -90,23 +90,6 @@
         $('#identityDestroy').val(id);
     });
 
-    $('#destroyStaff').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-            url: 'http://localhost:8000/staff/destroy/' + id,
-            data: {'id': id},
-            type: 'GET',
-            dataType: 'json',
-            success: function( response ) {
-                if (response.status == 200) {
-                  $('#staffDestroyModal').modal('hide');
-                  location.reload()
-                }
-            }
-        });
-      });
-
     // Grade edit and delete
     $('.edit-grade').on('click', function() {
         var id = $(this).data('identity');
@@ -119,24 +102,6 @@
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
     });
-
-    $('#destroyGrade').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-            url: 'http://localhost:8000/grade/destroy/' + id,
-            data: {'id': id},
-            type: 'GET',
-            dataType: 'json',
-            success: function( response ) {
-                if (response.status == 200) {
-                  $('#gradeDestroyModal').modal('hide');
-                  location.reload()
-                }
-            }
-        });
-      });
-
   
     // Work type edit and delete
     $('.edit-worktype').on('click', function() {
@@ -174,6 +139,8 @@
         $('#laborCostName').val($(this).data('laborcost-name'));
         $('#laborCostGrade').val($(this).data('grade'));
         $('#laborCostWorkType').val($(this).data('work-type'));
+        $('#laborCostGrade').trigger('chosen:updated');
+        $('#laborCostWorkType').trigger('chosen:updated');
         $('#qty').val($(this).data('qty'));
         $('#cost').val($(this).data('cost'));
     });

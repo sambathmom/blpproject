@@ -95,15 +95,11 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        $response = [];
-		$staff = Staff::find($id)->delete();
+        $id = $request->staff_id;
+        $staff = Staff::find($id)->delete();
         Session::flash('getmessage','Deleted successfully!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
+        return redirect('staff/index');
     }
 }

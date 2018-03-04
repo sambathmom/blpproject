@@ -70,18 +70,14 @@ class GradeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $response = [];
+        $id = $request->grade_id;
         $grade = Grade::find($id)->delete();
         Session::flash('getmess','Deleted successfully!!!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
+        return redirect('grade/index');
     }
 }

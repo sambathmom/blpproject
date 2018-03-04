@@ -69,18 +69,14 @@ class WorkTypeController extends Controller
      /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $response = [];
+        $id = $request->wt_id;
         $grade = WorKType::find($id)->delete();
         Session::flash('getmessage','Deleted successfully!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
+        return redirect('worktype/index');
     }
 }
