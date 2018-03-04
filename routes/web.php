@@ -86,8 +86,8 @@ Route::post('processcleaning/update',['as'=>'processcleaningupdate','uses'=>'Pro
 Route::get('processcleaning/destroy/{id}',['as'=>'processcleaningdestroy','uses'=>'ProcessCleaningController@destroy']);
 
 // Process Driying
-Route::get('/processdriying/index','ProcessDriyingController@index');
-Route::get('/processdriying/create','ProcessDriyingController@create');
-Route::POST('/processdriying/store','ProcessDriyingController@store');
-Route::POST('/processdriying/update','ProcessDriyingController@update');
-Route::POST('/processdriying/destroy','ProcessDriyingController@destroy');
+Route::get('/processdrying/index','ProcessDryingController@index');
+Route::get('/processdrying/create','ProcessDryingController@create');
+Route::POST('/processdrying/store','ProcessDryingController@store');
+Route::POST('/processdrying/update','ProcessDryingController@update');
+Route::POST('/processdrying/destroy','ProcessDryingController@destroy');

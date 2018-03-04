@@ -68,23 +68,31 @@ class RawMaterialPurchasingController extends Controller
             'cost' => 'required|numeric:raw_material',
         ]);
         $gradeId = $request->grade_id;
-        
         $laborCost = new LaborCost;
-        $rawMaterail = new RawMaterial;
-        $rawMaterailSave = $request->all();
-        $rawMaterail->fill($rawMaterailSave)->save();
-       
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $rawMaterail->getIdentity();
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
+        if ($laborCostObj) {
+            $rawMaterail = new RawMaterial;
+            $rawMaterailSave = $request->all();
+            $rawMaterail->fill($rawMaterailSave)->save();
+           
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $rawMaterail->getIdentity();
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+            
+            Session::flash('getmessage','Insert successfully!');
+            return redirect ('rawmaterialpurchasing/index');
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('rawmaterialpurchasing/create');
+
+        }
         
-        Session::flash('getmessage','Insert successfully!');
-        return redirect ('rawmaterialpurchasing/index');
+       
     }
 
     /**
@@ -106,20 +114,29 @@ class RawMaterialPurchasingController extends Controller
         ]);
         $id = $request->rm_id;
         $gradeId = $request->grade_id;
-        $rawMaterial = RawMaterial::findOrFail($id);
-        $rawMaterialUpdate = $request->all();
-        $rawMaterial->fill($rawMaterialUpdate)->save();
-
         $laborCost = new LaborCost;
-        $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
-        Session::flash('getmessage','Update successfully!');
-        return redirect('rawmaterialpurchasing/index');
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId); 
+        if ($laborCostObj) {
+            $rawMaterial = RawMaterial::findOrFail($id);
+            $rawMaterialUpdate = $request->all();
+            $rawMaterial->fill($rawMaterialUpdate)->save();
+
+
+            $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+            Session::flash('getmessage','Update successfully!');
+            return redirect('rawmaterialpurchasing/index');
+        } else {
+            Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('rawmaterialpurchasing/index');
+        }
+
+        
     }
 
     /**

@@ -64,31 +64,27 @@ class ProcessCleaningController extends Controller
         ]);
         $gradeId = $request->grade_id;
         $processMaterialId = $request->pm_id;
+        $laborCost = new LaborCost;
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
         $processMaterial = ProcessMaterial::findOrFail($processMaterialId);
         $rawProductId = $processMaterial->rp_id;
         $rawProduct = RawProduct::findOrFail($rawProductId);
-        $rawMaterialId = $rawProduct->rm_id;
+        $rawMaterialId = $rawProduct->rm_id; 
+        if ($laborCostObj) {           
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $rawMaterialId;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+            Session::flash('getmessage','Inserted successfully!');
+           // return redirect('processcleaning/index');
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processcleaning/create');
+        }
         
-        $laborCost = new LaborCost;
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $rawMaterialId;
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
-        Session::flash('getmessage','Inserted successfully!');
-        return redirect('processcleaning/create');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
     }
 }

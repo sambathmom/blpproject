@@ -1,5 +1,5 @@
 <div id="driedProductDestroyModal" class="modal fade" role="dialog">
-    <form action="{{url('processdriying/destroy')}}" method="post">
+    <form action="{{url('processdrying/destroy')}}" method="post">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

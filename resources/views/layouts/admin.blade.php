@@ -140,7 +140,6 @@
                                         <span>Process Cleaning</span>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-list-alt"></i>Process cleaning list</a></li>
                                         <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-plus"></i>Add process cleaning</a></li>
                                     </ul>
                                 </li>
@@ -151,8 +150,8 @@
                                         <span>Process drying</span>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a  href="{{url('processdriying/index')}}"><i class="fa fa-list-alt"></i>Process drying</a></li>
-                                        <li><a  href="{{url('processdriying/create')}}"><i class="fa fa-plus"></i>Add process drying</a></li>
+                                        <li><a  href="{{url('processdrying/index')}}"><i class="fa fa-list-alt"></i>Process drying</a></li>
+                                        <li><a  href="{{url('processdrying/create')}}"><i class="fa fa-plus"></i>Add process drying</a></li>
                                     </ul>
                                 </li>
 

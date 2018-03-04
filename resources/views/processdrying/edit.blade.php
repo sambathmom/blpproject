@@ -1,5 +1,5 @@
 <div id="driedProductEditModal" class="modal fade" role="dialog">
-    <form action="{{url('processdriying/update')}}" method="post">
+    <form action="{{url('processdrying/update')}}" method="post">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <input type="hidden" name="dp_id" id="identityEdit">
-                        @include('processdriying/formfields')
+                        @include('processdrying/formfields')
                     </div> 
                 </div>
                 <div class="modal-footer">

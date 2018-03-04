@@ -12,7 +12,7 @@
             </div>
         </section>  
         <div class="col-md-12">
-            <a href="{{url('processdriying/create')}}" >
+            <a href="{{url('processdrying/create')}}" >
                 <span class="pull-right"><i class="fa fa-plus"></i> New dired product</span>
             </a>     
              @if(Session::has('getmessage')) 
@@ -67,6 +67,6 @@
             </div>
         </div>
     </div>
-    @include('processdriying.edit')
-    @include('processdriying.destroy')
+    @include('processdrying.edit')
+    @include('processdrying.destroy')
 @endsection
