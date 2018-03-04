@@ -116,23 +116,6 @@
         $('#identityDestroy').val(id);
     });
 
-    $('#destroyWorkType').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-          	url: 'http://localhost:8000/worktype/destroy/' + id,
-          	data: {'id': id},
-	        type: 'GET',
-	        dataType: 'json',
-	        success: function( response ) {
-            	if (response.status == 200) {
-              		$('#workTypeDestroyModal').modal('hide');
-              		location.reload();
-            	}
-	        }
-        });
-    });
-
     // labor cost edit and delete
     $('.edit-laborcost').on('click', function() {
         $('#identityEdit').val($(this).data('identity'));
@@ -148,23 +131,6 @@
     $('.destroy-laborcost').on('click', function() {
         var id = $(this).data('identity');
         $('#identityDestroy').val(id);
-    });
-
-    $('#destroyLaborCost').on('click', function() {
-        var id = $('#identityDestroy').val();
-
-        $.ajax({
-            url:  'http://localhost:8000/laborcost/destroy/' + id,
-            data: {'id': id},
-            type: 'GET',
-            dataType: 'json',
-            success: function( response ) {
-              if (response.status == 200) {
-                $('#laborCostDestroyModal').modal('hide');
-                location.reload();
-              }
-            }
-        });
     });
 
     // proccessMaterial delete and edit

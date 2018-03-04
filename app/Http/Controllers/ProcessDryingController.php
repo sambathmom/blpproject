@@ -30,7 +30,7 @@ class ProcessDriyingController extends Controller
         ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
         ->orderBy('dp_id','ASC')
         ->paginate(20); 
-        $processMaterials = processMaterial::all();
+        $processMaterials = ProcessMaterial::all();
         $staffs = Staff::all();
         $grades = Grade::all();
         return view('processdriying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades'));
@@ -64,46 +64,29 @@ class ProcessDriyingController extends Controller
             'qty' => 'required|numeric',
             'cost' => 'required|numeric'
         ]);
-
-        $driedProduct = new DriedProduct;
-        $data = $request->all();
-        $driedProduct->fill($data)->save();
-        $itemId = $driedProduct->getIdentity();
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $itemId;
         $grade = $request->grade_id;
-        
-        $workedRecord->wt_id = $this->workType;
         $laborcost = new LaborCost;
-        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
-        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->save();
-        Session::flash('getmessage','Insert successfully!');
-        return redirect ('processdriying/index');
-    }
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        if ($laborCostObj) {
+            $driedProduct = new DriedProduct;
+            $data = $request->all();
+            $driedProduct->fill($data)->save();
+            $itemId = $driedProduct->getIdentity();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $itemId;                    
+            $workedRecord->wt_id = $this->workType;          
+            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
+            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->save();
+            Session::flash('getmessage','Insert successfully!');
+            return redirect ('processdriying/index');
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processdriying/create');
+        }
     }
 
     /**
@@ -116,20 +99,30 @@ class ProcessDriyingController extends Controller
     public function update(Request $request)
     {
         $diredId = $request->dp_id;
-        $data = $request->all();
-        $driedProduct = DriedProduct::findOrfail($diredId);
-        $driedProduct->fill($data)->save();
-
         $grade = $request->grade_id;
+
         $laborcost = new LaborCost;
-        $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
-        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
-        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
-        $workedRecord->staff_id=$request->staff_id;
-        $workedRecord->qty=$request->qty;
-        $workedRecord->save();
-        Session::flash('getmessage','Update successfully!');
-        return redirect('processdriying/index');
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+
+        if ($laborCostObj) {
+            $data = $request->all();
+            $driedProduct = DriedProduct::findOrfail($diredId);
+            $driedProduct->fill($data)->save();
+            
+            $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
+            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
+            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->staff_id=$request->staff_id;
+            $workedRecord->qty=$request->qty;
+            $workedRecord->save();
+            Session::flash('getmessage','Update successfully!');
+            return redirect('processdriying/index');
+        } else {
+            Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processdriying/index');
+        }
+
+       
     }
 
     /**
