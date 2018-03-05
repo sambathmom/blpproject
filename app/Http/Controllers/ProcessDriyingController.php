@@ -5,34 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Staff;
-use App\Grade;
-use App\RawProduct;
-use App\RawMaterial;
+use App\ProcessMaterial;
+use App\Grade; 
+use App\DriedProduct;
+use App\Sessio;
 use App\WorkedRecords;
 use App\LaborCost;
 use Session;
-class RawmaterialSeperationController extends Controller
+
+class ProcessDriyingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $workType = 2;
+    protected $workType = 5;
     public function index()
     {
-        $rawProducts = DB::table('raw_product')
-        ->join('raw_material', 'raw_product.rm_id', '=', 'raw_material.rm_id')
-        ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
-        ->join('staff', 'staff.staff_id', '=', 'raw_product.staff_id')
-        ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('rm_id','ASC')
+        $driedProducts = DB::table('dried_product')
+        ->join('staff', 'staff.staff_id', '=', 'dried_product.staff_id')
+        ->join('grade', 'grade.grade_id', '=', 'dried_product.grade_id')
+        ->join('process_material', 'process_material.pm_id', '=', 'dried_product.pm_id')
+        ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+        ->orderBy('dp_id','ASC')
         ->paginate(20); 
-        $rawMaterials = DB::table('raw_material')->get();
-        $grades = DB::table('grade')->get();
+        $processMaterials = processMaterial::all();
         $staffs = Staff::all();
-        return view('rawmaterialseperation/index',['rawProducts' => $rawProducts, 'rawMaterials' => $rawMaterials,'grades' => $grades, 'staffs' => $staffs]);
-
+        $grades = Grade::all();
+        return view('processdriying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades'));
+    
     }
 
     /**
@@ -41,13 +43,12 @@ class RawmaterialSeperationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-        $rawMaterials = RawMaterial::all();
+    {  
+        $staffs = Staff::all();
         $grades = Grade::all();
-        $staffs = DB::table('staff')->get();
-        return view('rawmaterialseperation/create',['rawMaterials'=>$rawMaterials,'grades'=>$grades, 'staffs' => $staffs]);       
-  
+        $processMaterials = ProcessMaterial::all();
+        return view('processdriying/create', compact('staffs', 'grades', 'processMaterials'));
+    
     }
 
     /**
@@ -59,16 +60,15 @@ class RawmaterialSeperationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
+            'dp_name' => 'required',
+            'qty' => 'required|numeric',
+            'cost' => 'required|numeric'
         ]);
-        $rawMaterialSeperation = new RawProduct;
+
+        $driedProduct = new DriedProduct;
         $data = $request->all();
-        $rawMaterialSeperation->fill($data)->save();
-        $itemId = $rawMaterialSeperation->getIdentity();
+        $driedProduct->fill($data)->save();
+        $itemId = $driedProduct->getIdentity();
         $workedRecord = new WorkedRecords;
         $workedRecord->item_id = $itemId;
         $grade = $request->grade_id;
@@ -77,13 +77,11 @@ class RawmaterialSeperationController extends Controller
         $laborcost = new LaborCost;
         $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
         $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
-        $workedRecord->staff_id=$request->staff_id;
-        $workedRecord->qty=$request->qty;
+        $workedRecord->staff_id = $request->staff_id;
+        $workedRecord->qty = $request->qty;
         $workedRecord->save();
         Session::flash('getmessage','Insert successfully!');
-        return redirect('rawmaterialseperation/index');
-
-
+        return redirect ('processdriying/index');
     }
 
     /**
@@ -117,28 +115,21 @@ class RawmaterialSeperationController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
-        ]);
-        $rawProductId = $request->rp_id;
-        $grade = $request->grade_id;
-        $rawProducts = RawProduct::findOrfail($rawProductId);
+        $diredId = $request->dp_id;
         $data = $request->all();
-        $rawProducts->fill($data)->save();
-       
+        $driedProduct = DriedProduct::findOrfail($diredId);
+        $driedProduct->fill($data)->save();
+
+        $grade = $request->grade_id;
         $laborcost = new LaborCost;
-        $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
+        $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
         $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
         $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
         $workedRecord->staff_id=$request->staff_id;
         $workedRecord->qty=$request->qty;
         $workedRecord->save();
         Session::flash('getmessage','Update successfully!');
-        return redirect('rawmaterialseperation/index');
+        return redirect('processdriying/index');
     }
 
     /**
@@ -149,14 +140,12 @@ class RawmaterialSeperationController extends Controller
      */
     public function destroy(Request $request)
     {
-        $rawProductId = $request->rp_id;
-        $rawProducts = RawProduct::findOrfail($rawProductId)->delete();
-        $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
+        $diredId = $request->dp_id;
+        $driedProduct = DriedProduct::find($diredId);
+        $driedProduct->delete();
+        $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
         $workedRecord->delete();
         Session::flash('getmessage','Delete successfully!');
-        return redirect('rawmaterialseperation/index');
-
-
-        
+        return redirect('processdriying/index');
     }
 }

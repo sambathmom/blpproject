@@ -16,6 +16,7 @@ class CreateProcessProductTable extends Migration
         Schema::create('process_product', function (Blueprint $table) {
             $table->increments('pp_id');
             $table->integer('pm_id');
+            $table->integer('staff_id');
             $table->string('pp_name');
             $table->decimal('qty');
             $table->decimal('cost');

@@ -14,7 +14,7 @@ class CreateWorkTypeTable extends Migration
     public function up()
     {
         Schema::create('work_type', function (Blueprint $table) {
-            $table->increments('work_type_id');
+            $table->increments('wt_id');
             $table->string('wt_name');
             $table->timestamps();
         });

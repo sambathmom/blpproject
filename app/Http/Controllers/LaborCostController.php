@@ -20,7 +20,7 @@ class LaborCostController extends Controller
     {
         $laborCosts = DB::table('labor_cost')
             ->join('grade', 'labor_cost.grade_id', '=', 'grade.grade_id')
-            ->join('work_type', 'work_type.work_type_id', '=', 'labor_cost.work_type_id')
+            ->join('work_type', 'work_type.wt_id', '=', 'labor_cost.wt_id')
             ->select('labor_cost.*', 'grade.grade_name','work_type.wt_name')
             ->get();
         $grades = Grade::all();

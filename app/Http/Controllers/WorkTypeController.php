@@ -16,7 +16,7 @@ class WorkTypeController extends Controller
     public function index()
     {
         $workType = new WorKType;
-        $workTypes = $workType::orderBy('work_type_id','ASC')->paginate(20);
+        $workTypes = $workType::orderBy('wt_id','ASC')->paginate(20);
         return view ('worktype/index', compact('workTypes'));
     }
 

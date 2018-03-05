@@ -7,13 +7,13 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Labor Cost</h2>      
+                    <h2>List of dried product</h2>      
                 </div>
             </div>
         </section>  
         <div class="col-md-12">
-            <a href="{{route('laborcostcreate')}}" >
-                <span class="pull-right"><i class="fa fa-plus"></i> New labor cost</span>
+            <a href="{{url('processdriying/create')}}" >
+                <span class="pull-right"><i class="fa fa-plus"></i> New dired product</span>
             </a>     
              @if(Session::has('getmessage')) 
                 <div class="row">       
@@ -31,24 +31,30 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Work Type Name</th>
+                                    <th>Dried product</th>
+                                    <th>Staff</th>
                                     <th>Grade</th>
-                                    <th>Work type</th>
+                                    <th>Process material</th>
+                                    <th>Qauntity</th>
+                                    <th>Cost</th>
                                     <th width="110">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($laborCosts as $laborCost)
+                                @foreach($driedProducts as $driedProduct)
                                 <tr>
-                                    <td>{{$laborCost->lc_id}}</td>
-                                    <td>{{$laborCost->lc_name}}</td>
-                                    <td>{{$laborCost->grade_name}}</td>
-                                    <td>{{$laborCost->wt_name}}</td>
+                                    <td>{{$driedProduct->dp_id}}</td>
+                                    <td>{{$driedProduct->dp_name}}</td>
+                                    <td>{{$driedProduct->first_name}} {{$driedProduct->middle_name}} {{$driedProduct->last_name}}</td>
+                                    <td>{{$driedProduct->grade_name}}</td>
+                                    <td>{{$driedProduct->pm_name}}</td>
+                                    <td>{{$driedProduct->qty}}</td>
+                                    <td>{{$driedProduct->cost}}</td>
                                     <td width="110">
-                                        <a href="#laborCostEditModal" data-toggle="modal" data-target="#laborCostEditModal" data-identity="{{$laborCost->lc_id}}" data-laborcost-name="{{$laborCost->lc_name}}" data-grade="{{$laborCost->grade_id}}" data-work-type="{{$laborCost->wt_id}}" data-qty="{{$laborCost->qty}}" data-cost="{{$laborCost->cost}}" class="edit-laborcost">
+                                        <a href="#driedProductEditModal" data-toggle="modal" data-target="#driedProductEditModal" data-identity="{{$driedProduct->dp_id}}" data-dp-name="{{$driedProduct->dp_name}}" data-grade="{{$driedProduct->grade_id}}" data-staff="{{$driedProduct->staff_id}}" data-process-materail="{{$driedProduct->pm_id}}" data-qty="{{$driedProduct->qty}}" data-cost="{{$driedProduct->cost}}" class="edit-driedproduct">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
-                                        <a href="#laborCostDestroyModal" data-toggle="modal" data-target="#laborCostDestroyModal" data-identity="{{$laborCost->lc_id}}" class="destroy-laborcost">
+                                        <a href="#driedProductDestroyModal" data-toggle="modal" data-target="#driedProductDestroyModal" data-identity="{{$driedProduct->dp_id}}" class="destroy-driedproduct">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
                                     </td>
@@ -61,6 +67,6 @@
             </div>
         </div>
     </div>
-    @include('laborcost.edit')
-    @include('laborcost.destroy')
+    @include('processdriying.edit')
+    @include('processdriying.destroy')
 @endsection

@@ -11,7 +11,7 @@
         </section>  
         <div class="col-md-12">
             <a href="{{url('rawmaterialseperation/create')}}">
-                <button class="colortext btn btn-success pull-right">New Raw Product</button>  
+                <i class="fa fa-plus pull-right">New Raw Product</i>  
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">

@@ -19,7 +19,7 @@
         <div class="col-md-7">
             <select  name="staff_id"  id="staff" class="chzn-select chzn-rtl" tabindex="10">
                 @foreach ($staffs as $staff) 
-                    <option value="{{$staff->staff_id}}">{{$staff->middle_name}}{{$staff->last_name}} </option>
+                    <option value="{{$staff->staff_id}}">{{$staff->first_name}}  {{$staff->middle_name}}{{$staff->last_name}} </option>
                 @endforeach
             </select>  
         </div>

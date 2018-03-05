@@ -36,13 +36,13 @@
                             <tbody>
                                 @foreach($workTypes as $workType)
                                 <tr>
-                                    <td>{{$workType->work_type_id}}</td>
+                                    <td>{{$workType->wt_id}}</td>
                                     <td>{{$workType->wt_name}}</td>
                                     <td width="110">
-                                        <a href="#workTypeEditModal" data-toggle="modal" data-target="#workTypeEditModal" data-identity="{{$workType->work_type_id}}" class="edit-worktype" data-name="{{$workType->wt_name}}">
+                                        <a href="#workTypeEditModal" data-toggle="modal" data-target="#workTypeEditModal" data-identity="{{$workType->wt_id}}" class="edit-worktype" data-name="{{$workType->wt_name}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
-                                        <a href="#workTypeDestroyModal" data-toggle="modal" data-target="#workTypeDestroyModal" data-identity="{{$workType->work_type_id}}" class="destroy-worktype">
+                                        <a href="#workTypeDestroyModal" data-toggle="modal" data-target="#workTypeDestroyModal" data-identity="{{$workType->wt_id}}" class="destroy-worktype">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
                                     </td>

@@ -52,7 +52,7 @@
                                       data-staff="{{$workedRecord->staff_id}}"
                                       data-id="{{$workedRecord->wr_id}}"
                                       data-laborcost="{{$workedRecord->lc_id}}"
-                                      data-worktype ="{{$workedRecord->work_type_id}}"
+                                      data-worktype ="{{$workedRecord->wt_id}}"
                                       data-memo="{{$workedRecord->memo}}"
                                       data-qty ="{{$workedRecord->qty}}">
                                         <i class="fa fa-edit fa-lg btn btn-success"></i>

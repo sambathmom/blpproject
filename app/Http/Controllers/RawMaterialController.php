@@ -56,7 +56,7 @@ class RawMaterialController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request, [
+        $this->validate($request, [
             'staff_id' => 'required:raw_material',
             'supplier_id' => 'required:raw_material',
             'grade_id' => 'required:raw_material',

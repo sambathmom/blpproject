@@ -16,6 +16,7 @@ class CreateProcessCleaningTable extends Migration
         Schema::create('process_cleaning', function (Blueprint $table) {
             $table->increments('pc_id');
             $table->integer('pp_id');
+            $table->integer('staff_id');
             $table->string('pc_name');
             $table->decimal('qty');
             $table->decimal('cost');
