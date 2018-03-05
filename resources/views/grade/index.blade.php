@@ -7,7 +7,7 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>Dashboard</h2>      
+                    <h2>List grade</h2>      
                 </div>
             </div>
         </section> 

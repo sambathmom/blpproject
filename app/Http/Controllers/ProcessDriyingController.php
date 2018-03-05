@@ -59,6 +59,7 @@ class ProcessDriyingController extends Controller
      */
     public function store(Request $request)
     {
+        // echo"Stirng";exit();
         $this->validate($request, [
             'dp_name' => 'required',
             'qty' => 'required|numeric',
@@ -67,7 +68,7 @@ class ProcessDriyingController extends Controller
 
         $driedProduct = new DriedProduct;
         $data = $request->all();
-        $driedProduct->fill($data)->save();
+        
         $itemId = $driedProduct->getIdentity();
         $workedRecord = new WorkedRecords;
         $workedRecord->item_id = $itemId;
@@ -79,6 +80,8 @@ class ProcessDriyingController extends Controller
         $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
         $workedRecord->staff_id = $request->staff_id;
         $workedRecord->qty = $request->qty;
+    
+        $driedProduct->fill($data)->save();
         $workedRecord->save();
         Session::flash('getmessage','Insert successfully!');
         return redirect ('processdriying/index');

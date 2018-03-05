@@ -27,7 +27,9 @@ class LaborCost extends Model
 				   ->where([ 
 					   ['labor_cost.grade_id', $gradeId],
 					   ['labor_cost.wt_id', $workTypeId]
-					])->first();
+					])
+					->first();
+		
 		return $laborCost;
 		
 	}
