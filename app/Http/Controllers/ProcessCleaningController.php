@@ -18,24 +18,6 @@ use App\LaborCost;
 class ProcessCleaningController extends Controller
 {
     protected $workTypeId = 4;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $processCleanings = DB::table('process_cleaning')
-        ->join('process_product', 'process_product.pp_id', '=', 'process_cleaning.pp_id')
-        ->join('staff', 'staff.staff_id', '=', 'process_cleaning.staff_id')
-        ->select('process_cleaning.*', 'process_product.pp_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('pc_id','ASC')
-        ->paginate(20); 
-        $staffs = Staff::all();
-        $processMaterials = ProcessMaterial::all();
-        $grades = Grade::all();
-        return view('processcleaning.index', compact('processCleanings', 'processMaterials', 'staffs', 'grades'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -75,12 +57,12 @@ class ProcessCleaningController extends Controller
             $workedRecord->item_id = $rawMaterialId;
             $workedRecord->lc_id = $laborCostObj->lc_id;
             $workedRecord->cost = $laborCostObj->cost;
+
             $workedRecord->wt_id = $this->workTypeId;
             $workedRecord->qty = $request->qty;
             $workedRecord->staff_id = $request->staff_id;
             $workedRecord->save();
             Session::flash('getmessage','Inserted successfully!');
-           // return redirect('processcleaning/index');
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processcleaning/create');

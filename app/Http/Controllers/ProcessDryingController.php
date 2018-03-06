@@ -16,6 +16,7 @@ use Session;
 class ProcessDryingController extends Controller
 {
     protected $workType = 5;
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +34,7 @@ class ProcessDryingController extends Controller
         $processMaterials = ProcessMaterial::all();
         $staffs = Staff::all();
         $grades = Grade::all();
-        return view('processdrying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades'));  
+        return view('processdrying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades')); 
     }
 
     /**
@@ -46,8 +47,7 @@ class ProcessDryingController extends Controller
         $staffs = Staff::all();
         $grades = Grade::all();
         $processMaterials = ProcessMaterial::all();
-        return view('processdrying/create', compact('staffs', 'grades', 'processMaterials'));
-    
+        return view('processdrying/create', compact('staffs', 'grades', 'processMaterials'));  
     }
 
     /**
@@ -64,8 +64,8 @@ class ProcessDryingController extends Controller
             'cost' => 'required|numeric'
         ]);
         $grade = $request->grade_id;
-        $laborCost = new LaborCost;
-        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($grade, $this->workType);
+        $laborcost = new LaborCost;
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
         if ($laborCostObj) {
             $driedProduct = new DriedProduct;
             $data = $request->all();
@@ -81,7 +81,7 @@ class ProcessDryingController extends Controller
             $workedRecord->qty = $request->qty;
             $workedRecord->save();
             Session::flash('getmessage','Insert successfully!');
-            return redirect ('processdrying/index');
+            return redirect ('processdriying/index');
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processdrying/create');
@@ -100,8 +100,9 @@ class ProcessDryingController extends Controller
         $diredId = $request->dp_id;
         $grade = $request->grade_id;
 
-        $laborCost = new LaborCost;
-        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborcost = new LaborCost;
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+
         if ($laborCostObj) {
             $data = $request->all();
             $driedProduct = DriedProduct::findOrfail($diredId);
