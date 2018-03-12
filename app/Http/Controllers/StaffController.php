@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Staff;
 use Session;
+use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
@@ -31,6 +32,23 @@ class StaffController extends Controller
 		return view('staff.create');
 	}  	
 
+	public function validationerror(Request $request){
+		$rules =[
+			'last_name' => 'required',
+			'first_name' => 'required',
+			'sex' => 'required',
+		    'phone' => 'required|numeric|unique:staff',
+		    'email' => 'required|email|unique:staff',
+		];
+		$message =[
+			'last_name' => 'last name',
+			'first_name' => 'first name',
+			'sex' => 'sex',
+		    'phone' => 'phone',
+		    'email' => 'email',
+		];
+		return $this -> validate($request,$rules,[],$message);
+	}
 	/**
      * Store a newly created resource in storage.
      *
@@ -39,13 +57,7 @@ class StaffController extends Controller
      */
 	public function store(request $request)
 	{	
-		$this->validate($request, [
-			'last_name' => 'required',
-			'first_name' => 'required',
-			'sex' => 'required',
-		    'phone' => 'required|numeric|unique:staff',
-		    'email' => 'required|email|unique:staff',
-		]);
+		$this ->validationerror($request);
 		$staff = new Staff();
 		$destination = 'img_upload';
        	$picture = $request->file('picture');
@@ -66,14 +78,16 @@ class StaffController extends Controller
      */
 	public function update(request $request)
 	{		
-		$this->validate($request, [
+		$staffId = $request->staff_id;
+		$rules =[
 			'last_name' => 'required',
 			'first_name' => 'required',
 			'sex' => 'required',
-			'phone' => 'required|numeric',
-			'email' => 'required|email'
-		]);
-    	$staffId = $request->staff_id;
+		    'phone' => 'required|numeric|unique:staff,phone',
+		    'email' => 'required|unique:staff,email',
+		];
+		$this -> validate($request,$rules,[]);
+    	
     	$staff = Staff::findOrFail($staffId);
     	if ($request->hasFile('picture'))
 	    {

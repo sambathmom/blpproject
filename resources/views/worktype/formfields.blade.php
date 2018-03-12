@@ -4,7 +4,7 @@
         <label for="gradeName" class="col-md-4 control-label"><strong>Work type Name: <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input placeholder="Work type name" class="form-control" id="workTypeName" name="wt_name" type="text">
-            <span class="error">{{ $errors->first('grade_name') }}</span>
+            <span class="error">{{ $errors->first('wt_name') }}</span>
         </div>
     </div>
 </div>

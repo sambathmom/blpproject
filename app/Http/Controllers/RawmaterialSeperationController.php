@@ -56,33 +56,52 @@ class RawmaterialSeperationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function validationerror(Request $request){
+        
+          $rules = [
+              'rm_id' => 'required:raw_product',
+              'grade_id' => 'required:raw_product',
+              'rp_name' => 'required:raw_product',
+              'qty' => 'required|numeric:raw_product',
+              'cost' => 'required|numeric:raw_product',
+          ];
+          $message = [
+              'rm_id' => 'raw product',
+              'grade_id' =>'grade name',
+              'rp_name' => 'raw product name',
+              'qty' => 'quantity',
+              'cost' => 'cost'
+          ];
+          $this->validate($request,$rules,[],$message);
+      }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
-        ]);
-        $rawMaterialSeperation = new RawProduct;
-        $data = $request->all();
-        $rawMaterialSeperation->fill($data)->save();
-        $itemId = $rawMaterialSeperation->getIdentity();
-        
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $itemId;
+        $this->validationerror($request);
         $grade = $request->grade_id;
-        
-        $workedRecord->wt_id = $this->workType;
         $laborcost = new LaborCost;
-        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
-        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
-        $workedRecord->staff_id=$request->staff_id;
-        $workedRecord->qty=$request->qty;
-        $workedRecord->save();
-        Session::flash('getmessage','Insert successfully!');
-        return redirect('rawmaterialseperation/index');
+        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+
+        if ($laborcostObj) {
+            $rawMaterialSeperation = new RawProduct;
+            $data = $request->all();
+            $rawMaterialSeperation->fill($data)->save();
+            $itemId = $rawMaterialSeperation->getIdentity();
+            
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $itemId;           
+            $workedRecord->wt_id = $this->workType;           
+            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
+            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->staff_id=$request->staff_id;
+            $workedRecord->qty=$request->qty;
+            $workedRecord->save();
+            Session::flash('getmessage','Insert successfully!');
+            return redirect('rawmaterialseperation/index');   
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('rawmaterialseperation/create');
+        }
+        
     }
 
     /**
@@ -92,30 +111,33 @@ class RawmaterialSeperationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
-        ]);
+        $this->validationerror($request);
         $rawProductId = $request->rp_id;
         $grade = $request->grade_id;
-        $rawProducts = RawProduct::findOrfail($rawProductId);
-        $data = $request->all();
-        $rawProducts->fill($data)->save();
-       
+
         $laborcost = new LaborCost;
-        $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
-        $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;        
-        $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
-        $workedRecord->staff_id=$request->staff_id;
-        $workedRecord->qty=$request->qty;
-        $workedRecord->save();
-        Session::flash('getmessage','Update successfully!');
-        return redirect('rawmaterialseperation/index');
+        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+
+        if ($laborcostObj) {
+            $rawProducts = RawProduct::findOrfail($rawProductId);
+            $data = $request->all();
+            $rawProducts->fill($data)->save();        
+            $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
+            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
+            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->staff_id=$request->staff_id;
+            $workedRecord->qty=$request->qty;
+            $workedRecord->save();
+            Session::flash('getmessage','Update successfully!');
+            return redirect('rawmaterialseperation/index');
+        } else {
+            Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('rawmaterialseperation/create');
+        }
+       
     }
 
     /**

@@ -56,7 +56,21 @@ class ProcessShapingController extends Controller
             'staffs' => $staffs,'grades' => $grades
         ]);
     }
-
+    public function validationerror(Request $request){
+        $rules = [
+            'sp_name' => 'required:process_shaping',
+            'qty' => 'required|numeric:process_shaping',
+            'cost' => 'required|numeric:process_shaping',
+        ];  
+       
+        $message = [
+            'sp_name' => 'shapping product name',
+            'qty' => 'quantity',
+            'cost' => 'cost',
+            
+        ];
+      return $this->validate($request, $rules, [], $message);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -65,12 +79,7 @@ class ProcessShapingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'pm_id' => 'required:process_shaping',
-            'sp_name' => 'required:process_shaping',
-            'qty' => 'required|numeric:process_shaping',
-            'cost' => 'required|numeric:process_shaping',
-        ]);
+        $this->validationerror($request);
         $gradeId = $request->grade_id;
         
         $laborCost = new LaborCost;
@@ -99,6 +108,7 @@ class ProcessShapingController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validationerror($request);
         $id = $request->sp_id;
         $gradeId = $request->grade_id;
         $shapedProduct = shapedProduct::findOrFail($id);

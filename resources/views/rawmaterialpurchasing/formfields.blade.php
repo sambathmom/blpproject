@@ -44,6 +44,7 @@
         <label for="rawName" class="col-md-4 control-label"><strong>Raw material name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input placeholder="RawMaterialName" class="form-control" id="rawName" name="rm_name"  type="text">
+            <span class="error">{{ $errors->first('rm_name') }}</span>
         </div>
     </div>
 </div>

@@ -8,7 +8,18 @@
                     <h2>Process driying</h2>      
                 </div> 
             </div>
-        </section>  
+        </section> 
+
+        <div class="col-md-12">    
+             @if(Session::has('getmessage')) 
+                <div class="row">       
+                    <div class="alert alert-success col-md-3" pull-right>
+                        {{Session::get('getmessage')}}                                               
+                    </div> 
+                </div>                      
+            @endif   
+        </div>
+         
         <div class="box">
             <div class="content">
                 <div class="col-md-12">  

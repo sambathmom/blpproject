@@ -64,31 +64,30 @@ class ProcessCleaningController extends Controller
         ]);
         $gradeId = $request->grade_id;
         $processMaterialId = $request->pm_id;
-        $processMaterial = ProcessMaterial::findOrFail($processMaterialId);
-        $rawProductId = $processMaterial->rp_id;
-        $rawProduct = RawProduct::findOrFail($rawProductId);
-        $rawMaterialId = $rawProduct->rm_id;
-        
         $laborCost = new LaborCost;
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $rawMaterialId;
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
-        Session::flash('getmessage','Inserted successfully!');
-        return redirect('processcleaning/create');
-    }
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
+        if ($laborCostObj) {
+            $processMaterial = ProcessMaterial::findOrFail($processMaterialId);
+            $rawProductId = $processMaterial->rp_id;
+            $rawProduct = RawProduct::findOrFail($rawProductId);
+            $rawMaterialId = $rawProduct->rm_id;
+            
+            
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $rawMaterialId;
+            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
+            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+            Session::flash('getmessage','Inserted successfully!');
+            return redirect('processcleaning/index');
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processcleaning/create');
+        }
+        
     }
 }

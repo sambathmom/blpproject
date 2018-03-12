@@ -4,6 +4,7 @@
         <label for="laborCostName" class="col-md-4 control-label"><strong>Labor cost name: <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input type="text" name="lc_name" class="form-control" id="laborCostName">
+            <span class="error">{{ $errors->first('lc_name') }}</span>
         </div>
     </div>
 </div>
