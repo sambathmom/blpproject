@@ -84,8 +84,7 @@ class ProcessMaterialReceivingController extends Controller
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processmaterialreceiving/create');
-        }
-        
+        }        
     }
 
     /**
@@ -114,7 +113,6 @@ class ProcessMaterialReceivingController extends Controller
             $processMaterial = ProcessMaterial::findOrFail($id);
             $processMaterialUpdate = $request->all();
             $processMaterial->fill($processMaterialUpdate)->save();
-
            
             $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId] ])->first();
             $workedRecord->lc_id = $laborCostObj->lc_id;;
@@ -128,8 +126,7 @@ class ProcessMaterialReceivingController extends Controller
         } else {
             ession::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processmaterialreceiving/index');
-        }
-        
+        }       
     }
 
     /**

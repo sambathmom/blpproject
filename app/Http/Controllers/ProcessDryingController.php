@@ -25,12 +25,12 @@ class ProcessDryingController extends Controller
     public function index()
     {
         $driedProducts = DB::table('dried_product')
-        ->join('staff', 'staff.staff_id', '=', 'dried_product.staff_id')
-        ->join('grade', 'grade.grade_id', '=', 'dried_product.grade_id')
-        ->join('process_material', 'process_material.pm_id', '=', 'dried_product.pm_id')
-        ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('dp_id','ASC')
-        ->paginate(20); 
+            ->join('staff', 'staff.staff_id', '=', 'dried_product.staff_id')
+            ->join('grade', 'grade.grade_id', '=', 'dried_product.grade_id')
+            ->join('process_material', 'process_material.pm_id', '=', 'dried_product.pm_id')
+            ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+            ->orderBy('dp_id','ASC')
+            ->paginate(20); 
         $processMaterials = ProcessMaterial::all();
         $staffs = Staff::all();
         $grades = Grade::all();
@@ -81,7 +81,7 @@ class ProcessDryingController extends Controller
             $workedRecord->qty = $request->qty;
             $workedRecord->save();
             Session::flash('getmessage','Insert successfully!');
-            return redirect ('processdriying/index');
+            return redirect ('processdrying/index');
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processdrying/create');

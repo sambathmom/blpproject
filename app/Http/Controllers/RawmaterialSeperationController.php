@@ -67,9 +67,9 @@ class RawmaterialSeperationController extends Controller
         ]);
         $grade = $request->grade_id;
         $laborcost = new LaborCost;
-        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
 
-        if ($laborcostObj) {
+        if ($laborCostObj) {
             $rawMaterialSeperation = new RawProduct;
             $data = $request->all();
             $rawMaterialSeperation->fill($data)->save();
@@ -112,9 +112,9 @@ class RawmaterialSeperationController extends Controller
         $grade = $request->grade_id;
 
         $laborcost = new LaborCost;
-        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
 
-        if ($laborcostObj) {
+        if ($laborCostObj) {
             $rawProducts = RawProduct::findOrfail($rawProductId);
             $data = $request->all();
             $rawProducts->fill($data)->save();          

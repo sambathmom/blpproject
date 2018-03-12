@@ -140,6 +140,7 @@
                                         <span>Process Cleaning</span>
                                     </a>
                                     <ul class="treeview-menu">
+                                    <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-list-alt"></i>Process drying</a></li>
                                         <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-plus"></i>Add process cleaning</a></li>
                                     </ul>
                                 </li>
@@ -174,8 +175,8 @@
                                  <span>Report</span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a  href="/staff/index"><i class="fa fa-eye"></i>View worked record</a></li>
-                                <li><a  href="{{route('staffcreate')}}"><i class="fa fa-eye"></i>View loosing item</a></li>
+                                <li><a  href="{{url('reports/viewworkedrecords')}}"><i class="fa fa-eye"></i>View worked record</a></li>
+                                <li><a  href="{{url('reports/viewlosingrawmaterials')}}"><i class="fa fa-eye"></i>View loosing item</a></li>
                             </ul>
         				</li>
 
@@ -265,6 +266,7 @@
 <?php /* For Check Password Strong Or Good.... */ ?>
 <script src="{{ asset('assets/admin/js/validator/passwordscheck.js')}}"></script>
 <script src="{{ asset('js/general.js')}}"></script>
+<script src="{{ asset('js/reports.js')}}"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
