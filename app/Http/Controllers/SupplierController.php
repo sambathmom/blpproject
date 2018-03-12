@@ -32,7 +32,23 @@ class SupplierController extends Controller
     {
     	return view('supplier.create');
     }
-
+    public  function validationerror(Request $request){
+        $rules =[
+            'company_name' => 'required:supplier',
+            'contact_person' => 'required:supplier',
+            'contact_title'=> 'required:supplier',
+            'email' => 'required|email|unique:supplier',
+            'phone' => 'required|numeric|unique:supplier',
+        ];
+        $message =[
+            'company_name' => 'company name',
+            'contact_person' => 'contact person',
+            'contact_title'=> 'contact title',
+            'email' => 'email',
+            'phone' => 'phone',
+        ];
+        return $this -> validate($request,$rules,[],$message);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,14 +58,7 @@ class SupplierController extends Controller
 
     public function store(request $request)
     {
-
-        $this->validate($request, [
-            'company_name' => 'required:supplier',
-            'contact_person' => 'required:supplier',
-            'contact_title'=> 'required:supplier',
-            'email' => 'required|email|unique:supplier',
-            'phone' => 'required|numeric|unique:supplier',
-        ]);
+        $this -> validationerror($request);
     	$supplier = new Supplier;
         $data = $request->all();
         $supplier->fill($data)->save();
@@ -67,6 +76,7 @@ class SupplierController extends Controller
 
     public function update(Request $request)
     {
+         $this -> validationerror($request);
          $id = $request->supplier_id;
          $supplier =  Supplier::findOrFail($id);
          $data = $request->all();

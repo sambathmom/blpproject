@@ -42,7 +42,7 @@
         <label for="pQty" class="col-md-4 control-label"><strong>Quantity<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input type="text" name="qty" class="form-control" id="pQty">
-            <span class="error">{{ $errors->first('pm_name') }}</span>
+            <span class="error">{{ $errors->first('qty') }}</span>
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
         <label for="pCost" class="col-md-4 control-label"><strong>Cost<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
             <input type="text" name="cost" class="form-control" id="pCost">
-            <span class="error">{{ $errors->first('pm_name') }}</span>
+            <span class="error">{{ $errors->first('cost') }}</span>
         </div>
     </div>
 </div>

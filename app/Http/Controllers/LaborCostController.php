@@ -39,7 +39,19 @@ class LaborCostController extends Controller
         $workTypes = WorkType::all();
         return view('laborcost.create', compact('grades', 'workTypes'));
     }
-
+    public function validationerror(Request $request){
+        $rules = [
+            'lc_name' => 'required',
+            'cost' => 'required|numeric',
+            'qty' => 'required|numeric'
+        ];
+        $message = [
+            'lc_name' => 'labor cost name',
+            'qty' => 'quantity',
+            'cost' => 'cost'
+        ];
+       return $this -> validate($request,$rules,[],$message);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -48,10 +60,7 @@ class LaborCostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
-        ]);
+        $this -> validationerror($request);
         $laborCost = new LaborCost;
         $data = $request->all();
 
@@ -68,10 +77,7 @@ class LaborCostController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
-        ]);
+        $this -> validationerror($request);
         $laborCostId = $request->lc_id;
         $laborCost = LaborCost::findOrFail($laborCostId);
 

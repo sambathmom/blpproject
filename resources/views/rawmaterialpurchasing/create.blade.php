@@ -28,7 +28,7 @@
                                     @include('rawmaterialpurchasing.formfields')
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Save</button>
-                                        <a href="{{url('rawmaterialspurchasing/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
+                                        <a href="{{url('rawmaterialpurchasing/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>

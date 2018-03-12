@@ -11,7 +11,7 @@
             </div>
         </section>  
         <div class="col-md-12">
-            <a href="{{url('rawmaterial/create')}}">
+            <a href="{{url('rawmaterialpurchasing/create')}}">
                 <span class="pull-right"><i class="fa fa-plus"></i> Raw material list</span>  
             </a>   
             @if(Session::has ('getmessage'))

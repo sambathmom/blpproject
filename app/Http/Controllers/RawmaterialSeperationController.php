@@ -56,15 +56,27 @@ class RawmaterialSeperationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function validationerror(Request $request){
+        
+          $rules = [
+              'rm_id' => 'required:raw_product',
+              'grade_id' => 'required:raw_product',
+              'rp_name' => 'required:raw_product',
+              'qty' => 'required|numeric:raw_product',
+              'cost' => 'required|numeric:raw_product',
+          ];
+          $message = [
+              'rm_id' => 'raw product',
+              'grade_id' =>'grade name',
+              'rp_name' => 'raw product name',
+              'qty' => 'quantity',
+              'cost' => 'cost'
+          ];
+          $this->validate($request,$rules,[],$message);
+      }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
-        ]);
+        $this->validationerror($request);
         $grade = $request->grade_id;
         $laborcost = new LaborCost;
         $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
@@ -99,15 +111,10 @@ class RawmaterialSeperationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'rm_id' => 'required:raw_product',
-            'grade_id' => 'required:raw_product',
-            'rp_name' => 'required:raw_product',
-            'qty' => 'required|numeric:raw_product',
-            'cost' => 'required|numeric:raw_product',
-        ]);
+        $this->validationerror($request);
         $rawProductId = $request->rp_id;
         $grade = $request->grade_id;
 
@@ -118,7 +125,7 @@ class RawmaterialSeperationController extends Controller
             $rawProducts = RawProduct::findOrfail($rawProductId);
             $data = $request->all();
             $rawProducts->fill($data)->save();          
-           
+            
             $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
             $workedRecord->lc_id = $laborCostObj->lc_id;
             $workedRecord->cost = $laborCostObj->cost;

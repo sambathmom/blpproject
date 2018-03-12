@@ -56,13 +56,29 @@ class ProcessDryingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
+    public function validationerror(Request $request){
+        $rules = [
             'dp_name' => 'required',
             'qty' => 'required|numeric',
             'cost' => 'required|numeric'
-        ]);
+        ];  
+       
+        $message = [
+                'dp_name' => 'dired product name',
+                'qty' => 'quantity',
+                'cost' => 'cost'
+            
+        ];
+      return $this->validate($request, $rules, [], $message);
+    }
+    public function store(Request $request)
+    {
+        self:: validationerror($request);
+        $driedProduct = new DriedProduct;
+        $data = $request->all();   
+        $itemId = $driedProduct->getIdentity();
+        $workedRecord = new WorkedRecords;
+        $workedRecord->item_id = $itemId;
         $grade = $request->grade_id;
         $laborcost = new LaborCost;
         $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
@@ -97,9 +113,9 @@ class ProcessDryingController extends Controller
      */
     public function update(Request $request)
     {
+        self:: validationerror($request);
         $diredId = $request->dp_id;
         $grade = $request->grade_id;
-
         $laborcost = new LaborCost;
         $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
 

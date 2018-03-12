@@ -11,7 +11,7 @@
         </section>  
         <div class="col-md-12">
             <a href="{{url('processmaterialreceiving/create')}}">
-                <span class="pull-right"><i class="fa fa-plus"></i>New process materail</span>
+                <span class="pull-right"><i class="fa fa-plus"></i>New process material</span>
             </a>   
             @if(Session::has ('getmessage'))
                 <div class="alert alert-success col-sm-3 pull-right">
@@ -29,10 +29,10 @@
                                     <th>#</th>
                                     <th>Staff name</th>
                                     <th>Raw product name</th>
-                                    <th>Process materail name</th>
+                                    <th>Process material name</th>
                                     <th>Quantity</th>
                                     <th>Cost</th>
-                                    <th width="110">Edit</th>
+                                    <th width="110">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>  

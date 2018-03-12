@@ -44,7 +44,23 @@ class ProcessMaterialReceivingController extends Controller
         $staffs = Staff::all();
         return view('processmaterialreceiving.create',['rawProducts'=>$rawProducts,'staffs'=>$staffs]);
     }
-
+    public function validationerror(Request $request){
+        $rules = [
+            'rp_id' => 'required:process_material',
+            'pm_name' => 'required:process_material',
+            'qty' => 'required|numeric:process_material',
+            'cost' => 'required|numeric:process_material',
+        ];  
+       
+        $message = [
+            'rp_id' => 'raw product name',
+            'pm_name' => 'process material name',
+            'qty' => 'quantity',
+            'cost' => 'cost',
+            
+        ];
+      return $this->validate($request, $rules, [], $message);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -53,12 +69,7 @@ class ProcessMaterialReceivingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'rp_id' => 'required:process_material',
-            'pm_name' => 'required:process_material',
-            'qty' => 'required|numeric:process_material',
-            'cost' => 'required|numeric:process_material',
-        ]);
+        $this->validationerror($request);
         $prcessMaterialId = $request->rp_id;
         $rawProduct = RawProduct::findOrfail($prcessMaterialId);
         $gradeId = $rawProduct->grade_id;
@@ -95,13 +106,7 @@ class ProcessMaterialReceivingController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'rp_id' => 'required:process_material',
-            'pm_name' => 'required:process_material',
-            'qty' => 'required|numeric:process_material',
-            'cost' => 'required|numeric:process_material',
-        ]);
-
+        $this->validationerror($request);
         $id = $request->pm_id;
         $prcessMaterialId = $request->rp_id;
         $rawProduct = RawProduct::findOrfail($prcessMaterialId);
