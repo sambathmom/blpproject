@@ -41,11 +41,11 @@
                             </tr>
                         </thead>
                         <tbody>  
-                            {{$i = 1}}
+                            <?php $i = 1 ?>
                             @foreach ($workedRecords as $workedRecord)
                                 <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$workedRecord->first_name}} {{$workedRecord->middle_name}}{{$workedRecord->last_name}}</td>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$workedRecord->last_name}} {{$workedRecord->middle_name}}{{$workedRecord->first_name}}</td>
                                     <td>{{$workedRecord->totalqty}}</td>
                                     <td></td> 
                                     <td>{{$workedRecord->totalcost}}</td>
@@ -53,7 +53,6 @@
                                         <a href="{{url('reports/viewworkedrecordsdetail', $workedRecord->staff_id)}}" class="btn btn-success">Detail</a>
                                     </td>
                                 </tr>
-                                {{ $i++ }}
                             @endforeach                
                         </tbody>  
                     </table>   

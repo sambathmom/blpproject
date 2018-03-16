@@ -96,4 +96,5 @@ Route::get('reports/viewworkedrecords','ReportsController@viewWorkedRecords');
 Route::get('reports/viewworkedrecordsdetail/{id}','ReportsController@viewworkedRecordsDetail');
 Route::get('reports/viewlosingrawmaterials','ReportsController@viewLosingRowMaterials');
 Route::get('reports/viewlosingitemdetial/{id}','ReportsController@viewLosingItemDetail');
+Route::get('reports/viewrawproductlosing/{start}/{end}','ReportsController@viewRawProductLosing');
 

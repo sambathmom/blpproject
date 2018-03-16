@@ -15,7 +15,7 @@ use App\WorkedRecords;
 class ProcessShapingController extends Controller
 {
 
-    protected $workTypeId = 61;
+    protected $workTypeId = 6;
     /**
      * Display a listing of the resource.
      *

@@ -66,8 +66,7 @@ class ProcessDryingController extends Controller
         $message = [
                 'dp_name' => 'dired product name',
                 'qty' => 'quantity',
-                'cost' => 'cost'
-            
+                'cost' => 'cost'           
         ];
       return $this->validate($request, $rules, [], $message);
     }

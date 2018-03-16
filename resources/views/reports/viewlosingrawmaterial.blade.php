@@ -12,33 +12,23 @@
       
         <div class="box">
             <div class="content">
-                <div class="col-md-12"> 
-                    <table  border="1" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>#</th>
-                                <th >Raw material name</th>
-                                <th>Total quantity</th>
-                                <th>Losing quantity</th>
-                                <th width="80px"> Detail</th>
-                            </tr>
-                        </thead>
-                        <tbody>  
-                            {{$i = 1}}
-                            @foreach ($losingRawMaterials as $losingRawMaterial)
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$losingRawMaterial->rm_name}}</td>                                     
-                                    <td>{{$losingRawMaterial->qty}}</td>
-                                    <td>{{$losingRawMaterial->qty - $losingRawMaterial->totalqty}}</td>
-                                    <td>
-                                        <a href="{{url('reports/viewlosingitemdetial', $losingRawMaterial->rm_id)}}" class="btn btn-success">Detail</a>
-                                    </td>
-                                </tr>
-                                {{ $i++ }}
-                            @endforeach                
-                        </tbody>  
-                    </table>   
+                <div class="row">
+                    <div class="margin-bottom-10px">
+                        <div class="col-md-4">
+                            <label class="col-md-3">From</label>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" id="startDate" name="start">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-3">To</label>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" id="endDate" name="end">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" id="append-table"> 
                 </div>
             </div>
         </div>

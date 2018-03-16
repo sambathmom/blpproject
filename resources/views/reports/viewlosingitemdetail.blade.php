@@ -13,32 +13,55 @@
         <div class="box">
             <div class="content">
                 <div class="col-md-12"> 
+                    <h4>Raw product: {{$rawProduct->rp_name}}</h4>
                     <table  border="1" class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th >Raw material name</th>
-                                <th>Total quantity</th>
-                                <th>Losing quantity</th>
-                                <th width="80px"> Detail</th>
+                                <th>Process material name</th>
+                                <th>Staff</th>
+                                <th>Process cleaning losing</th>
+                                <th>Staff</th>
+                                <th>Process drying losing</th>
+                                <th>Staff</th>
+                                <th>Process shaping losing</th>
+                                <th>Overall yeild</th>
                             </tr>
                         </thead>
                         <tbody>  
-                            {{$i = 1}}
-                            @foreach ($losingRawMaterials as $losingRawMaterial)
+                            <?php $i = 1; $totalCleaningLost = 0; $totalDryingLost = 0; $totalShapingLost = 0; ?>
+                            @foreach ($processMaterialLosings as $processMaterialLosing)
+                                <?php $totalYeild = number_format(($processMaterialLosing->shapedqty / $processMaterialLosing->qty) * 100, 2) ?>
                                 <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$losingRawMaterial->rm_name}}</td>                                     
-                                    <td>{{$losingRawMaterial->qty}}</td>
-                                    <td>{{$losingRawMaterial->qty - $losingRawMaterial->totalqty}}</td>
-                                    <td>
-                                        <a href="{{url('reports/viewworkedrecordsdetail', $losingRawMaterial->rm_id)}}" class="btn btn-success">Detail</a>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$processMaterialLosing->pm_name}}</td>   
+                                    <td>{{$processMaterialLosing->cleanstaff}}</td>                                  
+                                    <td>{{$processMaterialLosing->qty - $processMaterialLosing->cleanqty}}</td>
+                                    <td>{{$processMaterialLosing->driedstaff}}</td>
+                                    <td>{{$processMaterialLosing->cleanqty - $processMaterialLosing->driedqty}}</td>
+                                    <td>{{$processMaterialLosing->shapedstaff}}</td>
+                                    <td>{{$processMaterialLosing->driedqty - $processMaterialLosing->shapedqty}}</td>
+                                    @if ($totalYeild > 90)
+                                    <td class="bgc-green">
+                                        {{number_format(($processMaterialLosing->shapedqty / $processMaterialLosing->qty) * 100, 2)}}%
                                     </td>
+                                    @else 
+                                    <td class="bgc-red">
+                                        {{number_format(($processMaterialLosing->shapedqty / $processMaterialLosing->qty) * 100, 2)}}%
+                                    </td>
+                                    @endif
                                 </tr>
-                                {{ $i++ }}
+                                <?php 
+                                    $totalCleaningLost = $totalCleaningLost + ($processMaterialLosing->qty - $processMaterialLosing->cleanqty);
+                                    $totalDryingLost = $totalDryingLost + ($processMaterialLosing->cleanqty - $processMaterialLosing->driedqty);
+                                    $totalShapingLost = $totalShapingLost + ($processMaterialLosing->shapedqty - $processMaterialLosing->driedqty);
+                                ?>
                             @endforeach                
                         </tbody>  
                     </table>   
+                    <p>Total lost in cleaning process: {{$totalCleaningLost}}</p>
+                    <p>Total lost in drying process: {{$totalDryingLost}}</p>
+                    <p>Total lost in shaping process: {{$totalShapingLost}}</p>
                 </div>
             </div>
         </div>
