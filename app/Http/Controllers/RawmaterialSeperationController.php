@@ -79,9 +79,9 @@ class RawmaterialSeperationController extends Controller
         $this->validationerror($request);
         $grade = $request->grade_id;
         $laborcost = new LaborCost;
-        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
 
-        if ($laborcostObj) {
+        if ($laborCostObj) {
             $rawMaterialSeperation = new RawProduct;
             $data = $request->all();
             $rawMaterialSeperation->fill($data)->save();
@@ -90,8 +90,8 @@ class RawmaterialSeperationController extends Controller
             $workedRecord = new WorkedRecords;
             $workedRecord->item_id = $itemId;           
             $workedRecord->wt_id = $this->workType;           
-            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
-            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id=$request->staff_id;
             $workedRecord->qty=$request->qty;
             $workedRecord->save();
@@ -119,15 +119,15 @@ class RawmaterialSeperationController extends Controller
         $grade = $request->grade_id;
 
         $laborcost = new LaborCost;
-        $laborcostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
 
-        if ($laborcostObj) {
+        if ($laborCostObj) {
             $rawProducts = RawProduct::findOrfail($rawProductId);
             $data = $request->all();
-            $rawProducts->fill($data)->save();        
+            $rawProducts->fill($data)->save();          
             $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
-            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
-            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id=$request->staff_id;
             $workedRecord->qty=$request->qty;
             $workedRecord->save();
@@ -135,7 +135,7 @@ class RawmaterialSeperationController extends Controller
             return redirect('rawmaterialseperation/index');
         } else {
             Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
-            return redirect ('rawmaterialseperation/create');
+            return redirect ('rawmaterialseperation/index');
         }
        
     }

@@ -49,7 +49,6 @@ Route::post('laborcost/store/',['as'=>'laborcoststore','uses'=>'LaborCostControl
 Route::post('laborcost/update',['as'=>'laborcostupdate','uses'=>'LaborCostController@update']);
 Route::post('laborcost/destroy',['as'=>'laborcostdestroy','uses'=>'LaborCostController@destroy']);
 
-
 // Raw material purchasing
 Route::get('rawmaterialpurchasing/index',['as'=>'rawmaterialpurchasingindex','uses'=>'RawMaterialPurchasingController@index']);
 Route::get('rawmaterialpurchasing/create',['as'=>'rawmaterialpurchasingcreate','uses'=>'RawMaterialPurchasingController@create']);
@@ -83,11 +82,18 @@ Route::get('processcleaning/index',['as'=>'processcleaningindex','uses'=>'Proces
 Route::get('processcleaning/create',['as'=>'processcleaningcreate','uses'=>'ProcessCleaningController@create']);
 Route::post('processcleaning/store/',['as'=>'processcleaningstore','uses'=>'ProcessCleaningController@store']);
 Route::post('processcleaning/update',['as'=>'processcleaningupdate','uses'=>'ProcessCleaningController@update']);
-Route::get('processcleaning/destroy/{id}',['as'=>'processcleaningdestroy','uses'=>'ProcessCleaningController@destroy']);
+Route::get('processcleaning/destroy',['as'=>'processcleaningdestroy','uses'=>'ProcessCleaningController@destroy']);
 
 // Process Driying
-Route::get('/processdriying/index','ProcessDriyingController@index');
-Route::get('/processdriying/create','ProcessDriyingController@create');
-Route::POST('/processdriying/store','ProcessDriyingController@store');
-Route::POST('/processdriying/update','ProcessDriyingController@update');
-Route::POST('/processdriying/destroy','ProcessDriyingController@destroy');
+Route::get('/processdrying/index','ProcessDryingController@index');
+Route::get('/processdrying/create','ProcessDryingController@create');
+Route::POST('/processdrying/store','ProcessDryingController@store');
+Route::POST('/processdrying/update','ProcessDryingController@update');
+Route::POST('/processdrying/destroy','ProcessDryingController@destroy');
+
+// Report
+Route::get('reports/viewworkedrecords','ReportsController@viewWorkedRecords');
+Route::get('reports/viewworkedrecordsdetail/{id}/{worktypeid}','ReportsController@viewworkedRecordsDetail');
+Route::get('reports/viewlosingrawmaterials','ReportsController@viewLosingRowMaterials');
+Route::get('reports/viewlosingitemdetial/{id}','ReportsController@viewLosingItemDetail');
+

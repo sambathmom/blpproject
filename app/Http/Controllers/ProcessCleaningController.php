@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProcessProduct;
-use App\ProcessCleaning;
 use App\ProcessMaterial;
 use Session;
 use DB;
@@ -14,10 +13,12 @@ use App\RawProduct;
 use App\RawMaterial;
 use App\WorkedRecords;
 use App\LaborCost;
+use App\CleanProduct;
 
 class ProcessCleaningController extends Controller
 {
     protected $workTypeId = 4;
+
     /**
      * Display a listing of the resource.
      *
@@ -25,16 +26,17 @@ class ProcessCleaningController extends Controller
      */
     public function index()
     {
-        $processCleanings = DB::table('process_cleaning')
-        ->join('process_product', 'process_product.pp_id', '=', 'process_cleaning.pp_id')
-        ->join('staff', 'staff.staff_id', '=', 'process_cleaning.staff_id')
-        ->select('process_cleaning.*', 'process_product.pp_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('pc_id','ASC')
+        $cleanProducts = DB::table('clean_product')
+        ->join('staff', 'staff.staff_id', '=', 'clean_product.staff_id')
+        ->join('grade', 'grade.grade_id', '=', 'clean_product.grade_id')
+        ->join('process_material', 'process_material.pm_id', '=', 'clean_product.pm_id')
+        ->select('clean_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+        ->orderBy('cp_id','ASC')
         ->paginate(20); 
-        $staffs = Staff::all();
         $processMaterials = ProcessMaterial::all();
+        $staffs = Staff::all();
         $grades = Grade::all();
-        return view('processcleaning.index', compact('processCleanings', 'processMaterials', 'staffs', 'grades'));
+        return view('processcleaning.index', compact('cleanProducts', 'processMaterials', 'staffs', 'grades')); 
     }
 
     /**
@@ -45,9 +47,9 @@ class ProcessCleaningController extends Controller
     public function create()
     {
         $staffs = Staff::all();
-        $processMaterials = ProcessMaterial::all();
         $grades = Grade::all();
-        return view('processcleaning.create', compact('processMaterials', 'staffs', 'grades'));
+        $processMaterials = ProcessMaterial::all();
+        return view('processcleaning/create', compact('staffs', 'grades', 'processMaterials')); 
     }
 
     /**
@@ -59,35 +61,82 @@ class ProcessCleaningController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
+            'cp_name' => 'required',
+            'qty' => 'required|numeric',
+            'cost' => 'required|numeric'
         ]);
         $gradeId = $request->grade_id;
-        $processMaterialId = $request->pm_id;
-        $laborCost = new LaborCost;
-        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
-
+        $laborcost = new LaborCost;
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($gradeId,$this->workTypeId);
         if ($laborCostObj) {
-            $processMaterial = ProcessMaterial::findOrFail($processMaterialId);
-            $rawProductId = $processMaterial->rp_id;
-            $rawProduct = RawProduct::findOrFail($rawProductId);
-            $rawMaterialId = $rawProduct->rm_id;
-            
-            
+            $cleanProduct = new CleanProduct;
+            $data = $request->all();
+            $cleanProduct->fill($data)->save();
+            $itemId = $cleanProduct->getIdentity();
+
             $workedRecord = new WorkedRecords;
-            $workedRecord->item_id = $rawMaterialId;
-            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
-            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-            $workedRecord->wt_id = $this->workTypeId;
-            $workedRecord->qty = $request->qty;
+            $workedRecord->item_id = $itemId;                    
+            $workedRecord->wt_id = $this->workTypeId;          
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->qty = $request->qty;
             $workedRecord->save();
-            Session::flash('getmessage','Inserted successfully!');
-            return redirect('processcleaning/index');
+            Session::flash('getmessage','Insert successfully!');
+            return redirect ('processcleaning/index');
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processcleaning/create');
+        }    
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $cleanProductId = $request->cp_id;
+        $gradeId = $request->grade_id;
+
+        $laborcost = new LaborCost;
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
+
+        if ($laborCostObj) {
+            $data = $request->all();
+            $cleanProduct = CleanProduct::findOrfail($cleanProductId);
+            $cleanProduct->fill($data)->save();
+            
+            $workedRecord = WorkedRecords::where([['item_id',$cleanProductId],['wt_id', $this->workTypeId]])->first();
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->staff_id=$request->staff_id;
+            $workedRecord->qty=$request->qty;
+            $workedRecord->save();
+            Session::flash('getmessage','Update successfully!');
+            return redirect('processcleaning/index');
+        } else {
+            Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processcleaning/index');
         }
-        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $cleanProductId = $request->cp_id;
+        $cleanProduct = CleanProduct::find($cleanProductId);
+        $cleanProduct->delete();
+        $workedRecord = WorkedRecords::where([['item_id',$cleanProductId],['wt_id',$this->workTypeId]])->first();
+        $workedRecord->delete();
+        Session::flash('getmessage','Delete successfully!');
+        return redirect('processcleaning/index');
     }
 }

@@ -13,28 +13,28 @@ use App\WorkedRecords;
 use App\LaborCost;
 use Session;
 
-class ProcessDriyingController extends Controller
+class ProcessDryingController extends Controller
 {
+    protected $workType = 5;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $workType = 5;
     public function index()
     {
         $driedProducts = DB::table('dried_product')
-        ->join('staff', 'staff.staff_id', '=', 'dried_product.staff_id')
-        ->join('grade', 'grade.grade_id', '=', 'dried_product.grade_id')
-        ->join('process_material', 'process_material.pm_id', '=', 'dried_product.pm_id')
-        ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('dp_id','ASC')
-        ->paginate(20); 
+            ->join('staff', 'staff.staff_id', '=', 'dried_product.staff_id')
+            ->join('grade', 'grade.grade_id', '=', 'dried_product.grade_id')
+            ->join('process_material', 'process_material.pm_id', '=', 'dried_product.pm_id')
+            ->select('dried_product.*', 'process_material.pm_name', 'grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+            ->orderBy('dp_id','ASC')
+            ->paginate(20); 
         $processMaterials = ProcessMaterial::all();
         $staffs = Staff::all();
         $grades = Grade::all();
-        return view('processdriying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades'));
-    
+        return view('processdrying.index', compact('driedProducts', 'processMaterials', 'staffs', 'grades')); 
     }
 
     /**
@@ -47,8 +47,7 @@ class ProcessDriyingController extends Controller
         $staffs = Staff::all();
         $grades = Grade::all();
         $processMaterials = ProcessMaterial::all();
-        return view('processdriying/create', compact('staffs', 'grades', 'processMaterials'));
-    
+        return view('processdrying/create', compact('staffs', 'grades', 'processMaterials'));  
     }
 
     /**
@@ -92,16 +91,16 @@ class ProcessDriyingController extends Controller
             $workedRecord = new WorkedRecords;
             $workedRecord->item_id = $itemId;                    
             $workedRecord->wt_id = $this->workType;          
-            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
-            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id = $request->staff_id;
             $workedRecord->qty = $request->qty;
             $workedRecord->save();
             Session::flash('getmessage','Insert successfully!');
-            return redirect ('processdriying/index');
+            return redirect ('processdrying/index');
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
-            return redirect ('processdriying/create');
+            return redirect ('processdrying/create');
         }
     }
 
@@ -126,19 +125,17 @@ class ProcessDriyingController extends Controller
             $driedProduct->fill($data)->save();
             
             $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
-            $workedRecord->lc_id = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->lc_id;
-            $workedRecord->cost = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id=$request->staff_id;
             $workedRecord->qty=$request->qty;
             $workedRecord->save();
             Session::flash('getmessage','Update successfully!');
-            return redirect('processdriying/index');
+            return redirect('processdrying/index');
         } else {
             Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
-            return redirect ('processdriying/index');
+            return redirect ('processdrying/index');
         }
-
-       
     }
 
     /**
@@ -155,6 +152,6 @@ class ProcessDriyingController extends Controller
         $workedRecord = WorkedRecords::where([['item_id',$diredId],['wt_id',$this->workType]])->first();
         $workedRecord->delete();
         Session::flash('getmessage','Delete successfully!');
-        return redirect('processdriying/index');
+        return redirect('processdrying/index');
     }
 }

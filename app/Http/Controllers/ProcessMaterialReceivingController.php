@@ -84,8 +84,8 @@ class ProcessMaterialReceivingController extends Controller
 
             $workedRecord = new WorkedRecords;
             $workedRecord->item_id = $processMaterial->getIdentity();
-            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->wt_id = $this->workTypeId;
             $workedRecord->qty = $request->qty;
             $workedRecord->staff_id = $request->staff_id;
@@ -95,8 +95,7 @@ class ProcessMaterialReceivingController extends Controller
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processmaterialreceiving/create');
-        }
-        
+        }        
     }
 
     /**
@@ -119,11 +118,10 @@ class ProcessMaterialReceivingController extends Controller
             $processMaterial = ProcessMaterial::findOrFail($id);
             $processMaterialUpdate = $request->all();
             $processMaterial->fill($processMaterialUpdate)->save();
-
            
             $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId] ])->first();
-            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->wt_id = $this->workTypeId;
             $workedRecord->qty = $request->qty;
             $workedRecord->staff_id = $request->staff_id;
@@ -133,8 +131,7 @@ class ProcessMaterialReceivingController extends Controller
         } else {
             ession::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('processmaterialreceiving/index');
-        }
-        
+        }       
     }
 
     /**

@@ -15,7 +15,7 @@ use App\WorkedRecords;
 class ProcessShapingController extends Controller
 {
 
-    protected $workTypeId = 6;
+    protected $workTypeId = 61;
     /**
      * Display a listing of the resource.
      *
@@ -83,21 +83,28 @@ class ProcessShapingController extends Controller
         $gradeId = $request->grade_id;
         
         $laborCost = new LaborCost;
-        $shapedProduct = new ShapedProduct;
-        $shapedProductSave = $request->all();
-        $shapedProduct->fill($shapedProductSave)->save();
-       
-        $workedRecord = new WorkedRecords;
-        $workedRecord->item_id = $shapedProduct->getIdentity();
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
 
-        Session::flash('getmessage','Insert successfully!');
-        return redirect ('processshaping/index');
+        if ($laborCostObj) {
+            $shapedProduct = new ShapedProduct;
+            $shapedProductSave = $request->all();
+            $shapedProduct->fill($shapedProductSave)->save();
+           
+            $workedRecord = new WorkedRecords;
+            $workedRecord->item_id = $shapedProduct->getIdentity();
+            $workedRecord->lc_id = $laborCostObj->lc_id;;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+    
+            Session::flash('getmessage','Insert successfully!');
+            return redirect ('processshaping/index');
+        } else {
+            Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect ('processshaping/create');
+        }    
     }
 
     /**
@@ -111,20 +118,27 @@ class ProcessShapingController extends Controller
         $this->validationerror($request);
         $id = $request->sp_id;
         $gradeId = $request->grade_id;
-        $shapedProduct = shapedProduct::findOrFail($id);
-        $shapedProductUpdate = $request->all();
-        $shapedProduct->fill($shapedProductUpdate)->save();
-
         $laborCost = new LaborCost;
-        $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
-        $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;;
-        $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
-        $workedRecord->wt_id = $this->workTypeId;
-        $workedRecord->qty = $request->qty;
-        $workedRecord->staff_id = $request->staff_id;
-        $workedRecord->save();
-        Session::flash('getmessage','Update successfully!');
-        return redirect('processshaping/index');
+        $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId);
+        
+        if ($laborCostObj) {
+            $shapedProduct = shapedProduct::findOrFail($id);
+            $shapedProductUpdate = $request->all();
+            $shapedProduct->fill($shapedProductUpdate)->save();
+            $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
+            $workedRecord->lc_id = $laborCostObj->lc_id;;
+            $workedRecord->cost = $laborCostObj->cost;
+            $workedRecord->wt_id = $this->workTypeId;
+            $workedRecord->qty = $request->qty;
+            $workedRecord->staff_id = $request->staff_id;
+            $workedRecord->save();
+            Session::flash('getmessage','Update successfully!');
+            return redirect('processshaping/index');
+        } else {
+            Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
+            return redirect('processshaping/index');
+        }
+        
     }
 
     /**

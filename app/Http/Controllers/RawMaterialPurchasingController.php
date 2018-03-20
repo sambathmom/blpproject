@@ -86,8 +86,8 @@ class RawMaterialPurchasingController extends Controller
            
             $workedRecord = new WorkedRecords;
             $workedRecord->item_id = $rawMaterail->getIdentity();
-            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
-            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->wt_id = $this->workTypeId;
             $workedRecord->qty = $request->qty;
             $workedRecord->staff_id = $request->staff_id;
@@ -125,8 +125,8 @@ class RawMaterialPurchasingController extends Controller
 
 
             $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
-            $workedRecord->lc_id = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->lc_id;
-            $workedRecord->cost = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId)->cost;
+            $workedRecord->lc_id = $laborCostObj->lc_id;
+            $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->wt_id = $this->workTypeId;
             $workedRecord->qty = $request->qty;
             $workedRecord->staff_id = $request->staff_id;
