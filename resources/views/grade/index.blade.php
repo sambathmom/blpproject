@@ -15,10 +15,10 @@
             <a href="{{route('gradecreate')}}" >
                 <span class="pull-right"><i class="fa fa-plus"></i> New grade</span>
             </a>     
-             @if(Session::has('getmessage')) 
+             @if(Session::has('getmess')) 
                 <div class="row">       
                     <div class="alert alert-success col-md-3" pull-right>
-                        {{Session::get('getmessage')}}                                               
+                        {{Session::get('getmess')}}                                               
                     </div> 
                 </div>                      
             @endif   

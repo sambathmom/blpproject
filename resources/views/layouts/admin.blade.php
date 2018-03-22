@@ -267,7 +267,7 @@
 <script src="{{ asset('assets/admin/js/validator/passwordscheck.js')}}"></script>
 <script src="{{ asset('js/general.js')}}"></script>
 <script src="{{ asset('js/reports.js')}}"></script>
-
+<script src="{{ asset('js/workrecordreport.js')}}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
       $('.khmer').click(function() {

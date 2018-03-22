@@ -5,7 +5,7 @@
         <section class="content-header">
            <div class="col-sm-12 row">
                 <div class="col-sm-8">
-                    <h2>View worked reocrd detail</h2>      
+                    <h2>View worked reocrd list</h2>      
                 </div>
             </div>
         </section>  
@@ -15,66 +15,42 @@
                 <div class="row">
                     <div class="col-md-12"> 
                    
-                    <p> {{$staff->last_name}}</p>
+                    <p> Details worked records of {{$staff->last_name}}(ID = {{$staff->staff_id}})</p>
                   
                         <table  border="1" class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
                                   
-                                    <th >WorkType</th>
+                                    <!-- <th >WorkType</th>
                                     <th>Baby lot</th>
                                     <th>Input quantity</th>
                                     <th>Output quantity</th>
                                     <th>Losing</th>
-                                    <th>PCS</th>
+                                    <th>PCS</th> -->
+                                    <th >No</th>
+                                    <th>Task</th>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                    <th>Total cost</th>
+                                    
                                
                                 </tr>
                             </thead>
                             <tbody>  
                                     <tr>
-                                 
+                                    <?php $i = 1 ?>
                                     @foreach ($workedRecords as $workedRecord)
-                                    @if($workedRecord->wt_id==1)
-                                        <tr>
+                                            <tr>
+                                            <td>{{$i++}}</td>
                                             <td>{{$workedRecord->workType}}</td>
-                                            <td>{{$workedRecord->cleanMaterial}}</td>
-                                            <td>{{$workedRecord->rawQuantity}}</td>
-                                            <td>{{$workedRecord->cleanQuantity}}</td>
-                                            <td>{{$workedRecord->rawQuantity-$workedRecord->cleanQuantity}}</td>
-                                            <td></td>
+                                            <td>{{$workedRecord->date}}</td>
+                                            <td>{{$workedRecord->babyLotName}}</td>
+                                            <td>{{$workedRecord->Quantity}}</td>
+                                            <td>{{$workedRecord->cost}}</td>
+                                            <td>{{$workedRecord->cost*$workedRecord->Quantity}}</td>
                                         </tr>
-                                    @elseif($workedRecord->wt_id==4)
-                                        <tr>
-                                            <td>{{$workedRecord->workType}}</td>
-                                            <td>{{$workedRecord->cleanMaterial}}</td>
-                                            <td>{{$workedRecord->rawQuantity}}</td>
-                                            <td>{{$workedRecord->cleanQuantity}}</td>
-                                            <td>{{$workedRecord->rawQuantity-$workedRecord->cleanQuantity}}</td>
-                                            
-                                            <td></td>
-                                        </tr>
-                                    @elseif($workedRecord -> wt_id == 5)
-                                        <tr>
-                                            <td>{{$workedRecord->workType}}</td>
-                                            <td>{{$workedRecord->cleanMaterial}}</td>
-                                            <td>{{$workedRecord->cleanQuantity}}</td>
-                                            <td>{{$workedRecord->quantityDired}}</td>
-                                            <td>{{$workedRecord->cleanQuantity-$workedRecord->quantityDired}}</td>
-                                            
-                                            <td></td>
-                                        </tr>
-                                  
-                                   @elseif($workedRecord -> wt_id == 6)
-                                        <tr>
-                                            <td>{{$workedRecord->workType}}</td>
-                                            <td>{{$workedRecord->cleanMaterial}}</td>
-                                            <td>{{$workedRecord->cleanQuantity-$workedRecord->quantityDired}}</td>
-                                            <td>{{$workedRecord->cleanQuantity}}</td>
-                                            <td>{{$workedRecord->quantityDired}}</td>
-                                            <td></td>
-                                        </tr>
-                                   @endif
-
                                     @endforeach  
                                     </tr>
                             </tbody>  

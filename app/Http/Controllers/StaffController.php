@@ -37,6 +37,7 @@ class StaffController extends Controller
 			'last_name' => 'required',
 			'first_name' => 'required',
 			'sex' => 'required',
+			'picture'=>'required',
 		    'phone' => 'required|numeric|unique:staff',
 		    'email' => 'required|email|unique:staff',
 		];
@@ -44,6 +45,7 @@ class StaffController extends Controller
 			'last_name' => 'last name',
 			'first_name' => 'first name',
 			'sex' => 'sex',
+			'picture'=>'picture',
 		    'phone' => 'phone',
 		    'email' => 'email',
 		];

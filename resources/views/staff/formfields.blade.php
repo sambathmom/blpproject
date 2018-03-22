@@ -63,6 +63,7 @@
         <label for="picture" class="col-md-4 control-label"><strong>Picture: <span class="required" aria-required="true">*</span></strong></label>
         <div class="col-md-7">
             <input type="file" name="picture" id="picture" class="form-control">
+            <span class="error">{{ $errors->first('picture') }}</span>
         </div>
     </div>
 </div>
