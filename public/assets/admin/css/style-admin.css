@@ -1,6 +1,7 @@
 *{
 	margin: 0px;
-	padding: 0px;
+  padding: 0px;
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
 }
 body {
   -webkit-font-smoothing: antialiased;
@@ -1250,38 +1251,7 @@ span.error p{ color: #F00 !important; }
 	float: right;
 	margin: 0 auto;
 }
-.pagination > li > a:hover,
-.pagination > li > a{
-	background-color: inherit;
-    font-size: 16px;
-	border: none;
-}
-.pagination > .active > a, 
-.pagination > .active > a:focus, 
-.pagination > .active > a:hover, 
-.pagination > .active > span, 
-.pagination > .active > span:focus, 
-.pagination > .active > span:hover {
-    background-color: inherit;
-    color: #21409a;
-    cursor: default;
-    font-size: 30px;
-    margin-top: -11px;
-    z-index: 2;
-	border: none;
-}
-.pagination > li:first-child > a, .pagination > li:first-child > span,
-.pagination > li:last-child > a, .pagination > li:last-child > span {
-	border: none;	
-}
 
-/*customize icon edit and delete*/
-.fa.fa-trash,
-.fa.fa-edit{
-	font-size: 18px;
-}
-.fa-trash{color: #F00;}
-.btn-group, .btn-group-vertical{ float: left; }
 /*box form page edit user */
 .box-form{
 	border: 1px solid #dadada;
@@ -1488,7 +1458,7 @@ a.pull-right{color: #fff; text-align: right;}
     width: 100%;
 	float: left;
 }
-.btn{
+.btn{   
     border-radius: 0 !important;
     padding: 6px 20px;
 }
@@ -1666,27 +1636,6 @@ table.dataTable thead th:lang(km),
 .navbar-nav > li > a:lang(km),
 .sidebar-menu li > a:lang(km){
 	font-size: 14px;
-}
-.fa-circle-o{
-	background: rgba(0, 0, 0, 0) url("../images/fa-circle-o.png") no-repeat scroll 0 0;
-    float: left;
-    padding: 7px;
-}
-.fa-angle-right{
-	background: rgba(0, 0, 0, 0) url("../images/icon-arrow-left.svg") no-repeat scroll 0 0;
-	padding: 6px !important
-}
-.fa-list-alt{
-	background: rgba(0, 0, 0, 0) url("../images/fa-list-alt.png") no-repeat scroll 2px 12px;
-    padding: 9px 13px;
-}
-.fa-edit{
-	background: rgba(0, 0, 0, 0) url("../images/fa-edit.png") no-repeat scroll 7px 12px;
-    padding: 9px 13px;
-}
-.fa-folder{
-	background: rgba(0, 0, 0, 0) url("../images/icon-phum.png") no-repeat scroll -17px 12px;
-    padding: 9px 13px;
 }
 /*language*/
 .mylange{display: none;}

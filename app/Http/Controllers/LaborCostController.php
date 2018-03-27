@@ -20,7 +20,7 @@ class LaborCostController extends Controller
     {
         $laborCosts = DB::table('labor_cost')
             ->join('grade', 'labor_cost.grade_id', '=', 'grade.grade_id')
-            ->join('work_type', 'work_type.work_type_id', '=', 'labor_cost.work_type_id')
+            ->join('work_type', 'work_type.wt_id', '=', 'labor_cost.wt_id')
             ->select('labor_cost.*', 'grade.grade_name','work_type.wt_name')
             ->get();
         $grades = Grade::all();
@@ -39,7 +39,19 @@ class LaborCostController extends Controller
         $workTypes = WorkType::all();
         return view('laborcost.create', compact('grades', 'workTypes'));
     }
-
+    public function validationerror(Request $request){
+        $rules = [
+            'lc_name' => 'required',
+            'cost' => 'required|numeric',
+            'qty' => 'required|numeric'
+        ];
+        $message = [
+            'lc_name' => 'labor cost name',
+            'qty' => 'quantity',
+            'cost' => 'cost'
+        ];
+       return $this -> validate($request,$rules,[],$message);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -48,66 +60,44 @@ class LaborCostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
-        ]);
+        $this -> validationerror($request);
         $laborCost = new LaborCost;
         $data = $request->all();
 
         $laborCost->fill($data)->save();
-        Session::flash('getmess','Insert successfully!!!');
+        Session::flash('getmessage','Inserted successfully!');
         return redirect('laborcost/index');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'cost' => 'required|numeric',
-            'qty' => 'required|numeric'
-        ]);
+        $this -> validationerror($request);
         $laborCostId = $request->lc_id;
         $laborCost = LaborCost::findOrFail($laborCostId);
 
         $update = $request->all();
         $laborCost->fill($update)->save();
-        Session::flash('getmess','Update successfully!!!');
+        Session::flash('getmessage','Updated successfully!');
         return redirect('laborcost/index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $response = [];
+        $id = $request->lc_id;
         $laborCost = LaborCost::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!!!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
+        Session::flash('getmessage',' successfully!');
+        return redirect('laborcost/index');
     }
 }

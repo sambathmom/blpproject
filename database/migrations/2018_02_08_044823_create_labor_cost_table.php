@@ -16,7 +16,7 @@ class CreateLaborCostTable extends Migration
         Schema::create('labor_cost', function (Blueprint $table) {
             $table->increments('lc_id');
             $table->integer('grade_id');
-            $table->integer('work_type_id');
+            $table->integer('wt_id');
             $table->string('lc_name');
             $table->decimal('qty');
             $table->decimal('cost');

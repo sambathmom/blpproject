@@ -8,17 +8,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <input type="hidden" name="work_type_id" id="identityEdit">
-                        <div class="col-md-12 form-group">
-                            <div class="form-group row">
-                                <label for="gradeName" class="col-md-3 control-label"><strong>Work type Name: <span class="required" aria-required="true">* </span></strong></label>
-                                <div class="col-md-7">
-                                    <input placeholder="Work type name" class="form-control" id="workTypeName" name="wt_name" type="text">
-                                    <span class="error">{{ $errors->first('grade_name') }}</span>
-                                </div>
-                            </div>
-                        </div>                                                     
+                        <input type="hidden" name="wt_id" id="identityEdit">
+                        @include('worktype/formfields')                                                    
                     </div>
                 </div>
                 <div class="modal-footer">

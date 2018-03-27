@@ -16,7 +16,7 @@ class WorkTypeController extends Controller
     public function index()
     {
         $workType = new WorKType;
-        $workTypes = $workType::orderBy('work_type_id','ASC')->paginate(20);
+        $workTypes = $workType::orderBy('wt_id','ASC')->paginate(20);
         return view ('worktype/index', compact('workTypes'));
     }
 
@@ -38,15 +38,12 @@ class WorkTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'wt_name' => 'required'
-        ]);
-
+        $this->validate($request, [ 'wt_name' => 'required'], [], ['wt_name' => 'work type']);
         $workType = new WorKType;
         $data = $request->all();
 
         $workType->fill($data)->save();
-        Session::flash('getmess','Insert successfully!!!');
+        Session::flash('getmessage','Inserted successfully!');
         return redirect('worktype/index');
     }
 
@@ -58,29 +55,26 @@ class WorkTypeController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validate($request, [ 'wt_name' => 'required'], [], ['wt_name' => 'work type']);        
         $id = $request->work_type_id;
         $workType = WorkType::findOrFail($id);
         $update = $request->all();
         $workType->fill($update)->save();
-        Session::flash('getmess','Update successfully!!!');
+        Session::flash('getmessage','Updated successfully!');
         return redirect('worktype/index');
     }
 
      /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $response = [];
+        $id = $request->wt_id;
         $grade = WorKType::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!!!');
-        $response = [
-            'status' => 200
-        ];
-
-        return $response;
+        Session::flash('getmessage','Deleted successfully!');
+        return redirect('worktype/index');
     }
 }

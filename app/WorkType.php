@@ -8,7 +8,7 @@ class WorkType extends Model
 {
     
 	protected $table = 'work_type';
-    protected $primaryKey= 'work_type_id';
+    protected $primaryKey= 'wt_id';
     protected $fillable = [ 
 	    'wt_name'
   	];
