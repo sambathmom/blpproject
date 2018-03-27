@@ -25,12 +25,12 @@ class RawMaterialPurchasingController extends Controller
     public function index()
     {
         $rawMaterials = DB::table('raw_material')
-        ->join('supplier', 'supplier.supplier_id', '=', 'raw_material.supplier_id')
-        ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
-        ->join('staff', 'staff.staff_id', '=', 'raw_material.staff_id')
-        ->select('raw_material.*', 'supplier.company_name','grade.grade_name','staff.*')
-        ->orderBy('rm_id','ASC')
-        ->paginate(20); 
+            ->join('supplier', 'supplier.supplier_id', '=', 'raw_material.supplier_id')
+            ->join('grade', 'grade.grade_id', '=', 'raw_material.grade_id')
+            ->join('staff', 'staff.staff_id', '=', 'raw_material.staff_id')
+            ->select('raw_material.*', 'supplier.company_name','grade.grade_name','staff.*')
+            ->orderBy('rm_id','ASC')
+            ->paginate(20); 
         $suppliers = DB::table('supplier')->get();
         $grades = DB::table('grade')->get();
         $staffs = DB::table('staff')->get();
@@ -50,6 +50,7 @@ class RawMaterialPurchasingController extends Controller
         $suppliers = Supplier::all();
         return view('rawmaterialpurchasing.create',['rawMaterials'=>$rawMaterials,'grades'=>$grades, 'staffs' => $staffs, 'suppliers' => $suppliers]);
     }
+
     public function validationerror(Request $request){
         $rules = [
             'rm_name' => 'required:raw_material',
@@ -136,9 +137,7 @@ class RawMaterialPurchasingController extends Controller
         } else {
             Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('rawmaterialpurchasing/index');
-        }
-
-        
+        }   
     }
 
     /**

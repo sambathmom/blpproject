@@ -17,13 +17,13 @@
                         <div class="col-md-4">
                             <label class="col-md-3">From</label>
                             <div class="col-md-8">
-                                 <input type="date" class="form-control" id="startDateWorkedRecords" name="start">
+                                 <input type="text" class="form-control datepicker" id="startDateWorkedRecords" name="start">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="col-md-3">To</label>
                             <div class="col-md-8">
-                                <input type="date" class="form-control" id="endDateWorkedRecords">
+                                <input type="text" class="form-control datepicker" id="endDateWorkedRecords">
                             </div>
                         </div>
                     </div>

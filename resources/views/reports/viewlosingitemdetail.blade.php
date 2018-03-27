@@ -11,7 +11,7 @@
         </section>  
       
         <div class="box">
-            <div class="coWntent">
+            <div class="content">
                 <div class="col-md-12"> 
                     <h4>Raw product: {{$rawProduct->rp_name}}</h4>
                     <table  border="1" class="table table-striped">

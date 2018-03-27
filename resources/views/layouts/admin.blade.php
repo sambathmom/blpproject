@@ -267,7 +267,6 @@
 <script src="{{ asset('assets/admin/js/validator/passwordscheck.js')}}"></script>
 <script src="{{ asset('js/general.js')}}"></script>
 <script src="{{ asset('js/reports.js')}}"></script>
-<script src="{{ asset('js/workrecordreport.js')}}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
       $('.khmer').click(function() {
@@ -303,14 +302,18 @@ $(document).ready(function(){
 		});
 
         //Date picker
-        $(".datepicker").datepicker({ format: 'yyyy-mm-dd',autoclose: true });
-        function today(){
+        $(".datepicker").datepicker({ 
+            dateFormat: 'yy-mm-dd',
+            autoclose: true 
+        });
+
+        /*function today(){
             var d = new Date();
             var curr_date = d.getDate();
             var curr_month = d.getMonth() + 1;
             var curr_year = d.getFullYear();
             document.write(curr_date + "-" + curr_month + "-" + curr_year);
-        }
+        }*/
 
         // JQuery for active menu
         $(function(){
@@ -347,7 +350,7 @@ $(document).ready(function(){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js">
     </script>
     <script> 
-    $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
+        $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
     </script>
 </body>
 </html>

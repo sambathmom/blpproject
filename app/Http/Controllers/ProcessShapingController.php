@@ -24,13 +24,13 @@ class ProcessShapingController extends Controller
     public function index()
     {
         $processShapings = DB::table('shaped_product')
-                            ->join('process_material', 'process_material.pm_id', '=', 'shaped_product.pm_id')
-                            ->join('staff', 'staff.staff_id', '=', 'shaped_product.staff_id')
-                            ->join('grade','grade.grade_id','=','shaped_product.grade_id')
-                            ->select('shaped_product.*', 'process_material.pm_name',
-                            'staff.first_name','staff.middle_name','staff.last_name','grade.grade_name')
-                            ->orderBy('sp_id','ASC')
-                            ->paginate(20); 
+            ->join('process_material', 'process_material.pm_id', '=', 'shaped_product.pm_id')
+            ->join('staff', 'staff.staff_id', '=', 'shaped_product.staff_id')
+            ->join('grade','grade.grade_id','=','shaped_product.grade_id')
+            ->select('shaped_product.*', 'process_material.pm_name',
+            'staff.first_name','staff.middle_name','staff.last_name','grade.grade_name')
+            ->orderBy('sp_id','ASC')
+            ->paginate(20); 
         $processMaterails = ProcessMaterial::all();
         $grades = Grade::all();
         $staffs = Staff::all();

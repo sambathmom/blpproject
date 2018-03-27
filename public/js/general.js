@@ -220,4 +220,7 @@
         $('#identityDestroy').val($(this).data('identity'));
     });
 
+    $('#datepicker').datepicker({
+        autoclose: true
+    })  
 });

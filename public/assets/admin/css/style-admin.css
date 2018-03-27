@@ -1,6 +1,7 @@
 *{
 	margin: 0px;
-	padding: 0px;
+  padding: 0px;
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
 }
 body {
   -webkit-font-smoothing: antialiased;

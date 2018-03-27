@@ -2,8 +2,9 @@ $(document).ready(function(e) {
     var urlHead = 'http://localhost:8000/';
     $('#endDate').on('change', function(e) {
         e.preventDefault();
-        var startDate = $('#startDate').val();
+        var startDate = $('#startDate').val(); 
         var endDate = $('#endDate').val();
+        console.log(endDate);
 
         $.ajax({
             url: urlHead + 'reports/viewrawproductlosing/' + startDate + '/' + endDate,
@@ -25,7 +26,6 @@ $(document).ready(function(e) {
                         table += '<td>' + response.data[index].qty + '</td>';
                         table += '<td>' + (response.data[index].qty - response.data[index].totalqty) + '</td>';
                         table += '<td><a href="' + urlHead  + 'reports/viewlosingitemdetial/' + response.data[index].rp_id + '?from='+ startDate +'&to='+ endDate +'" class="btn btn-success">Detail</a></td>';
-                        //table += '<td><a href="' + urlHead  + 'reports/viewlosingitemdetial/' + response.data[index].rp_id + '" class="btn btn-success">Detail</a></td></tr>';
                         i++;
                     });
                     $('#append-table').html(table);
@@ -58,7 +58,7 @@ $(document).ready(function(e) {
                    
                     $.each(response.data, function(index) {
                         table += '<tr><td>' + i + '</td>';
-                        table += '<td>' + response.data[index].last_name + response.data[index].first_name + '</td>';                                     
+                        table += '<td>' + response.data[index].last_name + " " + response.data[index].first_name + '</td>';                                     
                         table += '<td>' + response.data[index].totalqty + '</td>';
                         table += '<td>' + response.data[index].totalcost  + '</td>';
                         table += '<td><a href="' + urlHead  + 'reports/viewworkedrecordsdetail/' + response.data[index].staff_id+ '?from='+ startDate +'&to='+ endDate +'" class="btn btn-success">Detail</a></td></tr>';

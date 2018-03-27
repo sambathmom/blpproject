@@ -22,12 +22,12 @@ class RawmaterialSeperationController extends Controller
     public function index()
     {
         $rawProducts = DB::table('raw_product')
-        ->join('raw_material', 'raw_product.rm_id', '=', 'raw_material.rm_id')
-        ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
-        ->join('staff', 'staff.staff_id', '=', 'raw_product.staff_id')
-        ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
-        ->orderBy('rm_id','ASC')
-        ->paginate(20); 
+            ->join('raw_material', 'raw_product.rm_id', '=', 'raw_material.rm_id')
+            ->join('grade', 'grade.grade_id', '=', 'raw_product.grade_id')
+            ->join('staff', 'staff.staff_id', '=', 'raw_product.staff_id')
+            ->select('raw_product.*', 'raw_material.rm_name','grade.grade_name', 'staff.last_name', 'staff.first_name', 'staff.middle_name')
+            ->orderBy('rm_id','ASC')
+            ->paginate(20); 
         $rawMaterials = DB::table('raw_material')->get();
         $grades = DB::table('grade')->get();
         $staffs = Staff::all();
@@ -50,30 +50,30 @@ class RawmaterialSeperationController extends Controller
   
     }
 
+    public function validationerror(Request $request){      
+        $rules = [
+            'rm_id' => 'required:raw_product',
+            'grade_id' => 'required:raw_product',
+            'rp_name' => 'required:raw_product',
+            'qty' => 'required|numeric:raw_product',
+            'cost' => 'required|numeric:raw_product',
+        ];
+        $message = [
+            'rm_id' => 'raw product',
+            'grade_id' =>'grade name',
+            'rp_name' => 'raw product name',
+            'qty' => 'quantity',
+            'cost' => 'cost'
+        ];
+        $this->validate($request,$rules,[],$message);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function validationerror(Request $request){
-        
-          $rules = [
-              'rm_id' => 'required:raw_product',
-              'grade_id' => 'required:raw_product',
-              'rp_name' => 'required:raw_product',
-              'qty' => 'required|numeric:raw_product',
-              'cost' => 'required|numeric:raw_product',
-          ];
-          $message = [
-              'rm_id' => 'raw product',
-              'grade_id' =>'grade name',
-              'rp_name' => 'raw product name',
-              'qty' => 'quantity',
-              'cost' => 'cost'
-          ];
-          $this->validate($request,$rules,[],$message);
-      }
     public function store(Request $request)
     {
         $this->validationerror($request);

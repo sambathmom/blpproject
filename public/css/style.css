@@ -24,3 +24,11 @@
 	background-color: red;
 	color: white;
 }
+
+table .ui-datepicker-calendar {
+	font-size: 12px;
+}
+
+strong {
+	font-size: 13px;
+}

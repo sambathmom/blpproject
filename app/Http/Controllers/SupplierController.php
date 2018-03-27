@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Supplier;
 use DB;
@@ -27,11 +26,11 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
     	return view('supplier.create');
     }
+
     public  function validationerror(Request $request){
         $rules =[
             'company_name' => 'required:supplier',
@@ -47,15 +46,15 @@ class SupplierController extends Controller
             'email' => 'email',
             'phone' => 'phone',
         ];
-        return $this -> validate($request,$rules,[],$message);
+        return $this->validate($request,$rules,[],$message);
     }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(request $request)
     {
         $this -> validationerror($request);
@@ -73,16 +72,15 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request)
     {
-         $this -> validationerror($request);
-         $id = $request->supplier_id;
-         $supplier =  Supplier::findOrFail($id);
-         $data = $request->all();
-         $supplier ->fill($data)->save();
-         Session::flash('getmessage','Update successfully!');
-         return redirect ('supplier/index');
+        $this -> validationerror($request);
+        $id = $request->supplier_id;
+        $supplier =  Supplier::findOrFail($id);
+        $data = $request->all();
+        $supplier ->fill($data)->save();
+        Session::flash('getmessage','Update successfully!');
+        return redirect ('supplier/index');
     }
 
     /**
@@ -90,7 +88,6 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function destroy(Request $requset){
         $id = $requset->supplier_id;
         $delete = Supplier::findOrFail($id)->delete();
