@@ -11,17 +11,17 @@
                 </div>
             </div>
         </section> 
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
             <a href="{{route('gradecreate')}}" >
                 <span class="pull-right"><i class="fa fa-plus"></i> New grade</span>
             </a>     
-             @if(Session::has('getmess')) 
-                <div class="row">       
-                    <div class="alert alert-success col-md-3" pull-right>
-                        {{Session::get('getmess')}}                                               
-                    </div> 
-                </div>                      
-            @endif   
         </div> 
         <div class="box">
             <div class="content">                        
@@ -32,22 +32,34 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Grade Name</th>
+
+                                    @permission('grade-edit', 'grade-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 0; ?>
                                 @foreach($grades as $grade)
                                 <tr>
-                                    <td>{{$grade->grade_id}}</td>
+                                    <td>{{$i++}}</td>
                                     <td>{{$grade->grade_name}}</td>
+
+                                    @permission('grade-edit', 'grade-delete')
                                     <td width="110">
+                                        @permission('grade-edit')
                                         <a href="#gradeEditModal" data-toggle="modal" data-target="#gradeEditModal" data-identity="{{$grade->grade_id}}" class="edit-grade" data-name="{{$grade->grade_name}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('grade-delete')
                                         <a href="#gradeDestroyModal" data-toggle="modal" data-target="#gradeDestroyModal" data-identity="{{$grade->grade_id}}" class="destroy-grade">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -74,8 +74,24 @@ class SupplierController extends Controller
      */
     public function update(Request $request)
     {
-        $this -> validationerror($request);
         $id = $request->supplier_id;
+     
+        $rules =[
+            'company_name' => 'required:supplier',
+            'contact_person' => 'required:supplier',
+            'contact_title'=> 'required:supplier',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+        ];
+        $message =[
+            'company_name' => 'company name',
+            'contact_person' => 'contact person',
+            'contact_title'=> 'contact title',
+            'email' => 'email',
+            'phone' => 'phone',
+        ];
+        $this->validate($request,$rules,[],$message);
+
         $supplier =  Supplier::findOrFail($id);
         $data = $request->all();
         $supplier ->fill($data)->save();

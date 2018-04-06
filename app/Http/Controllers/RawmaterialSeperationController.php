@@ -79,7 +79,7 @@ class RawmaterialSeperationController extends Controller
         $this->validationerror($request);
         $grade = $request->grade_id;
         $laborcost = new LaborCost;
-        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade,$this->workType);
+        $laborCostObj = $laborcost->getLaborCostByGradeAndWorkType($grade, $this->workType);
 
         if ($laborCostObj) {
             $rawMaterialSeperation = new RawProduct;
@@ -100,8 +100,7 @@ class RawmaterialSeperationController extends Controller
         } else {
             Session::flash('getmessage','This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('rawmaterialseperation/create');
-        }
-        
+        }      
     }
 
     /**
@@ -125,7 +124,8 @@ class RawmaterialSeperationController extends Controller
             $rawProducts = RawProduct::findOrfail($rawProductId);
             $data = $request->all();
             $rawProducts->fill($data)->save();          
-            $workedRecord = WorkedRecords::where([['item_id',$rawProductId],['wt_id',$this->workType]])->first();
+            $workedRecord = WorkedRecords::where([['item_id',$rawProductId], ['wt_id',$this->workType]])->first();
+            dd($workedRecord); die();
             $workedRecord->lc_id = $laborCostObj->lc_id;
             $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->staff_id=$request->staff_id;
@@ -136,8 +136,7 @@ class RawmaterialSeperationController extends Controller
         } else {
             Session::flash('getmessage','Updated unsuccessfully! This labor cost was not created. Please go to create the labor cost that have the same grade and work type.');
             return redirect ('rawmaterialseperation/index');
-        }
-       
+        }     
     }
 
     /**

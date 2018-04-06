@@ -9,16 +9,21 @@
                 </div>
             </div>
         </section>  
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('pmr-create')
             <a href="{{url('processmaterialreceiving/create')}}">
                 <span class="pull-right"><i class="fa fa-plus"></i>New process material</span>
             </a>   
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
-            @endif   
-        </div>    
+            @endpermission
+        </div>  
+          
         <div class="box">
             <div class="content">
                 <div class="col-md-12">  
@@ -32,7 +37,9 @@
                                     <th>Process material name</th>
                                     <th>Quantity</th>
                                     <th>Cost</th>
+                                    @permission('pmr-edit', 'pmr-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>  
@@ -44,7 +51,9 @@
                                     <td>{{$processMaterial->pm_name}}</td>
                                     <td>{{$processMaterial->qty}}</td>
                                     <td>{{$processMaterial->cost}}</td>
+                                    @permission('pmr-edit', 'pmr-delete')
                                     <td width="110">
+                                        @permission('pmr-edit')
                                         <a href="#editProccess"  data-toggle="modal" class="editProccess"
                                         data-id="{{$processMaterial->pm_id}}"
                                         data-staff ="{{$processMaterial->staff_id}}"
@@ -53,11 +62,16 @@
                                         data-procost="{{$processMaterial->cost}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('pmr-delete')
                                         <a data-toggle="modal" data-target="#deleteProcess" class="delete-proccess"  
                                         data-id="{{$processMaterial->pm_id}}">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach                    
                             </tbody>

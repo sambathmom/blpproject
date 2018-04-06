@@ -47,7 +47,7 @@ class GradeController extends Controller
         $data = $request->all();
 
         $grade->fill($data)->save();
-        Session::flash('getmess','Insert successfully!!!');
+        Session::flash('getmessage','Insert successfully!!!');
         return redirect('grade/index');
     }
 
@@ -63,7 +63,7 @@ class GradeController extends Controller
         $grade = Grade::findOrFail($id);
         $update = $request->all();
         $grade->fill($update)->save();
-        Session::flash('getmess','Update successfully!!!');
+        Session::flash('getmessage','Update successfully!!!');
         return redirect('grade/index');
     }
 
@@ -77,7 +77,7 @@ class GradeController extends Controller
     {
         $id = $request->grade_id;
         $grade = Grade::find($id)->delete();
-        Session::flash('getmess','Deleted successfully!!!');
+        Session::flash('getmessage','Deleted successfully!!!');
         return redirect('grade/index');
     }
 }

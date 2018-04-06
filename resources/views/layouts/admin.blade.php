@@ -89,21 +89,30 @@
             <aside class="main-sidebar">
                 <section class="sidebar">
                  	<ul class="sidebar-menu">
+                        @permission('rmp-view', 'rmp-create', 'rmp-edit', 'rmp-delete', 'rms-create', 'rms-edit', 'rms-delete')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-circle-o"></i>
                                 <span>Raw material mangement</span>
                             </a>
                             <ul class="treeview-menu" id="treeopen">
+                                @permission('rmp-view', 'rmp-create', 'rmp-edit', 'rmp-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
-                                        <span>Row material purchasing</span>                                    </a>
+                                        <span>Row material purchasing</span>
+                                    </a>
                                     <ul class="treeview-menu">
                                         <li><a  href="{{route('rawmaterialpurchasingindex')}}"><i class="fa fa-list-alt"></i>List of raw material</a></li>
+
+                                        @permission('rmp-create')
                                         <li><a  href="{{route('rawmaterialpurchasingcreate')}}"><i class="fa fa-plus"></i>Purchas row material</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
+
+                                @permission('rms-view', 'rms-create', 'rms-edit', 'rms-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
@@ -111,18 +120,25 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a  href="{{url('rawmaterialseperation/index')}}"><i class="fa fa-list-alt"></i>Raw product list</a></li>
+                                        
+                                        @permission('rms-create')
                                         <li><a  href="{{url('rawmaterialseperation/create')}}"><i class="fa fa-plus"></i>Separate raw material</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
                             </ul>
                         </li>
+                        @endpermission
 
+                        @permission('pmr-view', 'pmr-create', 'pmr-edit', 'pmr-delete', 'pc-view', 'pc-create', 'pc-edit', 'pc-delete', 'pd-view', 'pd-create', 'pd-edit', 'pd-delete', 'ps-view', 'ps-create', 'ps-edit', 'ps-delete')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-circle-o"></i>
                                 <span>Process mangement</span>                            
                             </a>
                             <ul class="treeview-menu" id="treeopen">
+                                @permission('pmr-view', 'pmr-create', 'pmr-edit', 'pmr-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
@@ -130,21 +146,31 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a  href="{{route('processmaterialreceivingindex')}}"><i class="fa fa-list-alt"></i>Process material list</a></li>
+                                        
+                                        @permission('pmr-create')
                                         <li><a  href="{{route('processmaterialreceivingcreate')}}"><i class="fa fa-plus"></i>Add process material</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
 
+                                @permission('pc-view', 'pc-create', 'pc-edit', 'pc-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
                                         <span>Process Cleaning</span>
                                     </a>
                                     <ul class="treeview-menu">
-                                    <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-list-alt"></i>Process cleaning</a></li>
+                                        <li><a  href="{{url('processcleaning/index')}}"><i class="fa fa-list-alt"></i>Process cleaning</a></li>
+                                        
+                                        @permission('pc-create')
                                         <li><a  href="{{url('processcleaning/create')}}"><i class="fa fa-plus"></i>Add process cleaning</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
 
+                                @permission('pd-view', 'pd-create', 'pd-edit', 'pd-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
@@ -152,10 +178,15 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a  href="{{url('processdrying/index')}}"><i class="fa fa-list-alt"></i>Process drying</a></li>
+                                        
+                                        @permission('pd-create')
                                         <li><a  href="{{url('processdrying/create')}}"><i class="fa fa-plus"></i>Add process drying</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
 
+                                @permission('ps-view', 'ps-create', 'ps-edit', 'ps-delete')
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-circle-o"></i>
@@ -163,23 +194,36 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a  href="{{url('processshaping/index')}}"><i class="fa fa-list-alt"></i>Process shaping list</a></li>
+                                        
+                                        @permission('ps-create')
                                         <li><a  href="{{url('processshaping/create')}}"><i class="fa fa-plus"></i>Add process shaping</a></li>
+                                        @endpermission
                                     </ul>
                                 </li>
+                                @endpermission
                             </ul>
                         </li>
+                        @endpermission
 
+                        @permission('vwr', 'vlr')
                         <li class="treeview">
         					<a href="#">
                                 <i class="fa fa-file"></i>
                                  <span>Report</span>
                             </a>
                             <ul class="treeview-menu">
+                                @permission('vwr')
                                 <li><a  href="{{url('reports/viewworkedrecords')}}"><i class="fa fa-eye"></i>View worked record</a></li>
+                                @endpermission
+
+                                @permission('vlr')
                                 <li><a  href="{{url('reports/viewlosingrawmaterials')}}"><i class="fa fa-eye"></i>View loosing item</a></li>
+                                @endpermission
                             </ul>
         				</li>
+                        @endpermission
 
+                        @permission('staff-view', 'staff-create', 'staff-edit', 'staff-delete')
                         <li class="treeview">
         					<a href="#">
                                 <i class="fa fa-user"></i>
@@ -187,10 +231,15 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="/staff/index"><i class="fa fa-list-alt"></i>List of staff</a></li>
+                                
+                                @permission('staff-create')
                                 <li><a  href="{{route('staffcreate')}}"><i class="fa fa-plus"></i>Add new staff</a></li>
+                                @endpermission
                             </ul>
         				</li>
+                        @endpermission
 
+                        @permission('supplier-view', 'supplier-create', 'supplier-edit', 'supplier-delete')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-circle-o"></i>
@@ -198,10 +247,15 @@
                             </a>
                             <ul class="treeview-menu" id="treeopen">
                                 <li><a  href="{{url('/supplier/index')}}"><i class="fa fa-list-alt"></i>List of supplier</a></li>
+                                
+                                @permission('supplier-create')
                                 <li><a  href="{{url('/supplier/create')}}"><i class="fa fa-plus"></i>Add new supplier</a></li>
+                                @endpermission
                             </ul>                    
                         </li>
+                        @endpermission
 
+                        @permission('grade-view', 'grade-create', 'grade-edit', 'grade-delete')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa fa-circle-o"></i>
@@ -209,10 +263,15 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="/grade/index"><i class="fa fa-list-alt"></i>List of grade</a></li>
+                                
+                                @permission('grade-create')
                                 <li><a  href="/grade/create"><i class="fa fa-plus"></i>Add New grade</a></li>
+                                @endpermission
                             </ul>
                         </li>
+                        @endpermission
 
+                        @permission('wt-view', 'wt-create', 'wt-edit', 'wt-delete')    
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -220,10 +279,15 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="{{route('worktypeindex')}}"><i class="fa fa-list-alt"></i>List of work type</a></li>
+                                
+                                @permission('wt-create')
                                 <li><a  href="{{route('worktypecreate')}}"><i class="fa fa-plus"></i>Add New work type</a></li>
+                                @endpermission
                             </ul>
                         </li>
+                        @endpermission
 
+                        @permission('lc-view', 'lc-create', 'lc-edit', 'lc-delete')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
@@ -231,9 +295,45 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a  href="{{route('laborcostindex')}}"><i class="fa fa-list-alt"></i>List of labor cost</a></li>
+                                
+                                @permission('lc-create')
                                 <li><a  href="{{route('laborcostcreate')}}"><i class="fa fa-plus"></i>Add new labor cost</a></li>
+                                @endpermission
                             </ul>
                         </li>
+                        @endpermission
+
+                        @permission('user-view', 'user-create', 'user-edit', 'user-delete')
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users"></i>
+                                <span>Users</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{ route('users.index') }}"><i class="fa fa-list-alt"></i>List of user</a></li>
+                                
+                                @permission('user-create')
+                                <li><a  href="{{ route('users.create') }}"><i class="fa fa-plus"></i>Add new user</a></li>
+                                @endpermission
+                            </ul>
+                        </li>
+                        @endpermission
+
+                        @permission('role-list', 'role-create', 'role-edit', 'role-delete')
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Roles</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a  href="{{route('roles.index')}}"><i class="fa fa-list-alt"></i>List of role</a></li>
+                                
+                                @permission('role-create')
+                                <li><a  href="{{route('roles.create')}}"><i class="fa fa-plus"></i>Add new role</a></li>
+                                @endpermission
+                            </ul>
+                        </li>
+                        @endpermission
         			</ul>
                 </section>
             </aside><!-- main-sidebar -->

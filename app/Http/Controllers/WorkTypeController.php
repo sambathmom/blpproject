@@ -56,7 +56,7 @@ class WorkTypeController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [ 'wt_name' => 'required'], [], ['wt_name' => 'work type']);        
-        $id = $request->work_type_id;
+        $id = $request->wt_id;
         $workType = WorkType::findOrFail($id);
         $update = $request->all();
         $workType->fill($update)->save();

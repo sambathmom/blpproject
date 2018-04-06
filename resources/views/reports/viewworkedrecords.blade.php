@@ -26,6 +26,9 @@
                                 <input type="text" class="form-control datepicker" id="endDateWorkedRecords">
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success" id="viewWorkedRecords">View</button>                        
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12"> 
