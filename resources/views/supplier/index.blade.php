@@ -8,18 +8,22 @@
                     <h2>Supplier</h2>      
                 </div>
             </div>
-        </section>  
+        </section> 
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('supplier-create')
             <a href="{{url('supplier/create')}}">
                 <span class="pull-right">
                     <i class="fa fa-plus"> Add new supplier</i>
                 </span>  
-            </a>   
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
-            @endif   
+            </a>    
+            @endpermission
         </div>
         <div class="box">
             <div class="content">
@@ -34,7 +38,9 @@
                                     <th scope="col">Contact Title</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
+                                    @permission('supplier-edit', 'supplier-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>  
@@ -46,14 +52,21 @@
                                     <td>{{$supplier->contact_title}}</td>
                                     <td>{{$supplier->email}}</td>
                                     <td>{{$supplier->phone}}</td>
+                                    @permission('supplier-edit', 'supplier-delete')
                                     <td width="110">
+                                        @permission('supplier-edit')
                                         <a href="#editSupplier"  data-toggle="modal" data-target="#editSupplier" class="edit-supplier" data-id="{{$supplier->supplier_id}}" data-company="{{$supplier->company_name}}" data-contact="{{$supplier->contact_person}}" data-title="{{$supplier->contact_title}}" data-email="{{$supplier->email}}" data-phone="{{$supplier->phone}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('supplier-delete')
                                         <a data-toggle="modal" data-target="#deleteSupplier" class="deleteSupplier" data-id="{{$supplier->supplier_id}}">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach                      
                             </tbody>

@@ -30,7 +30,7 @@
                                     @include('processdrying/formfields')
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Save</button>
-                                        <a href="{{url('processdriying/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
+                                        <a href="{{url('processdrying/index')}}"><button type="button" class="btn btn-warning">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>

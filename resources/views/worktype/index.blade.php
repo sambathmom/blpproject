@@ -10,17 +10,22 @@
                     <h2>Work Type</h2>      
                 </div>
             </div>
-        </section>  
+        </section> 
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('wt-create')
             <a href="{{route('worktypecreate')}}" >
                 <span class="pull-right"><i class="fa fa-plus"></i> New work type</sapn>
-            </a>     
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
-            @endif   
+            </a>    
+            @endpermission 
         </div>
+        
         <div class="box">
             <div class="content">                        
                 <div class="col-md-12">
@@ -30,7 +35,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Work Type Name</th>
+                                    @permission('wt-edit', 'wt-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,14 +45,21 @@
                                 <tr>
                                     <td>{{$workType->wt_id}}</td>
                                     <td>{{$workType->wt_name}}</td>
+                                    @permission('wt-edit', 'wt-delete')
                                     <td width="110">
+                                        @permission('wt-edit')
                                         <a href="#workTypeEditModal" data-toggle="modal" data-target="#workTypeEditModal" data-identity="{{$workType->wt_id}}" class="edit-worktype" data-name="{{$workType->wt_name}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('wt-delete')
                                         <a href="#workTypeDestroyModal" data-toggle="modal" data-target="#workTypeDestroyModal" data-identity="{{$workType->wt_id}}" class="destroy-worktype">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach
                             </tbody>

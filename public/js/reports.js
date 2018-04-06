@@ -1,6 +1,6 @@
 $(document).ready(function(e) {
     var urlHead = 'http://localhost:8000/';
-    $('#endDate').on('change', function(e) {
+    $('#viewLosingItem').on('click', function(e) {
         e.preventDefault();
         var startDate = $('#startDate').val(); 
         var endDate = $('#endDate').val();
@@ -34,7 +34,7 @@ $(document).ready(function(e) {
         });
     });
 
-    $('#endDateWorkedRecords').on('change', function(e) {
+    $('#viewWorkedRecords').on('click', function(e) {
         e.preventDefault();
         var startDate = $('#startDateWorkedRecords').val();
         var endDate = $('#endDateWorkedRecords').val();

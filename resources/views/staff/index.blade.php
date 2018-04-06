@@ -11,15 +11,19 @@
                 </div>
             </div>
         </section>
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('staff-create')
             <a href="{{route('staffcreate')}}" >
                 <i class="fa fa-plus pull-right">New staff</i>
-            </a> 
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                {{Session::get('getmessage')}}
-                </div>
-            @endif       
+            </a>     
+            @endpermission
         </div> 
    
         <div class="box">
@@ -34,7 +38,9 @@
                                     <th>Sex</th>
                                     <th>Phone</th>
                                     <th>Email</th>
+                                    @permission('staff-edit', 'staff-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,14 +51,21 @@
                                     <td>{{$staff->sex}}</td>
                                     <td>{{$staff->phone}}</td>
                                     <td>{{$staff->email}}</td>
+                                    @permission('staff-edit', 'staff-delete')
                                     <td width="110">
+                                        @permission('staff-edit')
                                         <a href="#staffEditModal" data-toggle="modal" data-target="#staffEditModal" class="edit-staff" data-identity="{{$staff->staff_id}}" data-last-name="{{$staff->last_name}}" data-middle-name="{{$staff->middle_name}}" data-frist-name="{{$staff->first_name}}" data-sex="{{$staff->sex}}" data-phone="{{$staff->phone}}" data-email="{{$staff->email}}">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('staff-edit')
                                         <a href="#staffDeleteModal" data-toggle="modal" data-target="#staffDeleteModal" class="destroy-staff" data-identity="{{$staff->staff_id}}">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach
                             </tbody>

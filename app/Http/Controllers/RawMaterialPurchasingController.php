@@ -116,6 +116,7 @@ class RawMaterialPurchasingController extends Controller
     {
         $this->validationerror($request);
         $id = $request->rm_id;
+        echo $id; die();
         $gradeId = $request->grade_id;
         $laborCost = new LaborCost;
         $laborCostObj = $laborCost->getLaborCostByGradeAndWorkType($gradeId, $this->workTypeId); 
@@ -126,6 +127,7 @@ class RawMaterialPurchasingController extends Controller
 
 
             $workedRecord = WorkedRecords::where([ ['item_id', $id], ['wt_id', $this->workTypeId]])->first();
+            dd($workedRecord); die();
             $workedRecord->lc_id = $laborCostObj->lc_id;
             $workedRecord->cost = $laborCostObj->cost;
             $workedRecord->wt_id = $this->workTypeId;

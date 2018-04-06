@@ -3,7 +3,7 @@
     <div class="form-group row">
         <label for="supplierCompany" class="col-md-4 control-label"><strong>Company name: <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="CompanyName" class="form-control" id="supplierCompany" name="company_name" type="text" >
+        {!! Form::text('company_name', null, array('placeholder' => 'CompanyName','class' => 'form-control', 'id'=>'supplierCompany')) !!}
             <span class="error">{{ $errors->first('company_name') }}</span>
         </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="form-group row">
         <label for="supplierContact" class="col-md-4 control-label"><strong>Contact person <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Contact Person" class="form-control" id="supplierContact" name="contact_person" type="text" >
+           {!! Form::text('contact_person', null, array('placeholder' => 'Contact person','class' => 'form-control', 'id'=>'supplierContact')) !!}
             <span class="error">{{ $errors->first('contact_person') }}</span>
         </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="form-group row">
         <label for="supplierTitle" class="col-md-4 control-label"><strong>Conatact title <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Conatact Title" class="form-control" id="supplierTitle" name="contact_title"  type="text">
+           {!! Form::text('contact_title', null, array('placeholder' => 'Conatact Title','class' => 'form-control', 'id'=>'supplierTitle')) !!}
             <span class="error">{{ $errors->first('contact_title') }}</span>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="form-group row">
         <label for="supplierEmail" class="col-md-4 control-label"><strong>Email<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Email" class="form-control" id="supplierEmail" name="email" type="email">
+            {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control', 'id'=>'supplierEmail')) !!}
             <span class="error">{{ $errors->first('email') }}</span>
         </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="form-group row">
         <label for="supplierPhone" class="col-md-4 control-label"><strong>Phone <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Phone" class="form-control" id="supplierPhone" name="phone" type="text">
+            {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control', 'id'=>'supplierPhone')) !!}
             <span class="error">{{ $errors->first('phone') }}</span>
         </div>
     </div>

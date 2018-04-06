@@ -8,23 +8,25 @@
                     <h2>Raw material superation</h2>      
                 </div>
             </div>
-        </section>  
+        </section> 
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('rms-create')
             <a href="{{url('rawmaterialseperation/create')}}">
                 <i class="fa fa-plus pull-right">New Raw Product</i>  
             </a>   
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
-            @endif   
+            @endpermission
         </div>
         <div class="box">
             <div class="content">
-
                 <div class="col-md-12">                    
                    <table  border="1" class="table table-striped">
-
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
@@ -34,7 +36,9 @@
                                 <th>Staff </th>
                                 <th> Quantity</th>
                                 <th scope="col">Cost</th>
+                                @permission('rms-edit', 'rms-delete')
                                 <th width="80">Actions</th>
+                                @endpermission
                             </tr>
                         </thead>
                         <tbody>  
@@ -47,17 +51,25 @@
                                 <td>{{$rawProduct->first_name}} {{$rawProduct->middle_name}} {{$rawProduct->last_name}}</td>                                
                                 <td>{{$rawProduct->qty}}</td>
                                 <td>{{$rawProduct->cost}}</td>
+                                @permission('rms-edit', 'rms-delete')
                                 <td width="110" >
+                                    @permission('rms-edit')
                                     <a href="#rawMaterialSuperation" data-target="#rawMaterialSuperation"  data-toggle="modal" class="editRawPro"
                                     data-id="{{$rawProduct->rp_id}}" data-rmid="{{$rawProduct->rm_id}}"
                                     data-grade="{{$rawProduct->grade_id}}" data-name="{{$rawProduct->rp_name}}"
                                     data-qty="{{$rawProduct->qty}}" data-cost="{{$rawProduct->cost}}"
                                     data-staff="{{$rawProduct->staff_id}}"
-                                    ><i class="fa fa-edit btn btn-success"></i></a>
+                                    >   
+                                        <i class="fa fa-edit btn btn-success"></i>
+                                    </a>
+                                    @endpermission
                                
+                                    @permission('rms-delete')
                                     <a href="#deleteRawPro" data-toggle="modal" data-target="#deleteRawPro" class="delete-rawproduct"  
                                     data-id="{{$rawProduct->rp_id}}"><i class="fa fa-trash btn btn-danger"></i></a>
+                                    @endpermission
                                 </td>
+                                @endpermission
                             </tr>
                             @endforeach                    
                         </tbody>  

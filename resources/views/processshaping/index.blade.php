@@ -8,17 +8,22 @@
                     <h2>Process shaping list</h2>      
                 </div>
             </div>
-        </section>  
+        </section>
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('ps-create')
             <a href="{{url('processshaping/create')}}">
                 <i class="fa fa-plus pull-right">New process shaping</i>
-            </a>  
-            @if(Session::has ('getmessage'))
-                <div class="alert alert-success col-sm-3 pull-right">
-                    {{Session::get('getmessage')}}
-                </div>
-            @endif    
-        </div>    
+            </a> 
+            @endpermission   
+        </div>
+            
         <div class="box">
             <div class="content">
                 <div class="col-md-12"> 
@@ -33,7 +38,9 @@
                                     <th>Porcess shaping name</th>
                                     <th>Quantity</th>
                                     <th>Cost</th>
+                                    @permission('ps-edit', 'ps-delete')
                                     <th>Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>  
@@ -46,7 +53,9 @@
                                     <td>{{$processShaping->sp_name}}</td>
                                     <td>{{$processShaping->qty}}</td>
                                     <td>{{$processShaping->cost}}</td>
+                                    @permission('ps-edit', 'ps-delete')
                                     <td>
+                                        @permission('ps-edit')
                                         <a type="button" href="#editShaping"  data-toggle="modal"
                                         class="edit-shaping btn btn-success" 
                                         data-id ="{{$processShaping->sp_id}}" 
@@ -59,11 +68,16 @@
                                         >
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('ps-delete')
                                         <a type="button" data-toggle="modal" data-target="#deleteProcessShaping" her="#deleteProcessShaping"
                                         class="delete-shaping btn btn-danger"  data-id="{{$processShaping->sp_id}}">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach                    
                             </tbody>

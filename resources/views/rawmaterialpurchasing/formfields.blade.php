@@ -43,7 +43,7 @@
     <div class="form-group row">
         <label for="rawName" class="col-md-4 control-label"><strong>Raw material name<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="RawMaterialName" class="form-control" id="rawName" name="rm_name"  type="text">
+            {!! Form::text('rm_name', null, array('placeholder' => 'Raw material name','class' => 'form-control', 'id' => 'rawName')) !!}
             <span class="error">{{ $errors->first('rm_name') }}</span>
         </div>
     </div>
@@ -53,7 +53,7 @@
     <div class="form-group row">
         <label for="rawQty" class="col-md-4 control-label"><strong>Quantity<span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Quantity" class="form-control" id="proQty" name="qty" type="text">
+            {!! Form::text('qty', null, array('placeholder' => 'Quantity','class' => 'form-control', 'id' => 'proQty')) !!}
             <span class="error">{{ $errors->first('qty') }}</span>
         </div>
     </div>
@@ -63,7 +63,7 @@
     <div class="form-group row">
         <label for="rawCost" class="col-md-4 control-label"><strong>Cost <span class="required" aria-required="true">* </span></strong></label>
         <div class="col-md-7">
-            <input placeholder="Cost" class="form-control" id="proCost" name="cost" type="text">
+            {!! Form::text('cost', null, array('placeholder' => 'Cost','class' => 'form-control', 'id' => 'proCost')) !!}
             <span class="error">{{ $errors->first('cost') }}</span>
         </div>
     </div>

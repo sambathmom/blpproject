@@ -51,6 +51,7 @@ class StaffController extends Controller
 		];
 		return $this -> validate($request,$rules,[],$message);
 	}
+	
 	/**
      * Store a newly created resource in storage.
      *
@@ -81,15 +82,24 @@ class StaffController extends Controller
 	public function update(request $request)
 	{		
 		$staffId = $request->staff_id;
-		$rules =[
-			'last_name' => 'required',
-			'first_name' => 'required',
-			'sex' => 'required',
-		    'phone' => 'required|numeric|unique:staff,phone',
-		    'email' => 'required|unique:staff,email',
-		];
-		$this -> validate($request,$rules,[]);
-    	
+		
+		$this->validate($request,
+			$rules = [
+				'last_name' => 'required',
+				'first_name' => 'required',
+				'sex' => 'required',
+				'phone' => 'required|numeric',
+				'email' => 'required|email',
+			],
+			$message =[
+				'last_name' => 'last name',
+				'first_name' => 'first name',
+				'sex' => 'sex',
+				'picture'=>'picture',
+				'phone' => 'phone',
+				'email' => 'email'
+		]);
+		
     	$staff = Staff::findOrFail($staffId);
     	if ($request->hasFile('picture'))
 	    {

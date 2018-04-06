@@ -11,17 +11,19 @@
                 </div>
             </div>
         </section>  
+
+        @if ($message = Session::get('getmessage'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
         <div class="col-md-12">
+            @permission('lc-create')
             <a href="{{route('laborcostcreate')}}" >
                 <span class="pull-right"><i class="fa fa-plus"></i> New labor cost</span>
-            </a>     
-             @if(Session::has('getmessage')) 
-                <div class="row">       
-                    <div class="alert alert-success col-md-3" pull-right>
-                        {{Session::get('getmessage')}}                                               
-                    </div> 
-                </div>                      
-            @endif   
+            </a> 
+            @endpermission
         </div>
         <div class="box">
             <div class="content">           
@@ -34,7 +36,10 @@
                                     <th>Work Type Name</th>
                                     <th>Grade</th>
                                     <th>Work type</th>
+
+                                    @permission('lc-edit', 'lc-delete')
                                     <th width="110">Actions</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,14 +49,22 @@
                                     <td>{{$laborCost->lc_name}}</td>
                                     <td>{{$laborCost->grade_name}}</td>
                                     <td>{{$laborCost->wt_name}}</td>
+
+                                    @permission('lc-edit', 'lc-delete')
                                     <td width="110">
+                                        @permission('lc-edit')
                                         <a href="#laborCostEditModal" data-toggle="modal" data-target="#laborCostEditModal" data-identity="{{$laborCost->lc_id}}" data-laborcost-name="{{$laborCost->lc_name}}" data-grade="{{$laborCost->grade_id}}" data-work-type="{{$laborCost->wt_id}}" data-qty="{{$laborCost->qty}}" data-cost="{{$laborCost->cost}}" class="edit-laborcost">
                                             <i class="fa fa-edit fa-lg btn btn-success"></i>
                                         </a>
+                                        @endpermission
+
+                                        @permission('lc-delete')
                                         <a href="#laborCostDestroyModal" data-toggle="modal" data-target="#laborCostDestroyModal" data-identity="{{$laborCost->lc_id}}" class="destroy-laborcost">
                                             <i class="fa fa-trash fa-lg btn btn-danger"></i>
                                         </a>
+                                        @endpermission
                                     </td>
+                                    @endpermission
                                 </tr>
                                 @endforeach
                             </tbody>
